@@ -58,11 +58,15 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="PublishLocations" />
-    <Folder Include="dbo\StoredProcedures" />
+    <Folder Include="dbo\Stored Procedures" />
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Stored Procedures\spUserLookup.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PublishLocations\Data.publish.xml" />
   </ItemGroup>
 </Project>

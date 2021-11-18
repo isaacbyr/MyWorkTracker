@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DesktopUI.Library.Api;
 using DesktopUI.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace DesktopUI
         { 
             container
                 .Singleton<IWindowManager, WindowManager>()
+                .Singleton<IApiHelper, ApiHelper>()
                 .Singleton<IEventAggregator, EventAggregator>();
 
             container.Instance(container);

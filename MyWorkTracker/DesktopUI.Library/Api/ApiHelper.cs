@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesktopUI.Library.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -11,22 +12,56 @@ namespace DesktopUI.Library.Api
 {
     public class ApiHelper : IApiHelper
     {
-        public HttpClient ApiClient { get; set; }
+        private HttpClient apiClient;
 
         public ApiHelper()
         {
             InitializeClient();
         }
 
+        public HttpClient ApiClient
+        {
+            get
+            {
+                return apiClient;
+            }
+        }
+
         private void InitializeClient()
         {
             // string to the api we want to access. Saved in settings so that it can be changed easier
-            string api = ConfigurationSettings.AppSettings["api"];
+            string api = ConfigurationManager.AppSettings["api"];
+            //string api = "http://localhost:44348/";
 
-            ApiClient = new HttpClient();
-            ApiClient.BaseAddress = new Uri(api);
-            ApiClient.DefaultRequestHeaders.Accept.Clear();
-            ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            apiClient = new HttpClient();
+            apiClient.BaseAddress = new Uri(api);
+            apiClient.DefaultRequestHeaders.Accept.Clear();
+            apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
+
+        public async Task<AuthenticatedUser> Authenticate(string username, string password)
+        {
+            var data = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("grant_type", "password"),
+                new KeyValuePair<string, string>("username", username),
+                new KeyValuePair<string, string>("password", password)
+            });
+            
+            using (HttpResponseMessage response  = await apiClient.PostAsync("/Token", data))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<AuthenticatedUser>();
+                    return result;
+                }
+                 else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        
     }
 }

@@ -14,8 +14,6 @@ namespace DesktopUI.ViewModels
         public ShellViewModel(LoginViewModel loginView)
         {
             _loginView = loginView;
-
-
             ActivateItem(_loginView);
         }
     }

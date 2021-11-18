@@ -1,9 +1,12 @@
-﻿using System.Net.Http;
+﻿using DesktopUI.Library.Models;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace DesktopUI.Library.Api
 {
     public interface IApiHelper
     {
-        HttpClient ApiClient { get; set; }
+        HttpClient ApiClient { get;}
+        Task<AuthenticatedUser> Authenticate(string username, string password);
     }
 }

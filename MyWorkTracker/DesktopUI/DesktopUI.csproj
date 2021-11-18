@@ -151,5 +151,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DesktopUI.Library\DesktopUI.Library.csproj">
+      <Project>{E4250739-29A8-4399-B91B-8E2689A8DE9A}</Project>
+      <Name>DesktopUI.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
