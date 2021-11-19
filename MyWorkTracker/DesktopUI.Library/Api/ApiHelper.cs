@@ -1,4 +1,5 @@
 ﻿using DesktopUI.Library.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,10 +14,12 @@ namespace DesktopUI.Library.Api
     public class ApiHelper : IApiHelper
     {
         private HttpClient apiClient;
+        private ILoggedInUserModel _loggedInUser;
 
-        public ApiHelper()
+        public ApiHelper(ILoggedInUserModel loggedInUser)
         {
             InitializeClient();
+            _loggedInUser = loggedInUser;
         }
 
         public HttpClient ApiClient
@@ -52,10 +55,36 @@ namespace DesktopUI.Library.Api
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<AuthenticatedUser>();
-                    return result;
+                    var result = await response.Content.ReadAsStringAsync();
+                    var authenticatedUser = JsonConvert.DeserializeObject<AuthenticatedUser>(result);
+                    return authenticatedUser;
                 }
                  else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task GetLoggedInUserInfo(string token)
+        {
+            apiClient.DefaultRequestHeaders.Clear();
+            apiClient.DefaultRequestHeaders.Accept.Clear();
+            apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            using (HttpResponseMessage response = await apiClient.GetAsync("/api/user"))
+            {
+                if(response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<LoggedInUserModel>>();
+                    _loggedInUser.FirstName = result[0].FirstName;
+                    _loggedInUser.LastName = result[0].LastName;
+                    _loggedInUser.EmailAddress = result[0].EmailAddress;
+                    _loggedInUser.Id = result[0].Id;
+                    _loggedInUser.Token = token;
+                }
+                else
                 {
                     throw new Exception(response.ReasonPhrase);
                 }

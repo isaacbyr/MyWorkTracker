@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using DesktopUI.Library.Api;
+using DesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,15 @@ namespace DesktopUI.ViewModels
     public class LoginViewModel: Screen
     {
         private readonly IApiHelper _apiHelper;
+        private readonly ILoggedInUserModel _loggedInUser;
         private string _username = "i.byron@hotmail.com";
         private string _password = "Test#12";
 
 
-        public LoginViewModel(IApiHelper apiHelper)
+        public LoginViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUser)
         {
             _apiHelper = apiHelper;
+            _loggedInUser = loggedInUser;
         }
 
         public string UserName
@@ -46,6 +49,9 @@ namespace DesktopUI.ViewModels
             try
             {
                 var result = await _apiHelper.Authenticate(UserName, Password);
+
+                await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+
             }
             catch(Exception ex)
             {
