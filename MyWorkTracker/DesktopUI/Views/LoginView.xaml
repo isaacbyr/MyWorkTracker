@@ -25,6 +25,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <!--Header-->
         <TextBlock Text="Welcome to MyWorkTracker!" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="36" Margin="0 40 0 10"></TextBlock>
         

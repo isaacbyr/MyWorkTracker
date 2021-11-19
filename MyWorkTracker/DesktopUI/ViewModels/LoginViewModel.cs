@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DesktopUI.EventModels;
 using DesktopUI.Library.Api;
 using DesktopUI.Library.Models;
 using System;
@@ -13,14 +14,16 @@ namespace DesktopUI.ViewModels
     {
         private readonly IApiHelper _apiHelper;
         private readonly ILoggedInUserModel _loggedInUser;
+        private readonly IEventAggregator _events;
         private string _username = "i.byron@hotmail.com";
         private string _password = "Test#12";
 
 
-        public LoginViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUser)
+        public LoginViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUser, IEventAggregator events)
         {
             _apiHelper = apiHelper;
             _loggedInUser = loggedInUser;
+            _events = events;
         }
 
         public string UserName
@@ -52,6 +55,7 @@ namespace DesktopUI.ViewModels
 
                 await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
 
+                _events.PublishOnUIThread(new LogOnEvent());
             }
             catch(Exception ex)
             {
