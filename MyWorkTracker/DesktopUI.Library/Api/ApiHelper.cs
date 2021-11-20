@@ -90,7 +90,10 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
-
-        
+        public void Logout()
+        {
+            apiClient.DefaultRequestHeaders.Clear();
+        }
+       
     }
 }

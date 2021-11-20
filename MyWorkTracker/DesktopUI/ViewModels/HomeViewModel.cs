@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using DesktopUI.EventModels;
+using DesktopUI.Library.Api;
+using DesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +13,18 @@ namespace DesktopUI.ViewModels
     public class HomeViewModel: Screen
     {
         private readonly IEventAggregator _events;
-        private readonly IWindowManager _manager;
+        private readonly IApiHelper _apiHelper;
+        private readonly ILoggedInUserModel _loggedInUser;
 
-        public HomeViewModel(IEventAggregator events, IWindowManager manager)
+        public HomeViewModel(IEventAggregator events, IApiHelper apiHelper, ILoggedInUserModel loggedInUser)
         {
             _events = events;
-           _manager = manager;
+            _apiHelper = apiHelper;
+            _loggedInUser = loggedInUser;
         }
 
         public void New()
         {
-           // _manager.ShowWindow(new WelcomeViewModel(), null, null);
             _events.PublishOnUIThread(new CreateNewEvent());
         }
 
@@ -37,6 +40,17 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        public void Logout()
+        {
+            _apiHelper.Logout();
+            _loggedInUser.ResetUser();
+            _events.PublishOnUIThread(new LogOffEvent());   
+        }
+
+        public void Exit()
+        {
+            _events.PublishOnUIThread(new ExitAppEvent());
+        }
 
     }
 }

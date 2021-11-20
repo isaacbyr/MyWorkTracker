@@ -42,7 +42,7 @@ namespace DesktopUI.ViewModels
             set 
             { 
                 _password = value;
-                NotifyOfPropertyChange(() => Password);
+               NotifyOfPropertyChange(() => Password);
             }
         }
 

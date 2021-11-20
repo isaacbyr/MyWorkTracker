@@ -91,6 +91,8 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="EventModels\CreateNewEvent.cs" />
+    <Compile Include="EventModels\ExitAppEvent.cs" />
+    <Compile Include="EventModels\LogOffEvent.cs" />
     <Compile Include="EventModels\LogOnEvent.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
