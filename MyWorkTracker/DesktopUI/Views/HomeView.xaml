@@ -12,8 +12,9 @@
                 <ColumnDefinition Width="200"></ColumnDefinition>
                 <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition Width="50"></ColumnDefinition>
-                <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75">
@@ -44,16 +45,17 @@
 
                 </RadioButton>
             </StackPanel>
-
+            
             <Button Foreground="White" Background="#ffaf7a" x:Name="New" Grid.Column="1" Grid.Row="0" Content="New"></Button>
-            <Button Foreground="White"  Background="#ffaf7a" x:Name="Logout" Grid.Column="2" Grid.Row="0" Content="Logout"></Button>
-            <Button Foreground="White"  Background="#ffaf7a" x:Name="Exit" Grid.Column="3" Grid.Row="0" Content="Exit"></Button>
+            <Button Foreground="White" Background="#ffaf7a" x:Name="Search" Grid.Column="2" Grid.Row="0" Content="Search"></Button>
+            <Button Foreground="White"  Background="#ffaf7a" x:Name="Logout" Grid.Column="4" Grid.Row="0" Content="Logout"></Button>
+            <Button Foreground="White"  Background="#ffaf7a" x:Name="Exit" Grid.Column="5" Grid.Row="0" Content="Exit"></Button>
             
             <TextBlock 
             Grid.Row="0"
-            Grid.Column="4" 
+            Grid.Column="3" 
             x:Name="CurrDate"
-            FontSize="22"
+            FontSize="24"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="#ffaf7a"
