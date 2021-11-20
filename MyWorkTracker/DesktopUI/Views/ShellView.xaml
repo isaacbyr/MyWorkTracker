@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopUI.Views"
         mc:Ignorable="d"
+         WindowStyle="None" Background="Transparent" AllowsTransparency="True"
         Title="ShellView" Height="750" Width="1200">
-    <DockPanel>
-        <Grid>
-            <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
-        </Grid>
+    
+        <DockPanel>
+        <Border CornerRadius="18" Background="white">
+            <Grid>
+                <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
+            </Grid>
+        </Border>
     </DockPanel>
+    
+    
 </Window>

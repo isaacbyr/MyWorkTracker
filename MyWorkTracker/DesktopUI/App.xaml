@@ -6,6 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"></ResourceDictionary>
                 <ResourceDictionary>
                     <local:Bootstrapper x:Key="Bootstrapper"></local:Bootstrapper>
                 </ResourceDictionary>
