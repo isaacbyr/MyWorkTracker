@@ -48,7 +48,6 @@ namespace DesktopUI.ViewModels
         {
             ActivateItem(_welcomeVM);
 
-           // _homeVM = _container.GetInstance<HomeViewModel>();
 
         }
 
