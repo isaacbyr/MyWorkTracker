@@ -90,6 +90,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="EventModels\CloseEntryView.cs" />
     <Compile Include="EventModels\CreateNewEvent.cs" />
     <Compile Include="EventModels\ExitAppEvent.cs" />
     <Compile Include="EventModels\LogOffEvent.cs" />
@@ -146,6 +147,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\CurrentDateTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

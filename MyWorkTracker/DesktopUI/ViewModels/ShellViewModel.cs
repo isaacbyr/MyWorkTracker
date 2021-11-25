@@ -10,45 +10,41 @@ using DesktopUI.Library.Models;
 
 namespace DesktopUI.ViewModels
 {
-    public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>
+    public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
+        IHandle<CloseEntryView>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
         private readonly WelcomeViewModel _welcomeVM;
         private readonly SimpleContainer _container;
         private HomeViewModel _homeVM;
-
+        private readonly NewEntryViewModel _newVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
-            WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM)
+            WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, NewEntryViewModel newVM)
         {
             _loginView = loginView;
             _events = events;
             _welcomeVM = welcomeVM;
             _container = container;
             _homeVM = homeVM;
-            
+            _newVM = newVM;
+
 
             // have to subscribe to events in general
             _events.Subscribe(this);
 
-            // ActivateItem(_loginView);
+            //ActivateItem(_loginView);
             ActivateItem(_homeVM);
         }
 
         public void Handle(LogOnEvent message)
         {
             ActivateItem(_homeVM);
-        
+
             // override current login view model and shows a blank one;
 
             _loginView = _container.GetInstance<LoginViewModel>();
-        }
-        public void Handle(CreateNewEvent message)
-        {
-            ActivateItem(_welcomeVM);
-
-
         }
 
         public void Handle(LogOffEvent message)
@@ -59,6 +55,17 @@ namespace DesktopUI.ViewModels
         public void Handle(ExitAppEvent message)
         {
             TryClose();
+        }
+
+        public void Handle(CreateNewEvent message)
+        {
+            ActivateItem(_newVM);
+        }
+
+        public void Handle(CloseEntryView message)
+        {
+            DeactivateItem(_newVM, true);
+            ActivateItem(_homeVM);
         }
     }
 }

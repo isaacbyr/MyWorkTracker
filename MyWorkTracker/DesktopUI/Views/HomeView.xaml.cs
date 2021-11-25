@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using DesktopUI.EventModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace DesktopUI.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
+        
+
         public HomeView()
         {
             InitializeComponent();
         }
+
     }
 }

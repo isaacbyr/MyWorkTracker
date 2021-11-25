@@ -2,11 +2,13 @@
 using DesktopUI.EventModels;
 using DesktopUI.Library.Api;
 using DesktopUI.Library.Models;
+using DesktopUI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace DesktopUI.ViewModels
 {
@@ -27,8 +29,23 @@ namespace DesktopUI.ViewModels
         {
             base.OnViewLoaded(view);
             firstDayOfMonth();
+            NotifyOfPropertyChange(() => IsToday);
+        }
+
+        public bool IsToday
+        {
+            get 
+            {
+
+                if (Today.Day.ToString("") == "22")
+                {
+                    return true;
+                }
+                return false;
+            }
             
         }
+
 
         public void New()
         {
@@ -39,7 +56,9 @@ namespace DesktopUI.ViewModels
         {
             get
             {
+                //NotifyOfPropertyChange(() => IsToday);
                 return DateTime.Today;
+
             }
         }
 
@@ -88,6 +107,11 @@ namespace DesktopUI.ViewModels
             {
                 One = "26";
             }
+        }
+
+        public void Add_New( )
+        {
+            _events.PublishOnUIThread(new CreateNewEvent());
         }
 
         private string _one;
@@ -515,6 +539,8 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        
+   
         public void Logout()
         {
             _apiHelper.Logout();
