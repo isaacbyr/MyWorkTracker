@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[CalendarEntry]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[UserId] NVARCHAR(128) NOT NULL,
+	[Job] NVARCHAR(50) NOT NULL,
+	[Location] NVARCHAR(50) NOT NULL,
+	[Hours] DECIMAL NOT NULL DEFAULT 0,
+	[Wage] MONEY NOT NULL,
+	[Subtotal] MONEY NOT NULL,
+	[Taxes] MONEY NOT NULL,
+	[Total] MONEY NOT NULL,
+	[Description] NVARCHAR(150)
+)

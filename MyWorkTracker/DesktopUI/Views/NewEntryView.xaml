@@ -72,34 +72,34 @@
             </TextBlock>
 
             <!--Job Inputs-->
-            <TextBox Grid.Row="2" Grid.Column="0"
+            <TextBox x:Name="Job" Grid.Row="2" Grid.Column="0"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
                      FontSize="16"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1"
+            <TextBox x:Name="Location" Grid.Row="2" Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
                      FontSize="16"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="2"
+            <TextBox x:Name="Hours" Grid.Row="2" Grid.Column="2"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
                      FontSize="16"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="3"
+            <TextBox x:Name="Wage" Grid.Row="2" Grid.Column="3"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
                      FontSize="16"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="4"
+            <TextBox x:Name="Subtotal" Grid.Row="2" Grid.Column="4"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
                      FontSize="16"></TextBox>
 
             <!--Description-->
-            <TextBlock Text="Description" Grid.Column="1"
+            <TextBlock x:Name="Description" Text="Description" Grid.Column="1"
                        Grid.Row="3"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -113,13 +113,13 @@
             </TextBox>
 
             <!--Taxes-->
-            <TextBlock
+            <TextBlock x:Name="Taxes"
                 Grid.Row="6" Grid.Column="3"
                 Text="Taxes" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="18">
             </TextBlock>
-            <TextBox
+            <TextBox x:Name="Total"
                 Grid.Row="6" Grid.Column="4"
                 Text="0.00" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
