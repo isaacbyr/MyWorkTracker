@@ -9,7 +9,7 @@ namespace DataManager.Library.DataAccess
 {
     public class EntryData
     {
-        public void SaveEntry(NewEntryModel newEntry)
+        public void SaveEntry(EntryModel newEntry)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
@@ -24,6 +24,15 @@ namespace DataManager.Library.DataAccess
                 sql.RollbackTransaction();
                 throw;
             }
+        }
+
+        public EntryModel LoadEntry()
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var output = sql.LoadData<EntryModel, dynamic>("dbo.sp_Entry_GetAll", new { }, "WTData").First();
+            return output;
+                
         }
     }
 }

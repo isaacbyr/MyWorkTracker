@@ -13,15 +13,25 @@ namespace DesktopUI.ViewModels
     public class NewEntryViewModel: Screen
     {
         private readonly IEventAggregator _events;
-        private INewEntryEndpoint _newEntryEndpoint;
+        private IEntryEndpoint _entryEndpoint;
 
-        public NewEntryViewModel(IEventAggregator events, INewEntryEndpoint newEntryEndpoint)
+        public NewEntryViewModel(IEventAggregator events, IEntryEndpoint entryEndpoint)
         {
             _events = events;
-            _newEntryEndpoint = newEntryEndpoint;
+            _entryEndpoint = entryEndpoint;
         }
 
-        private string _job = "Marco";
+        protected override async void OnViewLoaded(object view) 
+        {
+            await LoadEntry();
+        }
+
+        public async Task LoadEntry()
+        {
+            var loadedEntry = await _entryEndpoint.LoadEntry();
+        }
+
+        private string _job;
 
         public string Job
         {
@@ -135,7 +145,7 @@ namespace DesktopUI.ViewModels
             newEntry.Total = Total;
             newEntry.Description = Description;
 
-            await _newEntryEndpoint.PostEntry(newEntry);
+            await _entryEndpoint.PostEntry(newEntry);
 
         }
     }

@@ -50,8 +50,8 @@
   <ItemGroup>
     <Compile Include="Api\ApiHelper.cs" />
     <Compile Include="Api\IApiHelper.cs" />
-    <Compile Include="Api\INewEntryEndpoint.cs" />
-    <Compile Include="Api\NewEntryEndpoint.cs" />
+    <Compile Include="Api\IEntryEndpoint.cs" />
+    <Compile Include="Api\EntryEndpoint.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />

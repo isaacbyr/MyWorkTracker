@@ -12,9 +12,9 @@ namespace DataManager.Controllers
 {
     [Authorize]
     [RoutePrefix("api/NewEntry")]
-    public class NewEntryController : ApiController
+    public class EntryController : ApiController
     {
-        public void Post(NewEntryModel newEntry)
+        public void Post(EntryModel newEntry)
         {
 
             var entryData = new EntryData();
@@ -23,6 +23,13 @@ namespace DataManager.Controllers
             newEntry.UserId = id;
 
             entryData.SaveEntry(newEntry);
+        }
+
+        public EntryModel Get()
+        {
+            var entryData = new EntryData();
+
+            return entryData.LoadEntry();
         }
     }
 }

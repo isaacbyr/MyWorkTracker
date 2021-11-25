@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataManager.Library.Models
 {
-    public class NewEntryModel
+    public class EntryModel
     {
         public string UserId { get; set; }
         public string Job { get; set; }

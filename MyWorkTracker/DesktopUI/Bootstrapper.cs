@@ -26,7 +26,7 @@ namespace DesktopUI
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IApiHelper, ApiHelper>()
-                .Singleton<INewEntryEndpoint, NewEntryEndpoint>()
+                .Singleton<IEntryEndpoint, EntryEndpoint>()
                 .Singleton<IEventAggregator, EventAggregator>();
 
             container.Instance(container);
