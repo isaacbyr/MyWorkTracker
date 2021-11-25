@@ -34,8 +34,8 @@ namespace DesktopUI.ViewModels
             // have to subscribe to events in general
             _events.Subscribe(this);
 
-            //ActivateItem(_loginView);
-            ActivateItem(_homeVM);
+            ActivateItem(_loginView);
+            //ActivateItem(_homeVM);
         }
 
         public void Handle(LogOnEvent message)

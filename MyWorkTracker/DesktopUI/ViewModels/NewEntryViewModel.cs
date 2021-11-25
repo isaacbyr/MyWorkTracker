@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using DesktopUI.EventModels;
+using DesktopUI.Library.Api;
+using DesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,66 +13,94 @@ namespace DesktopUI.ViewModels
     public class NewEntryViewModel: Screen
     {
         private readonly IEventAggregator _events;
+        private INewEntryEndpoint _newEntryEndpoint;
 
-        public NewEntryViewModel(IEventAggregator events)
+        public NewEntryViewModel(IEventAggregator events, INewEntryEndpoint newEntryEndpoint)
         {
             _events = events;
+            _newEntryEndpoint = newEntryEndpoint;
         }
 
-        private string _job;
+        private string _job = "Marco";
 
         public string Job
         {
             get { return _job; }
-            set { _job = value; }
+            set 
+            { 
+                _job = value;
+                NotifyOfPropertyChange(() => Job);
+            }
         }
 
-        private string _location;
+        private string _location = "Musgrave";
 
         public string Location
         {
             get { return _location; }
-            set { _location = value; }
+            set 
+            { 
+                _location = value;
+                NotifyOfPropertyChange(() => Location);
+            }
         }
 
-        private decimal _hours;
+        private decimal _hours = 4;
 
         public decimal Hours
         {
             get { return _hours; }
-            set { _hours = value; }
+            set 
+            { 
+                _hours = value;
+                NotifyOfPropertyChange(() => Hours);
+                NotifyOfPropertyChange(() => Subtotal);
+                NotifyOfPropertyChange(() => Total);
+                NotifyOfPropertyChange(() => Taxes);
+            }
         }
 
-        private decimal _wage;
+        private decimal _wage = 35;
 
         public decimal Wage
         {
             get { return _wage; }
-            set { _wage = value; }
+            set 
+            { 
+                _wage = value;
+                NotifyOfPropertyChange(() => Wage);
+                NotifyOfPropertyChange(() => Subtotal);
+                NotifyOfPropertyChange(() => Total);
+                NotifyOfPropertyChange(() => Taxes);
+            }
         }
-
-        private decimal _total;
 
         public decimal Total
         {
-            get { return _total; }
-            set { _total = value; }
+            get
+            {
+                return Subtotal - Taxes;
+            }
         }
 
-        private string _description;
+        private string _description = "2 Loads";
 
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set 
+            { 
+                _description = value;
+                NotifyOfPropertyChange(() => Description);
+            }
         }
-
-        private decimal _subtotal;
 
         public decimal Subtotal
         {
-            get { return _subtotal; }
-            set { _subtotal = value; }
+            get
+            {
+                return Wage * Hours;
+            }
         }
 
 
@@ -92,8 +122,20 @@ namespace DesktopUI.ViewModels
             _events.PublishOnUIThread(new CloseEntryView());
         }
 
-        public void Add()
+        public async Task Add()
         {
+            var newEntry = new EntryModel();
+
+            newEntry.Job = Job;
+            newEntry.Location = Location;
+            newEntry.Hours = Hours;
+            newEntry.Wage = Wage;
+            newEntry.Subtotal = Subtotal;
+            newEntry.Taxes = Taxes;
+            newEntry.Total = Total;
+            newEntry.Description = Description;
+
+            await _newEntryEndpoint.PostEntry(newEntry);
 
         }
     }

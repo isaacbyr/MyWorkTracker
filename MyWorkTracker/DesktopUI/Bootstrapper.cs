@@ -21,11 +21,12 @@ namespace DesktopUI
         }
 
         protected override void Configure()
-        { 
+        {
             container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IApiHelper, ApiHelper>()
+                .Singleton<INewEntryEndpoint, NewEntryEndpoint>()
                 .Singleton<IEventAggregator, EventAggregator>();
 
             container.Instance(container);
