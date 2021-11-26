@@ -10,5 +10,5 @@
 	[Taxes] MONEY NOT NULL,
 	[Total] MONEY NOT NULL,
 	[Description] NVARCHAR(150),
-	[JobDate] DATE NOT NULL
+	[JobDate] NVARCHAR(20) NOT NULL
 )

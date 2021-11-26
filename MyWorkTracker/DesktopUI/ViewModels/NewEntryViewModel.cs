@@ -33,7 +33,7 @@ namespace DesktopUI.ViewModels
                 int convertedDay;
                 int.TryParse(Date, out convertedDay);
                 var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, convertedDay);
-
+                entry.Date = date.ToString("dd/MM/yyyy");
                 return date.ToString("dddd, MMM d yyyy").ToUpper();
             }
         }
@@ -51,23 +51,26 @@ namespace DesktopUI.ViewModels
 
         protected override async void OnViewLoaded(object view) 
         {
-           // await LoadEntry();
+           await LoadEntry();
         }
 
         public async Task LoadEntry()
         {
-          var entry = await _entryEndpoint.LoadEntry();
-            Job = entry.Job;
-            Location = entry.Location;
-            Hours = entry.Hours;
-            Wage = entry.Wage;
-            Description = entry.Description;
+          var foundEntry = await _entryEndpoint.LoadEntry(entry.Date);
+            if (entry != null)
+            {
+                Job = foundEntry.Job;
+                Location = foundEntry.Location;
+                Hours = foundEntry.Hours;
+                Wage = foundEntry.Wage;
+                Description = foundEntry.Description;
 
-            NotifyOfPropertyChange(() => Job);
-            NotifyOfPropertyChange(() => Hours);
-            NotifyOfPropertyChange(() => Location);
-            NotifyOfPropertyChange(() => Wage);
-            NotifyOfPropertyChange(() => Description);
+                NotifyOfPropertyChange(() => Job);
+                NotifyOfPropertyChange(() => Hours);
+                NotifyOfPropertyChange(() => Location);
+                NotifyOfPropertyChange(() => Wage);
+                NotifyOfPropertyChange(() => Description);
+            }
         }
 
         private string _job;
@@ -180,6 +183,8 @@ namespace DesktopUI.ViewModels
             entry.Description = Description;
 
             await _entryEndpoint.PostEntry(entry);
+
+            _events.PublishOnUIThread(new SavedToDbEvent());
 
         }
     }

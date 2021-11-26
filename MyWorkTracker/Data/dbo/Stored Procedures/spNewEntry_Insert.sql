@@ -7,12 +7,12 @@
 	@Subtotal MONEY,
 	@Taxes MONEY,
 	@Total MONEY,
-	@Description NVARCHAR(150)
-	
+	@Description NVARCHAR(150),
+	@Date Date
 AS
 BEGIN
 	SET NOCOUNT ON;
-	INSERT INTO [dbo].[CalendarEntry] (UserId, Job, Location, Wage, Hours, Subtotal, Taxes, Total, Description)
-	VALUES (@UserId, @Job, @Location, @Wage, @Hours, @Subtotal,@Taxes, @Total, @Description)
+	INSERT INTO [dbo].[CalendarEntry] (UserId, Job, Location, Wage, Hours, Subtotal, Taxes, Total, Description, JobDate)
+	VALUES (@UserId, @Job, @Location, @Wage, @Hours, @Subtotal,@Taxes, @Total, @Description, @Date)
 
 END

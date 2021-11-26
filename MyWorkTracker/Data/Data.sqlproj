@@ -68,6 +68,7 @@
     <Build Include="dbo\Tables\CalendarEntry.sql" />
     <Build Include="dbo\Stored Procedures\spNewEntry_Insert.sql" />
     <Build Include="dbo\Stored Procedures\sp_Entry_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spGetEntryByDate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

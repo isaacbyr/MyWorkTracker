@@ -32,9 +32,9 @@ namespace DesktopUI.Library.Api
             }
         }
 
-        public async Task<EntryModel> LoadEntry ()
+        public async Task<EntryModel> LoadEntry (string date)
         {
-            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("api/entry"))
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Entry/{date}"))
             {
                 if(response.IsSuccessStatusCode)
                 {

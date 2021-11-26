@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace DataManager.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/NewEntry")]
+    [RoutePrefix("api/Entry")]
     public class EntryController : ApiController
     {
         public void Post(EntryModel newEntry)
@@ -25,11 +25,13 @@ namespace DataManager.Controllers
             entryData.SaveEntry(newEntry);
         }
 
-        public EntryModel Get()
+        [HttpGet]
+        [Route("{date}")]
+        public EntryModel Get(string date)
         {
             var entryData = new EntryData();
 
-            return entryData.LoadEntry();
+            return entryData.LoadEntry(date);
         }
     }
 }

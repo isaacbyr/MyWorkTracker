@@ -26,13 +26,17 @@ namespace DataManager.Library.DataAccess
             }
         }
 
-        public EntryModel LoadEntry()
+        public EntryModel LoadEntry(string Date)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
-            var output = sql.LoadData<EntryModel, dynamic>("dbo.sp_Entry_GetAll", new { }, "WTData").First();
-            return output;
-                
+            string[] split = Date.Split('-');
+            string convDate = split[2] + "-" + split[0] + "-" + split[1];
+
+            var p = new { JobDate = convDate };
+
+            var output = sql.LoadData<EntryModel, dynamic>("dbo.spGetEntryByDate", p, "WTData").First();
+            return output;  
         }
     }
 }
