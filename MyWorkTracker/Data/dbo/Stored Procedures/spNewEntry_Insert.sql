@@ -8,6 +8,7 @@
 	@Taxes MONEY,
 	@Total MONEY,
 	@Description NVARCHAR(150)
+	
 AS
 BEGIN
 	SET NOCOUNT ON;

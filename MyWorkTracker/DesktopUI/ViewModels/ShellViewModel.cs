@@ -18,7 +18,7 @@ namespace DesktopUI.ViewModels
         private readonly WelcomeViewModel _welcomeVM;
         private readonly SimpleContainer _container;
         private HomeViewModel _homeVM;
-        private readonly NewEntryViewModel _newVM;
+        private NewEntryViewModel _newVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
             WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, NewEntryViewModel newVM)
@@ -34,8 +34,8 @@ namespace DesktopUI.ViewModels
             // have to subscribe to events in general
             _events.Subscribe(this);
 
-            ActivateItem(_loginView);
-            //ActivateItem(_homeVM);
+            //ActivateItem(_loginView);
+            ActivateItem(_homeVM);
         }
 
         public void Handle(LogOnEvent message)
@@ -59,6 +59,7 @@ namespace DesktopUI.ViewModels
 
         public void Handle(CreateNewEvent message)
         {
+            _newVM.Date = message.Date;
             ActivateItem(_newVM);
         }
 

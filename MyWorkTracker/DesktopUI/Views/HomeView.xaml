@@ -96,118 +96,84 @@
             <TextBlock TextDecorations="Underline" Text="Sunday" Grid.Column="14" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="30.4,17.8,30.6,18.2"></TextBlock>
 
             <!--`Week 1-->
-            <Button cal:Message.Attach= "Add_New" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="One" Text="100" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button  x:Name="One" Content="100" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Background="Transparent" BorderThickness="0" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" >
-                <TextBlock x:Name="Two" Text="2" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button  x:Name="Two" Content="2" cal:Message.Attach= "Add_New($eventArgs)" Background="Transparent" BorderThickness="0" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" >
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Three" Text="13" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Three" Content="13" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Four" Text="4" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Four" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Five" Text="4" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Five" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="12" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Six" Text="4" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Six" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="14" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Seven" Text="4" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Seven" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
             
             <!--`Week 2-->
-            <Button cal:Message.Attach= "Add_New" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Eight" Text="4" FontSize="18" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Eight" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Nine" FontSize="18"  Text="4" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Nine" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Ten" FontSize="18"  Text="4" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Ten" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Eleven" FontSize="18"  Text="4" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Eleven" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="10" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Twelve" FontSize="18"  Text="4" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Twelve" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="12" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Thirteen" FontSize="18"  Text="4" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Thirteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="14" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Fourteen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Fourteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--`Week 3-->
-            <Button cal:Message.Attach= "Add_New" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Fifteen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Fifteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Sixteen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Sixteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
                 <TextBlock x:Name="Seventeen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Eighteen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Eighteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="10" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Nineteen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Nineteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Twenty" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Twenty" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="14" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentyOne" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyOne" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--`Week 4-->
-            <Button cal:Message.Attach= "Add_New" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock Style="{StaticResource CurrentDateTheme}" x:Name="TwentyTwo" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyTwo" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentyThree" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyThree" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="6" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentyFour" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyFour" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="8" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentyFive" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyFive" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="10" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentySix" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentySix" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="12" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentySeven" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentySeven" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="14" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentyEight" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyEight" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--`Week 5-->
-            <Button cal:Message.Attach= "Add_New" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="TwentyNine" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="TwentyNine" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="Thirty" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="Thirty" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="ThirtyOne" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="ThirtyOne" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="8" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="ThirtyTwo" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="ThirtyTwo" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="10" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="ThirtyThree" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="ThirtyThree" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="12" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock x:Name="ThirtyFour" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="ThirtyFour" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New" Grid.Column="14" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
-                <TextBlock Background="SteelBlue" Foreground="White" Padding="3 3 5 4" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ThirtyFive" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
+            <Button x:Name="ThirtyFive" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
         </Grid>

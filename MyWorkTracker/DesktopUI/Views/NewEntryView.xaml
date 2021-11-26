@@ -33,6 +33,7 @@
             <TextBlock 
                 Grid.Column="1"
                 Grid.Row="0"
+                x:Name="ViewingDate"
                 Grid.ColumnSpan="3"
                 Text=" Tuesday Nov 18 2021"
                 HorizontalAlignment="Center"

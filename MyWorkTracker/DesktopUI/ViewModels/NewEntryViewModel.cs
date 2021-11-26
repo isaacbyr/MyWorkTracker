@@ -12,8 +12,36 @@ namespace DesktopUI.ViewModels
 {
     public class NewEntryViewModel: Screen
     {
+
+        private string _date;
+
+        public string Date
+        {
+            get { return _date; }
+            set 
+            { 
+                _date = value;
+                NotifyOfPropertyChange(() => Date);
+                NotifyOfPropertyChange(() => ViewingDate);
+            }
+        }
+
+        public string ViewingDate
+        {
+            get
+            {
+                int convertedDay;
+                int.TryParse(Date, out convertedDay);
+                var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, convertedDay);
+
+                return date.ToString("dddd, MMM d yyyy").ToUpper();
+            }
+        }
+
+
         private readonly IEventAggregator _events;
         private IEntryEndpoint _entryEndpoint;
+        public EntryModel entry = new EntryModel();
 
         public NewEntryViewModel(IEventAggregator events, IEntryEndpoint entryEndpoint)
         {
@@ -23,12 +51,23 @@ namespace DesktopUI.ViewModels
 
         protected override async void OnViewLoaded(object view) 
         {
-            await LoadEntry();
+           // await LoadEntry();
         }
 
         public async Task LoadEntry()
         {
-            var loadedEntry = await _entryEndpoint.LoadEntry();
+          var entry = await _entryEndpoint.LoadEntry();
+            Job = entry.Job;
+            Location = entry.Location;
+            Hours = entry.Hours;
+            Wage = entry.Wage;
+            Description = entry.Description;
+
+            NotifyOfPropertyChange(() => Job);
+            NotifyOfPropertyChange(() => Hours);
+            NotifyOfPropertyChange(() => Location);
+            NotifyOfPropertyChange(() => Wage);
+            NotifyOfPropertyChange(() => Description);
         }
 
         private string _job;
@@ -39,11 +78,10 @@ namespace DesktopUI.ViewModels
             set 
             { 
                 _job = value;
-                NotifyOfPropertyChange(() => Job);
             }
         }
 
-        private string _location = "Musgrave";
+        private string _location;
 
         public string Location
         {
@@ -55,7 +93,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private decimal _hours = 4;
+        private decimal _hours;
 
         public decimal Hours
         {
@@ -70,7 +108,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private decimal _wage = 35;
+        private decimal _wage;
 
         public decimal Wage
         {
@@ -93,7 +131,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _description = "2 Loads";
+        private string _description;
 
         public string Description
         {
@@ -124,9 +162,6 @@ namespace DesktopUI.ViewModels
         }
 
 
-
-
-
         public void Cancel()
         {
             _events.PublishOnUIThread(new CloseEntryView());
@@ -134,18 +169,17 @@ namespace DesktopUI.ViewModels
 
         public async Task Add()
         {
-            var newEntry = new EntryModel();
+           
+            entry.Job = Job;
+            entry.Location = Location;
+            entry.Hours = Hours;
+            entry.Wage = Wage;
+            entry.Subtotal = Subtotal;
+            entry.Taxes = Taxes;
+            entry.Total = Total;
+            entry.Description = Description;
 
-            newEntry.Job = Job;
-            newEntry.Location = Location;
-            newEntry.Hours = Hours;
-            newEntry.Wage = Wage;
-            newEntry.Subtotal = Subtotal;
-            newEntry.Taxes = Taxes;
-            newEntry.Total = Total;
-            newEntry.Description = Description;
-
-            await _entryEndpoint.PostEntry(newEntry);
+            await _entryEndpoint.PostEntry(entry);
 
         }
     }

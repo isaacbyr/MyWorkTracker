@@ -9,5 +9,6 @@
 	[Subtotal] MONEY NOT NULL,
 	[Taxes] MONEY NOT NULL,
 	[Total] MONEY NOT NULL,
-	[Description] NVARCHAR(150)
+	[Description] NVARCHAR(150),
+	[JobDate] DATE NOT NULL
 )

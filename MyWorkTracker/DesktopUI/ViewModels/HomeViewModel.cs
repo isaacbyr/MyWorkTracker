@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace DesktopUI.ViewModels
 {
@@ -62,7 +63,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _currDate = DateTime.Now.ToString("dddd, MMM dd yyyy").ToUpper();
+        private string _currDate = DateTime.Now.ToString("dddd, MMM d yyyy").ToUpper();
 
         public string CurrDate
         {
@@ -109,9 +110,10 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        public void Add_New( )
+        public void Add_New(RoutedEventArgs e)
         {
-            _events.PublishOnUIThread(new CreateNewEvent());
+            var content = (e.Source as Button).Content.ToString();
+            _events.PublishOnUIThread(new CreateNewEvent(content));
         }
 
         private string _one;

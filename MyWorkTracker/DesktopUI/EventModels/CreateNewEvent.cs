@@ -8,5 +8,17 @@ namespace DesktopUI.EventModels
 {
     public class CreateNewEvent
     {
+
+        public string Date { get; set; }
+
+        public CreateNewEvent(string date)
+        {
+            Date = date;
+        }
+
+        public CreateNewEvent()
+        {
+
+        }
     }
 }
