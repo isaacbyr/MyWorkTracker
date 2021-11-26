@@ -34,9 +34,16 @@ namespace DataManager.Library.DataAccess
             string convDate = split[2] + "-" + split[0] + "-" + split[1];
 
             var p = new { JobDate = convDate };
-
-            var output = sql.LoadData<EntryModel, dynamic>("dbo.spGetEntryByDate", p, "WTData").First();
-            return output;  
+            try
+            {
+                var output = sql.LoadData<EntryModel, dynamic>("dbo.spGetEntryByDate", p, "WTData").First();
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
     }
 }

@@ -57,20 +57,28 @@ namespace DesktopUI.ViewModels
         public async Task LoadEntry()
         {
           var foundEntry = await _entryEndpoint.LoadEntry(entry.Date);
-            if (entry != null)
+            if (foundEntry != null)
             {
                 Job = foundEntry.Job;
                 Location = foundEntry.Location;
                 Hours = foundEntry.Hours;
                 Wage = foundEntry.Wage;
                 Description = foundEntry.Description;
-
-                NotifyOfPropertyChange(() => Job);
-                NotifyOfPropertyChange(() => Hours);
-                NotifyOfPropertyChange(() => Location);
-                NotifyOfPropertyChange(() => Wage);
-                NotifyOfPropertyChange(() => Description);
             }
+            else
+            {
+                Job = "";
+                Location = "";
+                Hours = 0;
+                Wage = 0;
+                Description ="";
+            }
+
+            NotifyOfPropertyChange(() => Job);
+            NotifyOfPropertyChange(() => Hours);
+            NotifyOfPropertyChange(() => Location);
+            NotifyOfPropertyChange(() => Wage);
+            NotifyOfPropertyChange(() => Description);
         }
 
         private string _job;
