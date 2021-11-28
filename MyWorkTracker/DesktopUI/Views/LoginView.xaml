@@ -8,7 +8,7 @@
              Background="#b3e5fc"
              Foreground="White"
              FontFamily="Segoe UI Light"
-             Height="350" d:DesignWidth="650">
+             Height="400" d:DesignWidth="650">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,7 +22,8 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -45,5 +46,8 @@
 
         <!--Login Button-->
         <Button x:Name="Login" Content="Login" Margin="0 10 0 0" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" Grid.ColumnSpan="2" Padding="15 3" FontSize="24" Background="White" Foreground="#ff6600" FontWeight="ExtraBold"></Button>
+
+        <Button x:Name="CreateNewAccount" Content="Create New Account" Margin="0 10 0 0" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Grid.ColumnSpan="2" Padding="5 1" FontSize="10" Background="Transparent" Foreground="White"></Button>
+
     </Grid>
 </UserControl>

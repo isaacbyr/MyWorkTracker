@@ -8,7 +8,7 @@
 	@Taxes MONEY,
 	@Total MONEY,
 	@Description NVARCHAR(150),
-	@Date Date
+	@Date NVARCHAR(128)
 AS
 BEGIN
 	SET NOCOUNT ON;

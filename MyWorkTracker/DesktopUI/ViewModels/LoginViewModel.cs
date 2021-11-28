@@ -62,6 +62,11 @@ namespace DesktopUI.ViewModels
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public void CreateNewAccount ()
+        {
+            _events.PublishOnUIThread(new OpenRegisterView());
+        }
        
     }
 }

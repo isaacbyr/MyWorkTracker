@@ -48,7 +48,8 @@
 
             <TextBlock Foreground="#ffaf7a" Text="My Work Tracker" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="44,23,42.6,22.2"></TextBlock>
 
-            <StackPanel Grid.RowSpan="13" Grid.Column="0" Background="#ffaf7a" Grid.ColumnSpan="3" Margin="0,75,59.6,-0.4">
+            <Border CornerRadius="18" Grid.Row="1" Grid.Column="0" Background="#ffaf7a" Grid.ColumnSpan="2" Grid.RowSpan="20">
+                <StackPanel>
                 <TextBlock Text="Weekly Totals" Foreground="White"
                        FontSize="24"
                        Height="30"
@@ -68,7 +69,7 @@
 
                 </RadioButton>
             </StackPanel>
-
+            </Border>
             <!--Menu-->
             <Button Foreground="White" Background="#ffaf7a" x:Name="New" Grid.Column="2" Grid.Row="0" Content="New" Grid.ColumnSpan="2" Margin="0.4,0,59.6,0.2"></Button>
             <Button Foreground="White" Background="#ffaf7a" x:Name="Search" Grid.Column="3" Grid.Row="0" Content="Search" Grid.ColumnSpan="2" Margin="0.4,0,59.6,0.2"></Button>
@@ -76,14 +77,14 @@
             <Button Foreground="White"  Background="#ffaf7a" x:Name="Exit" Grid.Column="15" Grid.Row="0" Content="Exit" Margin="0.4,0,-0.4,0.2"></Button>
             <TextBlock
             Grid.Row="0"
-            Grid.Column="6"
+            Grid.Column="5"
             x:Name="CurrDate"
-            FontSize="24"
-                Grid.ColumnSpan="6"
+            FontSize="26"
+                Grid.ColumnSpan="8"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Foreground="#ffaf7a"
-            FontWeight="Bold" Margin="0.4,22,59.6,21.2"/>
+            Foreground="#00394d"
+            FontWeight="ExtraBold" Margin="0.4,22,59.6,21.2"/>
 
             <!--Dates-->
             <!--`Days of the week-->
@@ -175,6 +176,51 @@
             </Button>
             <Button x:Name="ThirtyFive" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
+
+            <!--Week 1 Totals-->
+            <TextBlock x:Name="T_One" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Two" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Three" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Four" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Five" Grid.Column="10" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Six" Grid.Column="12" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Seven" Grid.Column="14" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+
+            <!--Week 2 Totals-->
+            <TextBlock x:Name="T_Eight" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Nine" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Ten" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Eleven" Grid.Column="8" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Twelve" Grid.Column="10" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Thirteen" Grid.Column="12" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Fourteen" Grid.Column="14" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+
+            <!--Week 3 Totals-->
+            <TextBlock x:Name="T_Fifteen" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Sixteen" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Seventeen" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Eighteen" Grid.Column="8" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Nineteen" Grid.Column="10" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Twenty" Grid.Column="12" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentyOne" Grid.Column="14" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+
+            <!--Week 4 Totals-->
+            <TextBlock x:Name="T_TwentyTwo" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentyThree" Grid.Column="4" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentyFour" Grid.Column="6" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentyFive" Grid.Column="8" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentySix" Grid.Column="10" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentySeven" Grid.Column="12" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_TwentyEight" Grid.Column="14" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+
+            <!--Week 5 Totals-->
+            <TextBlock x:Name="T_TwentyNine" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_Thirty" Grid.Column="4" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_ThirtyOne" Grid.Column="6" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_ThirtyTwo" Grid.Column="8" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_ThirtyThree" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_ThirtyFour" Grid.Column="12" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock x:Name="T_ThirtyFive" Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
         </Grid>
 

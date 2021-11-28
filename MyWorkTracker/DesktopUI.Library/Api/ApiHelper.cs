@@ -75,14 +75,15 @@ namespace DesktopUI.Library.Api
 
             using (HttpResponseMessage response = await apiClient.GetAsync("/api/user"))
             {
-                if(response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<List<LoggedInUserModel>>();
-                    _loggedInUser.FirstName = result[0].FirstName;
-                    _loggedInUser.LastName = result[0].LastName;
-                    _loggedInUser.EmailAddress = result[0].EmailAddress;
-                    _loggedInUser.Id = result[0].Id;
-                    _loggedInUser.Token = token;
+                if (response.IsSuccessStatusCode)
+                    {
+                    //    var result = await response.Content.ReadAsAsync<List<LoggedInUserModel>>();
+                    //    _loggedInUser.FirstName = result[0].FirstName;
+                    //    _loggedInUser.LastName = result[0].LastName;
+                    //    _loggedInUser.EmailAddress = result[0].EmailAddress;
+                    //    _loggedInUser.Id = result[0].Id;
+                    //    _loggedInUser.Token = token;
+                    return;
                 }
                 else
                 {
@@ -95,5 +96,34 @@ namespace DesktopUI.Library.Api
             apiClient.DefaultRequestHeaders.Clear();
         }
        
+
+        public async Task<AuthenticatedUser> RegisterUser(string UserName, string Password, string ConfirmPassword)
+        {
+
+            var data = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("E", UserName),
+                new KeyValuePair<string, string>("Password", Password),
+                new KeyValuePair<string, string>("ConfirmPassword", ConfirmPassword)
+            });
+
+            apiClient.DefaultRequestHeaders.Clear();
+            apiClient.DefaultRequestHeaders.Accept.Clear();
+            apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using (HttpResponseMessage response = await apiClient.PostAsync("/api/account/register", data))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    var authenticatedUser = JsonConvert.DeserializeObject<AuthenticatedUser>(result);
+                    return authenticatedUser;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

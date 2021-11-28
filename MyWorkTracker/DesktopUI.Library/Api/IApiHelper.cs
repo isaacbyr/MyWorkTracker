@@ -6,9 +6,10 @@ namespace DesktopUI.Library.Api
 {
     public interface IApiHelper
     {
-        HttpClient ApiClient { get;}
+        HttpClient ApiClient { get; }
         Task<AuthenticatedUser> Authenticate(string username, string password);
         Task GetLoggedInUserInfo(string token);
         void Logout();
+        Task<AuthenticatedUser> RegisterUser(string UserName, string Password, string ConfirmPassword);
     }
 }

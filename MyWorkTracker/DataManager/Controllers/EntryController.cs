@@ -29,9 +29,12 @@ namespace DataManager.Controllers
         [Route("{date}")]
         public EntryModel Get(string date)
         {
+
+            string userId = RequestContext.Principal.Identity.GetUserId();
+
             var entryData = new EntryData();
 
-            return entryData.LoadEntry(date);
+            return entryData.LoadEntry(date, userId);
         }
     }
 }

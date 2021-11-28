@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DesktopUI.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-         WindowStyle="None" Background="Transparent" AllowsTransparency="True"
+         WindowStyle="None"  Background="Transparent" AllowsTransparency="True"
         Title="ShellView" Height="650" Width="1090">
     
         <DockPanel>
