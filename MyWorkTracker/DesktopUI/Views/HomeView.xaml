@@ -46,7 +46,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Foreground="#ffaf7a" Text="My Work Tracker" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="44,23,42.6,22.2"></TextBlock>
+            <TextBlock Foreground="#ffaf7a" Text="My Work Tracker" FontWeight="ExtraBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="44,23,42.6,22.2"></TextBlock>
 
             <Border  Grid.Row="1" Grid.Column="0"  CornerRadius="18" Background="#ffaf7a" Grid.ColumnSpan="2" Grid.RowSpan="20">
                 <StackPanel>
@@ -70,16 +70,23 @@
             <Button Foreground="White" Background="#ffaf7a" x:Name="Search" Grid.Column="3" Grid.Row="0" Content="Search" Grid.ColumnSpan="2" Margin="0.4,0,59.6,0.2"></Button>
             <Button Foreground="White"  Background="#ffaf7a" x:Name="Logout" Grid.Column="14" Grid.Row="0" Content="Logout" Grid.ColumnSpan="2" Margin="0.4,0,59.6,0.2"></Button>
             <Button Foreground="White"  Background="#ffaf7a" x:Name="Exit" Grid.Column="15" Grid.Row="0" Content="Exit" Margin="0.4,0,-0.4,0.2"></Button>
-            <TextBlock
-            Grid.Row="0"
-            Grid.Column="5"
+
+            <Border  Grid.Row="0" Margin="10 0 10 0"
+            Grid.Column="4" Grid.ColumnSpan="10" CornerRadius="18"
+                     Background="SteelBlue">
+                <StackPanel>
+                    <TextBlock
+  
             x:Name="CurrDate"
             FontSize="26"
-                Grid.ColumnSpan="8"
+             
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Foreground="#00394d"
+            Foreground="white"
             FontWeight="ExtraBold" Margin="0.4,22,59.6,21.2"/>
+                </StackPanel> 
+            </Border>
+            
 
             <!--Dates-->
             <!--`Days of the week-->
@@ -217,6 +224,16 @@
             <TextBlock Text="{Binding T_ThirtyFour}" x:Name="T_ThirtyFour" Grid.Column="12" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
             <TextBlock Text="{Binding T_ThirtyFive}" x:Name="T_ThirtyFive" Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
+            <Border Margin="5 30 5 5" CornerRadius="18" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="14"
+                        Background="SteelBlue">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="Monthly Total" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="{Binding MonthTotal}" VerticalAlignment="Center" ></TextBlock>
+
+                </StackPanel>
+            </Border>
+           
+            
         </Grid>
 
     </Border>

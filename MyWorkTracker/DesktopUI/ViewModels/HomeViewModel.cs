@@ -152,6 +152,26 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        public string MonthTotal
+        {
+            get
+            {
+                decimal w1_total;
+                Decimal.TryParse(W_OneTotals, NumberStyles.Currency, CultureInfo.CurrentCulture, out w1_total);
+                decimal w2_total;
+                Decimal.TryParse(W_TwoTotals, NumberStyles.Currency, CultureInfo.CurrentCulture, out w2_total);
+                decimal w3_total;
+                Decimal.TryParse(W_ThreeTotals, NumberStyles.Currency, CultureInfo.CurrentCulture, out w3_total);
+                decimal w4_total;
+                Decimal.TryParse(W_FourTotals, NumberStyles.Currency, CultureInfo.CurrentCulture, out w4_total);
+                decimal w5_total;
+                Decimal.TryParse(W_FiveTotals, NumberStyles.Currency, CultureInfo.CurrentCulture, out w5_total);
+
+
+                return (w1_total + w2_total + w3_total + w4_total + w5_total).ToString("C");
+            }
+        }
+
         public async Task LoadTotals()
         {
             var result = await _entryEndpoint.LoadEntries();
@@ -278,6 +298,7 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => W_ThreeTotals);
             NotifyOfPropertyChange(() => W_FourTotals);
             NotifyOfPropertyChange(() => W_FiveTotals);
+            NotifyOfPropertyChange(() => MonthTotal);
 
         }
 
