@@ -36,5 +36,15 @@ namespace DataManager.Controllers
 
             return entryData.LoadEntry(date, userId);
         }
+
+        public List<EntryModel> Get()
+        {
+
+            string userId = RequestContext.Principal.Identity.GetUserId();
+
+            var entryData = new EntryData();
+
+            return entryData.LoadEntries(userId);
+        }
     }
 }

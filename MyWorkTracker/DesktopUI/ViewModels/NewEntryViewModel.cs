@@ -33,7 +33,7 @@ namespace DesktopUI.ViewModels
                 int convertedDay;
                 int.TryParse(Date, out convertedDay);
                 var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, convertedDay);
-                entry.Date = date.ToString("dd/MM/yyyy");
+                entry.JobDate = date.ToString("dd/MM/yyyy");
                 return date.ToString("dddd, MMM d yyyy").ToUpper();
             }
         }
@@ -56,7 +56,7 @@ namespace DesktopUI.ViewModels
 
         public async Task LoadEntry()
         {
-          var foundEntry = await _entryEndpoint.LoadEntry(entry.Date);
+          var foundEntry = await _entryEndpoint.LoadEntry(entry.JobDate);
             if (foundEntry != null)
             {
                 Job = foundEntry.Job;

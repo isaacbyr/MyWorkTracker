@@ -47,5 +47,21 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
+
+        public async Task<List<EntryModel>> LoadEntries ()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Entry"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<EntryModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

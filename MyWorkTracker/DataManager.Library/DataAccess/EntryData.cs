@@ -43,5 +43,22 @@ namespace DataManager.Library.DataAccess
             }
             
         }
+
+        public List<EntryModel> LoadEntries(string UserId)
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+
+            var p = new { UserId = UserId };
+            try
+            {
+                var output = sql.LoadData<EntryModel, dynamic>("dbo.spGetEntriesByUserId", p, "WTData");
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

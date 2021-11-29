@@ -1,5 +1,6 @@
 ﻿using DesktopUI.Library.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DesktopUI.Library.Api
@@ -8,5 +9,6 @@ namespace DesktopUI.Library.Api
     {
         Task PostEntry(EntryModel newEntry);
         Task<EntryModel> LoadEntry(string date);
+        Task<List<EntryModel>> LoadEntries();
     }  
 }
