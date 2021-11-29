@@ -5,6 +5,7 @@ using DesktopUI.Library.Models;
 using DesktopUI.Views;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,18 +37,129 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => IsToday);
         }
 
+        public string W_OneTotals
+        {
+            get
+            {
+                decimal one;
+                Decimal.TryParse(T_One, NumberStyles.Currency, CultureInfo.CurrentCulture, out one);
+                decimal two;
+                Decimal.TryParse(T_Two, NumberStyles.Currency, CultureInfo.CurrentCulture, out two);
+                decimal three;
+                Decimal.TryParse(T_Three, NumberStyles.Currency, CultureInfo.CurrentCulture, out three);
+                decimal four;
+                Decimal.TryParse(T_Four, NumberStyles.Currency, CultureInfo.CurrentCulture, out four);
+                decimal five;
+                Decimal.TryParse(T_Five, NumberStyles.Currency, CultureInfo.CurrentCulture, out five);
+                decimal six;
+                Decimal.TryParse(T_Six, NumberStyles.Currency, CultureInfo.CurrentCulture, out six);
+                decimal seven;
+                Decimal.TryParse(T_Seven, NumberStyles.Currency, CultureInfo.CurrentCulture, out seven);
+
+                return (one + two + three + four + five + six + seven).ToString("C");
+            }
+        }
+
+        public string W_TwoTotals
+        {
+            get
+            {
+                decimal eight;
+                Decimal.TryParse(T_Eight, NumberStyles.Currency, CultureInfo.CurrentCulture,  out eight);
+                decimal nine;
+                Decimal.TryParse(T_Nine, NumberStyles.Currency, CultureInfo.CurrentCulture, out nine);
+                decimal ten;
+                Decimal.TryParse(T_Ten, NumberStyles.Currency, CultureInfo.CurrentCulture, out ten);
+                decimal eleven;
+                Decimal.TryParse(T_Eleven, NumberStyles.Currency, CultureInfo.CurrentCulture,  out eleven);
+                decimal twelve;
+                Decimal.TryParse(T_Twelve, NumberStyles.Currency, CultureInfo.CurrentCulture, out twelve);
+                decimal thirteen;
+                Decimal.TryParse(T_Thirteen, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirteen);
+                decimal fourteen;
+                Decimal.TryParse(T_Fourteen, NumberStyles.Currency, CultureInfo.CurrentCulture, out fourteen);
+
+                return (eight + nine + ten + eleven + twelve + thirteen + fourteen).ToString("C");
+            }
+        }
+
+        public string W_ThreeTotals
+        {
+            get
+            {
+                decimal fifteen;
+                Decimal.TryParse(T_Fifteen, NumberStyles.Currency, CultureInfo.CurrentCulture, out fifteen);
+                decimal sixteen;
+                Decimal.TryParse(T_Sixteen, NumberStyles.Currency, CultureInfo.CurrentCulture, out sixteen);
+                decimal seventeen;
+                Decimal.TryParse(T_Seventeen, NumberStyles.Currency, CultureInfo.CurrentCulture, out seventeen);
+                decimal eighteen;
+                Decimal.TryParse(T_Eighteen, NumberStyles.Currency, CultureInfo.CurrentCulture, out eighteen);
+                decimal nineteen;
+                Decimal.TryParse(T_Nineteen, NumberStyles.Currency, CultureInfo.CurrentCulture, out nineteen);
+                decimal twenty;
+                Decimal.TryParse(T_Twenty, NumberStyles.Currency, CultureInfo.CurrentCulture, out twenty);
+                decimal twentyOne;
+                Decimal.TryParse(T_TwentyOne, NumberStyles.Currency, CultureInfo.CurrentCulture,  out twentyOne);
+
+                return (fifteen + sixteen + seventeen + eighteen + nineteen + twenty + twentyOne).ToString("C");
+            }
+        }
+
+        public string W_FourTotals
+        {
+            get
+            {
+                decimal twentyTwo;
+                Decimal.TryParse(T_TwentyTwo, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentyTwo);
+                decimal twentyThree;
+                Decimal.TryParse(T_TwentyThree, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentyThree);
+                decimal twentyFour;
+                Decimal.TryParse(T_TwentyFour, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentyFour);
+                decimal twentyFive;
+                Decimal.TryParse(T_TwentyFive, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentyFive);
+                decimal twentySix;
+                Decimal.TryParse(T_TwentySix, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentySix);
+                decimal twentySeven;
+                Decimal.TryParse(T_TwentySeven, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentySeven);
+                decimal twentyEight;
+                Decimal.TryParse(T_TwentyEight, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentyEight);
+
+                return (twentyTwo + twentyThree + twentyFour + twentyFive + twentySix + twentySeven + twentyEight).ToString("C");
+            }
+        }
+
+        public string W_FiveTotals
+        {
+            get
+            {
+                decimal twentyNine;
+                Decimal.TryParse(T_TwentyNine, NumberStyles.Currency, CultureInfo.CurrentCulture, out twentyNine);
+                decimal thirty;
+                Decimal.TryParse(T_Thirty, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirty);
+                decimal thirtyOne;
+                Decimal.TryParse(T_ThirtyOne, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirtyOne);
+                decimal thirtyTwo;
+                Decimal.TryParse(T_ThirtyTwo, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirtyTwo);
+                decimal thirtyThree;
+                Decimal.TryParse(T_ThirtyThree, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirtyThree);
+                decimal thirtyFour;
+                Decimal.TryParse(T_ThirtyFour, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirtyFour);
+                decimal thirtyFive;
+                Decimal.TryParse(T_ThirtyFive, NumberStyles.Currency, CultureInfo.CurrentCulture, out thirtyFive);
+
+                return (twentyNine + thirty + thirtyOne + thirtyTwo + thirtyThree + thirtyFour + thirtyFive).ToString("C");
+            }
+        }
+
         public async Task LoadTotals()
         {
             var result = await _entryEndpoint.LoadEntries();
            
             for (int i = 0; i < result.Count; i++)
-            {
-                //if(result[i].JobDate.Substring(0,2) == "16")
-                //{
-                //    T_One = result[i].Total.ToString("C");
-                //}
+            { 
 
-                foreach (var entry in result)
+               foreach (var entry in result)
                 {
                     string testVariablle = entry.JobDate.Substring(0, 2);
                     switch(testVariablle)
@@ -161,7 +273,12 @@ namespace DesktopUI.ViewModels
                     }               
                 }
             }
-            
+            NotifyOfPropertyChange(() => W_OneTotals);
+            NotifyOfPropertyChange(() => W_TwoTotals);
+            NotifyOfPropertyChange(() => W_ThreeTotals);
+            NotifyOfPropertyChange(() => W_FourTotals);
+            NotifyOfPropertyChange(() => W_FiveTotals);
+
         }
 
         private string _t_one;

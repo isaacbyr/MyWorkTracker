@@ -60,11 +60,14 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        public IApiHelper ApiHelper { get; }
-
         public void CanRegister ()
         {
 
+        }
+
+        public void Cancel ()
+        {
+            _events.PublishOnUIThread(new CloseRegisterView());
         }
 
         public async Task Register ()

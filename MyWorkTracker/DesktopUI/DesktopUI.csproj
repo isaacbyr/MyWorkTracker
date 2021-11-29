@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="EventModels\CloseEntryView.cs" />
+    <Compile Include="EventModels\CloseRegisterView.cs" />
     <Compile Include="EventModels\CreateNewEvent.cs" />
     <Compile Include="EventModels\OpenRegisterView.cs" />
     <Compile Include="EventModels\ExitAppEvent.cs" />

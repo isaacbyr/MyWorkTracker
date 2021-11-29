@@ -22,6 +22,8 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
+
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
 
         </Grid.RowDefinitions>
@@ -43,5 +45,6 @@
 
         <!--Button-->
         <Button x:Name="Register" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Register"></Button>
+        <Button x:Name="Cancel" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Cancel"></Button>
     </Grid>
 </UserControl>

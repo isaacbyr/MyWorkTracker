@@ -11,7 +11,7 @@ using DesktopUI.Library.Models;
 namespace DesktopUI.ViewModels
 {
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
-        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>
+        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -82,6 +82,12 @@ namespace DesktopUI.ViewModels
         {
             DeactivateItem(_newVM, true);
             ActivateItem(_registerVM);
+        }
+
+        public void Handle(CloseRegisterView message)
+        {
+            DeactivateItem(_registerVM, true);
+            ActivateItem(_loginView);
         }
     }
 }
