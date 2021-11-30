@@ -57,12 +57,14 @@ namespace DesktopUI.ViewModels
 
         public void Handle(ExitAppEvent message)
         {
-            TryClose();
+            this.TryClose();
         }
 
         public void Handle(CreateNewEvent message)
         {
             _newVM.Date = message.Date;
+            _newVM.NextMonth = message.NextMonth;
+            _newVM.PrevMonth = message.PrevMonth;
             ActivateItem(_newVM);
         }
 

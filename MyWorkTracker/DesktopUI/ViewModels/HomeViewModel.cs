@@ -37,6 +37,11 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => IsToday);
         }
 
+        public int DaysInMonth()
+        {
+            return DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+        }
+
         public string W_OneTotals
         {
             get
@@ -804,8 +809,54 @@ namespace DesktopUI.ViewModels
         public void Add_New(RoutedEventArgs e)
         {
             var content = (e.Source as Button).Content.ToString();
-            _events.PublishOnUIThread(new CreateNewEvent(content));
+            var buttonName = (e.Source as Button).Name.ToString();
+
+            bool prevMonth = IsPreviousMonth(content, buttonName);
+            bool nextMonth = IsNextMonth(content, buttonName);
+
+            _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth));
         }
+
+        public bool IsPreviousMonth(string content, string buttonName)
+        {
+            int value;
+            int.TryParse(content, out value);
+
+            List<string> buttonContents = new List<string>() 
+            { "One", "Two", "Three", "Four", "Five", "Six", "Seven" };
+
+            bool inList = buttonContents.Any(s => s.Equals(buttonName));
+
+            if (inList && value >= 23)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsNextMonth(string content, string buttonName)
+        {
+            int value;
+            int.TryParse(content, out value);
+
+            List<string> buttonContents = new List<string>() 
+            { "TwentyNine", "Thirty", "ThirtyOne", "ThirtyTwo", "ThirtyThree", "ThirtyFour", "ThirtyFive" };
+
+            bool inList = buttonContents.Any(s => s.Equals(buttonName));
+
+            if(inList && value <= 7)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         private string _one;
 
@@ -1174,9 +1225,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 22).ToString();
+                return GetDayOfWeek(TwentyEight);
+                
             }
         }
 
@@ -1184,9 +1234,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 23).ToString();
+                return GetDayOfWeek(TwentyNine);
             }
         }
 
@@ -1194,9 +1242,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 24).ToString();
+                return GetDayOfWeek(Thirty);
             }
         }
 
@@ -1204,7 +1250,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return "1";
+                return GetDayOfWeek(ThirtyOne);
             }
 
         }
@@ -1213,7 +1259,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return "2";
+                return GetDayOfWeek(ThirtyTwo);
             }
         }
 
@@ -1221,7 +1267,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return "3";
+                return GetDayOfWeek(ThirtyThree);
             }
         }
 
@@ -1229,10 +1275,67 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return "4";
+                return GetDayOfWeek(ThirtyFour);
             }
         }
 
+        public string GetDayOfWeek(string prevDayVal)
+        {
+            int prevDay;
+            int.TryParse(prevDayVal, out prevDay);
+            int daysInMonth = DaysInMonth();
+            
+            if(prevDay == 1)
+            {
+                return "2";
+            }
+            else if (prevDay == 2)
+            {
+                return "3";
+            }
+            else if (prevDay == 3)
+            {
+                return "4";
+            }
+            else if (prevDay == 4)
+            {
+                return "5";
+            }
+            else if(prevDay == 5)
+            {
+                return "6";
+            }
+            else if (daysInMonth == 28 && prevDay == 28)
+            {
+                return "1";
+            }
+            else if (daysInMonth == 29 && prevDay == 29 )
+            {
+                return "1";
+            }
+            else if ((daysInMonth == 30 || daysInMonth == 31) && prevDay == 28)
+            {
+                return "29";
+            }
+            else if ((daysInMonth == 30 || daysInMonth == 31) && prevDay == 29)
+            {
+                return "30";
+            }
+            else if (daysInMonth == 30 && prevDay == 30)
+            {
+                return "1";
+            }
+            else if (daysInMonth == 31 && prevDay == 30)
+            {
+                return "31";
+            }
+            else if (daysInMonth == 31 && prevDay == 31)
+            {
+                return "1";
+            }
+
+            return "Cal Error";
+        }
         
    
         public void Logout()

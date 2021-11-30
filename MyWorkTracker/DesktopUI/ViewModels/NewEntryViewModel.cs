@@ -13,6 +13,9 @@ namespace DesktopUI.ViewModels
     public class NewEntryViewModel: Screen
     {
 
+        public bool NextMonth { get; set; }
+        public bool PrevMonth { get; set; }
+
         private string _date;
 
         public string Date
@@ -32,9 +35,26 @@ namespace DesktopUI.ViewModels
             {
                 int convertedDay;
                 int.TryParse(Date, out convertedDay);
-                var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, convertedDay);
-                entry.JobDate = date.ToString("dd/MM/yyyy");
-                return date.ToString("dddd, MMM d yyyy").ToUpper();
+                if(!PrevMonth && !NextMonth)
+                {
+                  var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, convertedDay);
+                  entry.JobDate = date.ToString("dd/MM/yyyy");
+                  return date.ToString("dddd, MMM d yyyy").ToUpper();
+                }
+                else if (!PrevMonth && NextMonth)
+                {
+                    var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, convertedDay);
+                    entry.JobDate = date.ToString("dd/MM/yyyy");
+                    return date.ToString("dddd, MMM d yyyy").ToUpper();
+                }
+                else if (PrevMonth && !NextMonth)
+                {
+                    var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month - 1, convertedDay);
+                    entry.JobDate = date.ToString("dd/MM/yyyy");
+                    return date.ToString("dddd, MMM d yyyy").ToUpper();
+                }
+
+                return "Cal Error";
             }
         }
 
