@@ -49,45 +49,26 @@ namespace DesktopUI.ViewModels
 
         public void Next()
         {
-            //int value;
-            //int.TryParse(ThirtyFive, out value);
-            //int numDays = DaysInMonth();
-            //if(numDays == 28 && value <=27)
-            //{
-            //    One = (value + 1).ToString();
-            //}
-            //else if (numDays == 28 && value == 28) {
-            //    One = "1";
-            //}
-            //else if (numDays == 30 && value <= 29 )
-            //{
-            //    One = (value + 1).ToString();
-            //}
-            //else if (numDays == 30 && value == 30)
-            //{
-            //    One = "1";
-            //}
-            //else if (numDays == 31 && value <= 30)
-            //{
-            //    One = (value + 1).ToString();
-            //}
-            //else if (numDays == 31 && value == 31)
-            //{
-            //    One = "1";
-            //}
             MonthIndex += 1;
             GetCurrentSelectedDate();
             firstDayOfMonth();
 
-            CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day).ToString("MMMM, yy");
+            CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
 
             NotifyOfPropertyChange(() => One);
-            NotifyOfPropertyChange(() => CurrentSelectedDate);
+           // NotifyOfPropertyChange(() => CurrentSelectedDate);
         }
 
         public void Prev()
         {
+            MonthIndex -= 1;
+            GetCurrentSelectedDate();
+            firstDayOfMonth();
 
+            CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+
+            NotifyOfPropertyChange(() => One);
+            //NotifyOfPropertyChange(() => CurrentSelectedDate);
         }
 
         public string W_OneTotals
