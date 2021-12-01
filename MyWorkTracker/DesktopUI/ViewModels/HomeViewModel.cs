@@ -38,8 +38,8 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => IsToday);
         }
 
-        public int MonthIndex { get; set; } = 0;
-        public int YearIndex { get; set; } = 0;
+        public int MonthIndex { get; set; } = DateTime.Now.Month;
+        public int YearIndex { get; set; } = DateTime.Now.Year;
 
         public int DaysInMonth()
         {
@@ -853,26 +853,38 @@ namespace DesktopUI.ViewModels
         public void GetCurrentSelectedDate(bool prev)
         {
 
-            DateTime selectedMonth;
-            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
-
-            if (selectedMonth.Month.ToString() == "12" && prev == false)
+            
+            if (MonthIndex == 12 && prev == false)
             {
                 MonthIndex = 1;
-                YearIndex = 1;
-                CurrentSelectedDate = new DateTime(DateTime.Now.Year + YearIndex, MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+                YearIndex += 1;
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
 
             }
-            else if (selectedMonth.Month.ToString() == "1" && prev == true)
+            else if (MonthIndex == 1 && prev == true)
             {
                MonthIndex = 12;
-               YearIndex = 0;
-               CurrentSelectedDate = new DateTime(DateTime.Now.Year + YearIndex, MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+               YearIndex -=1;
+               CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
 
+            }
+            else if (MonthIndex == 13)
+            {
+                MonthIndex = 1;
+                YearIndex += 1;
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
+
+            }
+            else if (MonthIndex == -13)
+            {
+                MonthIndex = 12;
+                YearIndex -= 1;
+
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
             }
             else
             {
-                CurrentSelectedDate = new DateTime(DateTime.Now.Year + YearIndex, DateTime.Now.Month + MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
             }
         }
 
