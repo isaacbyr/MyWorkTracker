@@ -31,7 +31,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75">
                 </RowDefinition>
-                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
@@ -87,144 +88,148 @@
                 </StackPanel> 
             </Border>
             
-
+            <!--Current Month Header-->
+            <TextBlock FontWeight="Bold" Foreground="SteelBlue" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="CurrentSelectedDate" Text="November, 2021" FontSize="14"></TextBlock>
+            <Button x:Name="Prev" Margin="10 0 0 0" Content="Prev" Grid.Row="1" Grid.Column="4"></Button>
+            <Button x:Name="Next" Margin="0 0 10 0" Content="Next" Grid.Row="1" Grid.Column="5"></Button>
+            
             <!--Dates-->
             <!--`Days of the week-->
-            <TextBlock TextDecorations="Underline" Text="Monday" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="27.4,17.8,26.6,18.2"></TextBlock>
-            <TextBlock TextDecorations="Underline" Text="Tuesday" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="27.4,17.8,26.6,18.2"></TextBlock>
-            <TextBlock TextDecorations="Underline" Text="Wednesday" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="14.4,17.8,13.6,18.2"></TextBlock>
-            <TextBlock TextDecorations="Underline" Text="Thursday" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="24.4,17.8,22.6,18.2"></TextBlock>
-            <TextBlock TextDecorations="Underline" Text="Friday" Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="36.4,17.8,35.6,18.2"></TextBlock>
-            <TextBlock TextDecorations="Underline" Text="Saturday" Grid.Column="12" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="25.4,17.8,24.6,18.2"></TextBlock>
-            <TextBlock TextDecorations="Underline" Text="Sunday" Grid.Column="14" Grid.Row="1" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="30.4,17.8,30.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Monday" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="27.4,10.8,26.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Tuesday" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="27.4,10.8,26.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Wednesday" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="14.4,10.8,13.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Thursday" Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="24.4,10.8,22.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Friday" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="36.4,10.8,35.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Saturday" Grid.Column="12" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="25.4,10.8,24.6,18.2"></TextBlock>
+            <TextBlock TextDecorations="Underline" Text="Sunday" Grid.Column="14" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Margin="30.4,10.8,30.6,18.2"></TextBlock>
 
             <!--`Week 1-->
-            <Button  x:Name="One" Content="100" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button  x:Name="One" Content="100" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button  x:Name="Two" Content="2" cal:Message.Attach= "Add_New($eventArgs)" Background="Transparent" BorderThickness="0" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" >
+            <Button  x:Name="Two" Content="2" cal:Message.Attach= "Add_New($eventArgs)" Background="Transparent" BorderThickness="0" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" >
             </Button>
-            <Button x:Name="Three" Content="13" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Three" Content="13" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Four" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Four" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Five" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Five" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Six" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Six" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Seven" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Seven" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
             
             <!--`Week 2-->
-            <Button x:Name="Eight" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Eight" Content="4" FontSize="18" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Nine" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Nine" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Ten" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Ten" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Eleven" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Eleven" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Twelve" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Twelve" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Thirteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Thirteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Fourteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Fourteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--`Week 3-->
-            <Button x:Name="Fifteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Fifteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Sixteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Sixteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
                 <TextBlock x:Name="Seventeen" FontSize="18" Text="14" Margin="45.4,7.8,44.6,8.2"></TextBlock>
             </Button>
-            <Button x:Name="Eighteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Eighteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Nineteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Nineteen" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Twenty" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Twenty" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentyOne" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyOne" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--`Week 4-->
-            <Button x:Name="TwentyTwo" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyTwo" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentyThree" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyThree" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentyFour" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyFour" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentyFive" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyFive" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentySix" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentySix" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentySeven" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentySeven" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="TwentyEight" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyEight" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--`Week 5-->
-            <Button x:Name="TwentyNine" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="TwentyNine" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="Thirty" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="Thirty" FontSize="18" Content="4"  cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="4" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="ThirtyOne" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="ThirtyOne" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="6" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="ThirtyTwo" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="ThirtyTwo" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="8" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="ThirtyThree" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="ThirtyThree" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="ThirtyFour" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="ThirtyFour" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="12" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
-            <Button x:Name="ThirtyFive" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="10" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
+            <Button x:Name="ThirtyFive" FontSize="18" Content="4" cal:Message.Attach= "Add_New($eventArgs)" Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="SteelBlue" Background="Transparent" BorderThickness="0">
             </Button>
 
             <!--Week 1 Totals-->
-            <TextBlock Text="{Binding T_One}" x:Name="T_One" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Two}" x:Name="T_Two" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Three}" x:Name="T_Three" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Four}" x:Name="T_Four" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Five}" x:Name="T_Five" Grid.Column="10" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Six}" x:Name="T_Six" Grid.Column="12" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Seven}" x:Name="T_Seven" Grid.Column="14" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_One}" x:Name="T_One" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Two}" x:Name="T_Two" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Three}" x:Name="T_Three" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Four}" x:Name="T_Four" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Five}" x:Name="T_Five" Grid.Column="10" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Six}" x:Name="T_Six" Grid.Column="12" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Seven}" x:Name="T_Seven" Grid.Column="14" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
             <!--Week 2 Totals-->
-            <TextBlock Text="{Binding T_Eight}" x:Name="T_Eight" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Nine}" x:Name="T_Nine" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Ten}" x:Name="T_Ten" Grid.Column="6" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Eleven}" x:Name="T_Eleven" Grid.Column="8" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Twelve}" x:Name="T_Twelve" Grid.Column="10" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Thirteen}" x:Name="T_Thirteen" Grid.Column="12" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Fourteen}" x:Name="T_Fourteen" Grid.Column="14" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Eight}" x:Name="T_Eight" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Nine}" x:Name="T_Nine" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Ten}" x:Name="T_Ten" Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Eleven}" x:Name="T_Eleven" Grid.Column="8" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Twelve}" x:Name="T_Twelve" Grid.Column="10" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Thirteen}" x:Name="T_Thirteen" Grid.Column="12" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Fourteen}" x:Name="T_Fourteen" Grid.Column="14" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
             <!--Week 3 Totals-->
-            <TextBlock Text="{Binding T_Fifteen}" x:Name="T_Fifteen" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Sixteen}" x:Name="T_Sixteen" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Seventeen}" x:Name="T_Seventeen" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Eighteen}" x:Name="T_Eighteen" Grid.Column="8" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Nineteen}" x:Name="T_Nineteen" Grid.Column="10" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Twenty}" x:Name="T_Twenty" Grid.Column="12" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentyOne}" x:Name="T_TwentyOne" Grid.Column="14" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Fifteen}" x:Name="T_Fifteen" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Sixteen}" x:Name="T_Sixteen" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Seventeen}" x:Name="T_Seventeen" Grid.Column="6" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Eighteen}" x:Name="T_Eighteen" Grid.Column="8" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Nineteen}" x:Name="T_Nineteen" Grid.Column="10" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Twenty}" x:Name="T_Twenty" Grid.Column="12" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyOne}" x:Name="T_TwentyOne" Grid.Column="14" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
             <!--Week 4 Totals-->
-            <TextBlock Text="{Binding T_TwentyTwo}" x:Name="T_TwentyTwo" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentyThree}" x:Name="T_TwentyThree" Grid.Column="4" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentyFour}" x:Name="T_TwentyFour" Grid.Column="6" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentyFive}" x:Name="T_TwentyFive" Grid.Column="8" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentySix}" x:Name="T_TwentySix" Grid.Column="10" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentySeven}" x:Name="T_TwentySeven" Grid.Column="12" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_TwentyEight}" x:Name="T_TwentyEight" Grid.Column="14" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyTwo}" x:Name="T_TwentyTwo" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyThree}" x:Name="T_TwentyThree" Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyFour}" x:Name="T_TwentyFour" Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyFive}" x:Name="T_TwentyFive" Grid.Column="8" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentySix}" x:Name="T_TwentySix" Grid.Column="10" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentySeven}" x:Name="T_TwentySeven" Grid.Column="12" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyEight}" x:Name="T_TwentyEight" Grid.Column="14" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
             <!--Week 5 Totals-->
-            <TextBlock Text="{Binding T_TwentyNine}" x:Name="T_TwentyNine" Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_Thirty}" x:Name="T_Thirty" Grid.Column="4" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_ThirtyOne}" x:Name="T_ThirtyOne" Grid.Column="6" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_ThirtyTwo}" x:Name="T_ThirtyTwo" Grid.Column="8" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_ThirtyThree}" x:Name="T_ThirtyThree" Grid.Column="10" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_ThirtyFour}" x:Name="T_ThirtyFour" Grid.Column="12" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
-            <TextBlock Text="{Binding T_ThirtyFive}" x:Name="T_ThirtyFive" Grid.Column="14" Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_TwentyNine}" x:Name="T_TwentyNine" Grid.Column="2" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_Thirty}" x:Name="T_Thirty" Grid.Column="4" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_ThirtyOne}" x:Name="T_ThirtyOne" Grid.Column="6" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_ThirtyTwo}" x:Name="T_ThirtyTwo" Grid.Column="8" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_ThirtyThree}" x:Name="T_ThirtyThree" Grid.Column="10" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_ThirtyFour}" x:Name="T_ThirtyFour" Grid.Column="12" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
+            <TextBlock Text="{Binding T_ThirtyFive}" x:Name="T_ThirtyFive" Grid.Column="14" Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource TotalLabelTheme}"></TextBlock>
 
-            <Border Margin="5 30 5 5" CornerRadius="18" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="14"
+            <Border Margin="5 30 5 5" CornerRadius="18" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="14"
                         Background="SteelBlue">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="Monthly Total" VerticalAlignment="Center" ></TextBlock>

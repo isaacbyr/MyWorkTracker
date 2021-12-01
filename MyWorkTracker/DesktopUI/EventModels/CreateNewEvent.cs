@@ -11,6 +11,7 @@ namespace DesktopUI.EventModels
         public bool PrevMonth { get; set; }
         public bool NextMonth { get; set; }
         public string Date { get; set; }
+        public DateTime SelectedMonth { get; set; }
 
         public CreateNewEvent(string date)
         {
@@ -22,11 +23,12 @@ namespace DesktopUI.EventModels
 
         }
 
-        public CreateNewEvent(string date, bool prevMonth, bool nextMonth)
+        public CreateNewEvent(string date, bool prevMonth, bool nextMonth, DateTime selectedMonth)
         {
             Date = date;
             PrevMonth = prevMonth;
             NextMonth = nextMonth;
+            SelectedMonth = selectedMonth;
         }
     }
 }

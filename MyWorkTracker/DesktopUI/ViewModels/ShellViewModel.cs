@@ -65,6 +65,7 @@ namespace DesktopUI.ViewModels
             _newVM.Date = message.Date;
             _newVM.NextMonth = message.NextMonth;
             _newVM.PrevMonth = message.PrevMonth;
+            _newVM.SelectedMonth = message.SelectedMonth;
             ActivateItem(_newVM);
         }
 

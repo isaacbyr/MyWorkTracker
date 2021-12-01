@@ -32,14 +32,62 @@ namespace DesktopUI.ViewModels
         protected override async void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
+            GetCurrentSelectedDate();
             firstDayOfMonth();
             await LoadTotals();
             NotifyOfPropertyChange(() => IsToday);
         }
 
+        public int MonthIndex { get; set; } = 0;
+
         public int DaysInMonth()
         {
-            return DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            DateTime selectedMonth;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
+            return DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth.Month );
+        }
+
+        public void Next()
+        {
+            //int value;
+            //int.TryParse(ThirtyFive, out value);
+            //int numDays = DaysInMonth();
+            //if(numDays == 28 && value <=27)
+            //{
+            //    One = (value + 1).ToString();
+            //}
+            //else if (numDays == 28 && value == 28) {
+            //    One = "1";
+            //}
+            //else if (numDays == 30 && value <= 29 )
+            //{
+            //    One = (value + 1).ToString();
+            //}
+            //else if (numDays == 30 && value == 30)
+            //{
+            //    One = "1";
+            //}
+            //else if (numDays == 31 && value <= 30)
+            //{
+            //    One = (value + 1).ToString();
+            //}
+            //else if (numDays == 31 && value == 31)
+            //{
+            //    One = "1";
+            //}
+            MonthIndex += 1;
+            GetCurrentSelectedDate();
+            firstDayOfMonth();
+
+            CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day).ToString("MMMM, yy");
+
+            NotifyOfPropertyChange(() => One);
+            NotifyOfPropertyChange(() => CurrentSelectedDate);
+        }
+
+        public void Prev()
+        {
+
         }
 
         public string W_OneTotals
@@ -768,13 +816,16 @@ namespace DesktopUI.ViewModels
             { 
                 _currDate = value;
                 NotifyOfPropertyChange(() => CurrDate);
+                NotifyOfPropertyChange(() => CurrentSelectedDate);
             }
         }
 
         public void firstDayOfMonth ()
         {
-            
-            DayOfWeek FirstDay = new DateTime(Today.Year, Today.Month, 1).DayOfWeek;
+            DateTime selectedMonth;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
+
+            DayOfWeek FirstDay = new DateTime(Today.Year, selectedMonth.Month, 1).DayOfWeek;
                 
             if(FirstDay.ToString() == "Monday")
             {
@@ -811,10 +862,29 @@ namespace DesktopUI.ViewModels
             var content = (e.Source as Button).Content.ToString();
             var buttonName = (e.Source as Button).Name.ToString();
 
+            DateTime selectedMonth;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
             bool prevMonth = IsPreviousMonth(content, buttonName);
             bool nextMonth = IsNextMonth(content, buttonName);
 
-            _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth));
+            _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedMonth));
+        }
+
+        public void GetCurrentSelectedDate()
+        {
+            CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+        }
+
+        private string _currentSelectedDate;
+
+        public string CurrentSelectedDate
+        {
+            get { return _currentSelectedDate; }
+            set 
+            { 
+                _currentSelectedDate = value;
+                NotifyOfPropertyChange(() => CurrentSelectedDate);
+            }
         }
 
         public bool IsPreviousMonth(string content, string buttonName)
@@ -905,20 +975,27 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        public string GetDayOfMonth(string prevDay)
+        {
+            int value;
+            int.TryParse(prevDay, out value);
+            int numDays = DaysInMonth();
+            if (value != numDays)
+            {
+                return (value + 1).ToString();
+            }
+            else
+            {
+                return "1";
+            }
+
+        }
+
         public string Two
         {
             get
             {
-                int oneVal;
-                int.TryParse(One, out oneVal);
-                if (oneVal != 31)
-                {
-                    return (oneVal + 1).ToString();
-                } 
-                else
-                {
-                    return "1";
-                }
+                return GetDayOfMonth(One);
 
             }
         }
@@ -927,53 +1004,25 @@ namespace DesktopUI.ViewModels
         {
             get 
             {
-                int twoVal;
-                int.TryParse(Two, out twoVal);
-                if(twoVal != 31)
-                {
-                    return (twoVal + 1).ToString();
-                }
-                else
-                {
-                    return "1";
-                }
-                
+                return GetDayOfMonth(Two);
             }
-            
+
         }
 
         public string Four
         {
             get 
             {
-                int threeVal;
-                int.TryParse(Three, out threeVal);
-                if (threeVal != 31)
-                {
-                    return (threeVal + 1).ToString();
-                }
-                else
-                {
-                    return "1";
-                }
+                return GetDayOfMonth(Three);
             }
-            
+
         }
 
         public string Five
         {
             get
             {
-                int fourVal;
-                int.TryParse(Four, out fourVal);
-                if (fourVal != 31)
-                {
-                    return (fourVal + 1).ToString();
-                }
-                else
-                {
-                    return "1";
-                }
+                return GetDayOfMonth(Four);
             }
         }
 
@@ -981,16 +1030,7 @@ namespace DesktopUI.ViewModels
         {
            get
             {
-                int fiveVal;
-                int.TryParse(Five, out fiveVal);
-                if (fiveVal != 31)
-                {
-                    return (fiveVal + 1).ToString();
-                }
-                else
-                {
-                    return "1";
-                }
+                return GetDayOfMonth(Five);
             }
         }
 
@@ -998,16 +1038,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sixVal;
-                int.TryParse(Six, out sixVal);
-                if (sixVal != 31)
-                {
-                    return (sixVal + 1).ToString();
-                }
-                else
-                {
-                    return "1";
-                }
+                return GetDayOfMonth(Six);
             }
         }
 
@@ -1015,9 +1046,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 1).ToString();
+                return GetDayOfMonth(Seven);
             }
         }
 
@@ -1025,9 +1054,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 2).ToString();
+                return GetDayOfMonth(Eight);
             }
         }
 
@@ -1035,9 +1062,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 3).ToString();
+                return GetDayOfMonth(Nine);
+
             }
         }
 
@@ -1045,9 +1071,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 4).ToString();
+                return GetDayOfMonth(Ten);
             }
         }
 
@@ -1055,9 +1079,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 5).ToString();
+                return GetDayOfMonth(Eleven);
             }
         }
 
@@ -1065,9 +1087,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 6).ToString();
+                return GetDayOfMonth(Twelve);
             }
         }
 
@@ -1075,9 +1095,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 7).ToString();
+                return GetDayOfMonth(Thirteen);
             }
         }
 
@@ -1085,9 +1103,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 8).ToString();
+                return GetDayOfMonth(Fourteen);
             }
         }
 
@@ -1095,9 +1111,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 9).ToString();
+                return GetDayOfMonth(Fifteen);
             }
         }
 
@@ -1105,9 +1119,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 10).ToString();
+                return GetDayOfMonth(Sixteen);
             }
         }
 
@@ -1115,9 +1127,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 11).ToString();
+                return GetDayOfMonth(Seventeen);
             }
         }
 
@@ -1125,9 +1135,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 12).ToString();
+                return GetDayOfMonth(Eighteen);
             }
         }
 
@@ -1135,9 +1143,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 13).ToString();
+                return GetDayOfMonth(Nineteen);
             }
         }
 
@@ -1145,19 +1151,15 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 14).ToString();
+                return GetDayOfMonth(Twenty);
             }
         }
 
         public string TwentyTwo
         {
             get
-            {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 15).ToString();
+            { 
+                return GetDayOfMonth(TwentyOne);
             }
         }
 
@@ -1165,9 +1167,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 16).ToString();
+                return GetDayOfMonth(TwentyTwo);
+
             }
         }
 
@@ -1175,9 +1176,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 17).ToString();
+                return GetDayOfMonth(TwentyThree);
+
             }
         }
 
@@ -1185,9 +1185,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 18).ToString();
+                return GetDayOfMonth(TwentyFour);
+
             }
         }
 
@@ -1195,9 +1194,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 19).ToString();
+                return GetDayOfMonth(TwentyFive);
             }
         }
 
@@ -1205,9 +1202,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 20).ToString();
+                return GetDayOfMonth(TwentySix);
             }
         }
 
@@ -1215,9 +1210,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                int sevenVal;
-                int.TryParse(Seven, out sevenVal);
-                return (sevenVal + 21).ToString();
+                return GetDayOfMonth(TwentySeven);
             }
         }
 
@@ -1225,8 +1218,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(TwentyEight);
-                
+                return GetDayOfMonth(TwentyEight);
+
             }
         }
 
@@ -1234,7 +1227,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(TwentyNine);
+                return GetDayOfMonth(TwentyNine);
+
             }
         }
 
@@ -1242,7 +1236,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(Thirty);
+                return GetDayOfMonth(Thirty);
             }
         }
 
@@ -1250,7 +1244,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(ThirtyOne);
+                return GetDayOfMonth(ThirtyOne);
             }
 
         }
@@ -1259,7 +1253,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(ThirtyTwo);
+                return GetDayOfMonth(ThirtyTwo);
             }
         }
 
@@ -1267,7 +1261,8 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(ThirtyThree);
+                return GetDayOfMonth(ThirtyThree);
+
             }
         }
 
@@ -1275,69 +1270,11 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfWeek(ThirtyFour);
+                return GetDayOfMonth(ThirtyFour);
             }
         }
 
-        public string GetDayOfWeek(string prevDayVal)
-        {
-            int prevDay;
-            int.TryParse(prevDayVal, out prevDay);
-            int daysInMonth = DaysInMonth();
-            
-            if(prevDay == 1)
-            {
-                return "2";
-            }
-            else if (prevDay == 2)
-            {
-                return "3";
-            }
-            else if (prevDay == 3)
-            {
-                return "4";
-            }
-            else if (prevDay == 4)
-            {
-                return "5";
-            }
-            else if(prevDay == 5)
-            {
-                return "6";
-            }
-            else if (daysInMonth == 28 && prevDay == 28)
-            {
-                return "1";
-            }
-            else if (daysInMonth == 29 && prevDay == 29 )
-            {
-                return "1";
-            }
-            else if ((daysInMonth == 30 || daysInMonth == 31) && prevDay == 28)
-            {
-                return "29";
-            }
-            else if ((daysInMonth == 30 || daysInMonth == 31) && prevDay == 29)
-            {
-                return "30";
-            }
-            else if (daysInMonth == 30 && prevDay == 30)
-            {
-                return "1";
-            }
-            else if (daysInMonth == 31 && prevDay == 30)
-            {
-                return "31";
-            }
-            else if (daysInMonth == 31 && prevDay == 31)
-            {
-                return "1";
-            }
-
-            return "Cal Error";
-        }
         
-   
         public void Logout()
         {
             _apiHelper.Logout();

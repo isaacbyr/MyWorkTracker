@@ -15,6 +15,7 @@ namespace DesktopUI.ViewModels
 
         public bool NextMonth { get; set; }
         public bool PrevMonth { get; set; }
+        public DateTime SelectedMonth { get; set; }
 
         private string _date;
 
@@ -33,23 +34,24 @@ namespace DesktopUI.ViewModels
         {
             get
             {
+                int currentSelectedMonth = SelectedMonth.Month;
                 int convertedDay;
                 int.TryParse(Date, out convertedDay);
                 if(!PrevMonth && !NextMonth)
                 {
-                  var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, convertedDay);
+                  var date = new DateTime(DateTime.Now.Year, currentSelectedMonth, convertedDay);
                   entry.JobDate = date.ToString("dd/MM/yyyy");
                   return date.ToString("dddd, MMM d yyyy").ToUpper();
                 }
                 else if (!PrevMonth && NextMonth)
                 {
-                    var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month+1, convertedDay);
+                    var date = new DateTime(DateTime.Now.Year, currentSelectedMonth+1, convertedDay);
                     entry.JobDate = date.ToString("dd/MM/yyyy");
                     return date.ToString("dddd, MMM d yyyy").ToUpper();
                 }
                 else if (PrevMonth && !NextMonth)
                 {
-                    var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month - 1, convertedDay);
+                    var date = new DateTime(DateTime.Now.Year, currentSelectedMonth - 1, convertedDay);
                     entry.JobDate = date.ToString("dd/MM/yyyy");
                     return date.ToString("dddd, MMM d yyyy").ToUpper();
                 }
