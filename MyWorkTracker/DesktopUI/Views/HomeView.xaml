@@ -47,7 +47,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Foreground="#ffaf7a" Text="My Work Tracker" FontWeight="ExtraBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="44,23,42.6,22.2"></TextBlock>
+            <TextBlock Foreground="#ffaf7a" Text="My Work Tracker" FontWeight="ExtraBold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="35,25,38.6,24.2" Width="176"></TextBlock>
 
             <Border  Grid.Row="1" Grid.Column="0"  CornerRadius="18" Background="#ffaf7a" Grid.ColumnSpan="2" Grid.RowSpan="20">
                 <StackPanel>
@@ -76,22 +76,25 @@
             Grid.Column="4" Grid.ColumnSpan="10" CornerRadius="18"
                      Background="SteelBlue">
                 <StackPanel>
-                    <TextBlock
-  
+                    <Button 
+            Background="Transparent"
+            BorderBrush="Transparent"
             x:Name="CurrDate"
             FontSize="26"
-             
+            cal:Message.Attach="CurrentDateHeader"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="white"
-            FontWeight="ExtraBold" Margin="0.4,22,59.6,21.2"/>
+            Margin="0 15 0 0"
+            FontWeight="ExtraBold"> </Button>
+                    
                 </StackPanel> 
             </Border>
             
             <!--Current Month Header-->
-            <TextBlock FontWeight="Bold" Foreground="SteelBlue" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="CurrentSelectedDate" Text="November, 2021" FontSize="14"></TextBlock>
-            <Button x:Name="Prev" Margin="10 0 0 0" Content="Prev" Grid.Row="1" Grid.Column="4"></Button>
-            <Button x:Name="Next" Margin="0 0 10 0" Content="Next" Grid.Row="1" Grid.Column="5"></Button>
+            <TextBlock FontWeight="Bold" Foreground="SteelBlue" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" x:Name="CurrentSelectedDate" Text="November, 2021" FontSize="14" Margin="0 5 0 0"></TextBlock>
+            <Button x:Name="Prev" Margin="10 5 0 0" Foreground="White" Background="SteelBlue"  Content="Prev" Grid.Row="1" Grid.Column="4"></Button>
+            <Button x:Name="Next" Margin="0 5 10 0" Foreground="White" Background="SteelBlue"  Content="Next" Grid.Row="1" Grid.Column="5"></Button>
             
             <!--Dates-->
             <!--`Days of the week-->

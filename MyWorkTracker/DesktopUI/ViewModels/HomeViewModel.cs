@@ -32,7 +32,7 @@ namespace DesktopUI.ViewModels
         protected override async void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
-            GetCurrentSelectedDate(false);
+            GetCurrentSelectedDate(false, true);
             firstDayOfMonth();
             await LoadTotals();
             NotifyOfPropertyChange(() => IsToday);
@@ -46,6 +46,14 @@ namespace DesktopUI.ViewModels
             DateTime selectedMonth;
             DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
             return DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth.Month );
+        }
+
+        public void CurrentDateHeader()
+        {
+            CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).ToString("MMMM, yy");
+            MonthIndex = DateTime.Now.Month;
+            YearIndex = DateTime.Now.Year;
+            firstDayOfMonth();
         }
 
         public void Next()
@@ -62,7 +70,11 @@ namespace DesktopUI.ViewModels
 
         public void Prev()
         {
-            MonthIndex -= 1;
+            if (MonthIndex != 1)
+            {
+                MonthIndex -= 1;
+            }
+      
             GetCurrentSelectedDate(true);
             firstDayOfMonth();
 
@@ -850,29 +862,34 @@ namespace DesktopUI.ViewModels
             _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedMonth));
         }
 
-        public void GetCurrentSelectedDate(bool prev)
+        public void GetCurrentSelectedDate(bool prev, bool defaultLoad = false)
         {
-
+            int numDays = DaysInMonth();
             
-            if (MonthIndex == 12 && prev == false)
+            if (defaultLoad == true)
+            {
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
+
+            }
+            else if (MonthIndex == 12 && prev == false)
             {
                 MonthIndex = 1;
                 YearIndex += 1;
-                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
 
             }
             else if (MonthIndex == 1 && prev == true)
             {
                MonthIndex = 12;
                YearIndex -=1;
-               CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
+               CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
 
             }
             else if (MonthIndex == 13)
             {
                 MonthIndex = 1;
                 YearIndex += 1;
-                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
 
             }
             else if (MonthIndex == -13)
@@ -880,11 +897,11 @@ namespace DesktopUI.ViewModels
                 MonthIndex = 12;
                 YearIndex -= 1;
 
-                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
             }
             else
             {
-                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, 15).ToString("MMMM, yy");
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
             }
         }
 
