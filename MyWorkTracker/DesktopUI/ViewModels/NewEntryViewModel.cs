@@ -12,7 +12,7 @@ namespace DesktopUI.ViewModels
 {
     public class NewEntryViewModel: Screen
     {
-
+        public string ItemLocation { get; set; }
         public bool NextMonth { get; set; }
         public bool PrevMonth { get; set; }
         public DateTime SelectedMonth { get; set; }
@@ -41,19 +41,19 @@ namespace DesktopUI.ViewModels
                 if(!PrevMonth && !NextMonth)
                 {
                   var date = new DateTime(currentSelectedYear, currentSelectedMonth, convertedDay);
-                  entry.JobDate = date.ToString("dd/MM/yyyy");
+                    entry.JobDate = date;;
                   return date.ToString("dddd, MMM d yyyy").ToUpper();
                 }
                 else if (!PrevMonth && NextMonth)
                 {
                     var date = new DateTime(currentSelectedYear, currentSelectedMonth+1, convertedDay);
-                    entry.JobDate = date.ToString("dd/MM/yyyy");
+                    entry.JobDate = date;
                     return date.ToString("dddd, MMM d yyyy").ToUpper();
                 }
                 else if (PrevMonth && !NextMonth)
                 {
                     var date = new DateTime(currentSelectedYear, currentSelectedMonth - 1, convertedDay);
-                    entry.JobDate = date.ToString("dd/MM/yyyy");
+                    entry.JobDate = date;
                     return date.ToString("dddd, MMM d yyyy").ToUpper();
                 }
 
@@ -212,6 +212,7 @@ namespace DesktopUI.ViewModels
             entry.Taxes = Taxes;
             entry.Total = Total;
             entry.Description = Description;
+            entry.CalendarLocation = ItemLocation;
 
             await _entryEndpoint.PostEntry(entry);
 

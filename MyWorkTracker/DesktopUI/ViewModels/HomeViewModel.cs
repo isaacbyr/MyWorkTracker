@@ -56,19 +56,18 @@ namespace DesktopUI.ViewModels
             firstDayOfMonth();
         }
 
-        public void Next()
+        public async Task Next()
         {
             MonthIndex += 1;
             GetCurrentSelectedDate(false);
             firstDayOfMonth();
-
-            //CurrentSelectedDate = new DateTime(DateTime.Now.Year + YearIndex , DateTime.Now.Month + MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+            await LoadTotals();
 
             NotifyOfPropertyChange(() => One);
-           // NotifyOfPropertyChange(() => CurrentSelectedDate);
+            // NotifyOfPropertyChange(() => CurrentSelectedDate);
         }
 
-        public void Prev()
+        public async Task Prev()
         {
             if (MonthIndex != 1)
             {
@@ -77,6 +76,7 @@ namespace DesktopUI.ViewModels
       
             GetCurrentSelectedDate(true);
             firstDayOfMonth();
+            await LoadTotals();
 
             NotifyOfPropertyChange(() => One);
             //NotifyOfPropertyChange(() => CurrentSelectedDate);
@@ -217,127 +217,215 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        public (DateTime, DateTime) LoadFirstAndLastDates()
+        {
+            int firstValue;
+            int.TryParse(One, out firstValue);
+            int lastValue;
+            int.TryParse(ThirtyFive, out lastValue);
+
+            DateTime selectedDate;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate);
+            DateTime firstDate;
+            DateTime lastDate;
+
+            if (firstValue >= 26 && selectedDate.Month == 1)
+            {
+                firstDate = new DateTime(selectedDate.Year - 1, 12, firstValue);
+            }
+
+            else if (firstValue >= 26 && selectedDate.Month != 1)
+            {
+                firstDate = new DateTime(selectedDate.Year, selectedDate.Month - 1, firstValue);
+            }
+            else
+            {
+                firstDate = new DateTime(selectedDate.Year, selectedDate.Month, firstValue);
+            }
+
+            if(lastValue <= 6 && selectedDate.Month == 12)
+            {
+                lastDate = new DateTime(selectedDate.Year+1, 1, lastValue);
+            }
+            else if (lastValue <= 6 && selectedDate.Month != 12)
+            {
+                lastDate = new DateTime(selectedDate.Year, selectedDate.Month + 1, lastValue);
+
+            }
+            else
+            {
+                lastDate = new DateTime(selectedDate.Year, selectedDate.Month, lastValue);
+            }
+            return (firstDate, lastDate) ;
+        }
+
         public async Task LoadTotals()
         {
-            var result = await _entryEndpoint.LoadEntries();
-           
-            for (int i = 0; i < result.Count; i++)
-            { 
 
-               foreach (var entry in result)
+            Dictionary<string, decimal> items = new Dictionary<string, decimal>();
+
+            DateTime firstDate, lastDate;
+
+            (firstDate, lastDate) = LoadFirstAndLastDates();
+
+
+            var result = await _entryEndpoint.LoadEntriesBetweenDates(firstDate, lastDate);
+
+            if (result != null)
+            {
+                for (int i = 0; i < result.Count; i++)
                 {
-                    string testVariablle = entry.JobDate.Substring(0, 2);
-                    switch(testVariablle)
+                    foreach(var entry in result)
                     {
-                        case "1": 
-                            T_One = entry.Total.ToString("C");
-                            break;
-                        case "2":
-                            T_Two = entry.Total.ToString("C");
-                            break;
-                        case "3":
-                            T_Three = entry.Total.ToString("C");
-                            break;
-                        case "4":
-                            T_Four = entry.Total.ToString("C");
-                            break;
-                        case "5":
-                            T_Five = entry.Total.ToString("C");
-                            break;
-                        case "6":
-                            T_Six = entry.Total.ToString("C");
-                            break;
-                        case "7":
-                            T_Seven = entry.Total.ToString("C");
-                            break;
-                        case "8":
-                            T_Eight = entry.Total.ToString("C");
-                            break;
-                        case "9":
-                            T_Nine = entry.Total.ToString("C");
-                            break;
-                        case "10":
-                            T_Ten = entry.Total.ToString("C");
-                            break;
-                        case "11":
-                            T_Eleven = entry.Total.ToString("C");
-                            break;
-                        case "12":
-                            T_Twelve = entry.Total.ToString("C");
-                            break;
-                        case "13":
-                            T_Thirteen = entry.Total.ToString("C");
-                            break;
-                        case "14":
-                            T_Fourteen = entry.Total.ToString("C");
-                            break;
-                        case "15":
-                            T_Fifteen = entry.Total.ToString("C");
-                            break;
-                        case "16":
-                            T_Sixteen = entry.Total.ToString("C");
-                            break;
-                        case "17":
-                            T_Seventeen = entry.Total.ToString("C");
-                            break;
-                        case "18":
-                            T_Eighteen = entry.Total.ToString("C");
-                            break;
-                        case "19":
-                            T_Nineteen = entry.Total.ToString("C");
-                            break;
-                        case "20":
-                            T_Twenty = entry.Total.ToString("C");
-                            break;
-                        case "21":
-                            T_TwentyOne = entry.Total.ToString("C");
-                            break;
-                        case "22":
-                            T_TwentyTwo = entry.Total.ToString("C");
-                            break;
-                        case "23":
-                            T_TwentyThree = entry.Total.ToString("C");
-                            break;
-                        case "24":
-                            T_TwentyFour = entry.Total.ToString("C");
-                            break;
-                        case "25":
-                            T_TwentyFive = entry.Total.ToString("C");
-                            break;
-                        case "26":
-                            T_TwentySix = entry.Total.ToString("C");
-                            break;
-                        case "27":
-                            T_TwentySeven = entry.Total.ToString("C");
-                            break;
-                        case "28":
-                            T_TwentyEight = entry.Total.ToString("C");
-                            break;
-                        case "29":
-                            T_TwentyNine = entry.Total.ToString("C");
-                            break;
-                        case "30":
-                            T_Thirty = entry.Total.ToString("C");
-                            break;
-                        case "31":
-                            T_ThirtyOne = entry.Total.ToString("C");
-                            break;
-                        case "32":
-                            T_ThirtyTwo = entry.Total.ToString("C");
-                            break;
-                        case "33":
-                            T_ThirtyThree = entry.Total.ToString("C");
-                            break;
-                        case "34":
-                            T_ThirtyFour = entry.Total.ToString("C");
-                            break;
-                        case "35":
-                            T_ThirtyFive = entry.Total.ToString("C");
-                            break;
-                        default: break;
-                    }               
+                        items.Add(entry.CalendarLocation, entry.Total);
+                    }
+                }
+
+                ResetTotals();
+
+                
+                if(items.ContainsKey("One"))
+                {
+                    T_One = items["One"].ToString("C");
+                }
+                else if(items.ContainsKey("Two"))
+                {
+                    T_Two = items["Two"].ToString("C");
+                }
+                else if (items.ContainsKey("Three"))
+                {
+                    T_Three = items["Three"].ToString("C");
+                }
+                else if (items.ContainsKey("Four"))
+                {
+                    T_Four = items["Four"].ToString("C");
+                }
+                else if (items.ContainsKey("Five"))
+                {
+                    T_Five = items["Five"].ToString("C");
+                }
+                else if (items.ContainsKey("Six"))
+                {
+                    T_Six = items["Six"].ToString("C");
+                }
+                else if (items.ContainsKey("Seven"))
+                {
+                    T_Seven = items["Seven"].ToString("C");
+                }
+                else if (items.ContainsKey("Eight"))
+                {
+                    T_Eight = items["Eight"].ToString("C");
+                }
+                else if (items.ContainsKey("Nine"))
+                {
+                    T_Nine = items["Nine"].ToString("C");
+                }
+                else if (items.ContainsKey("Ten"))
+                {
+                    T_Ten = items["Ten"].ToString("C");
+                }
+                else if (items.ContainsKey("Eleven"))
+                {
+                    T_Eleven = items["Eleven"].ToString("C");
+                }
+                else if (items.ContainsKey("Twelve"))
+                {
+                    T_Twelve = items["Twelve"].ToString("C");
+                }
+                else if (items.ContainsKey("Thirteen"))
+                {
+                    T_Thirteen = items["Thirteen"].ToString("C");
+                }
+                else if (items.ContainsKey("Fourteen"))
+                {
+                    T_Fourteen = items["Fourteen"].ToString("C");
+                }
+                else if (items.ContainsKey("Fifteen"))
+                {
+                    T_Fifteen = items["Fifteen"].ToString("C");
+                }
+                else if (items.ContainsKey("Sixteen"))
+                {
+                    T_Sixteen = items["Sixteen"].ToString("C");
+                }
+                else if (items.ContainsKey("Seventeen"))
+                {
+                    T_Seventeen = items["Seventeen"].ToString("C");
+                }
+                else if (items.ContainsKey("Eighteen"))
+                {
+                    T_Eighteen = items["Eighteen"].ToString("C");
+                }
+                else if (items.ContainsKey("Nineteen"))
+                {
+                    T_Nineteen = items["Nineteen"].ToString("C");
+                }
+                else if (items.ContainsKey("Twenty"))
+                {
+                    T_Twenty = items["Twenty"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyOne"))
+                {
+                    T_TwentyOne = items["TwentyOne"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyTwo"))
+                {
+                    T_TwentyTwo = items["TwentyTwo"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyThree"))
+                {
+                    T_TwentyThree = items["TwentyThree"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyFour"))
+                {
+                    T_TwentyFour = items["TwentyFour"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyFive"))
+                {
+                    T_TwentyFive = items["TwentyFive"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentySix"))
+                {
+                    T_TwentySix = items["TwentySix"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentySeven"))
+                {
+                    T_TwentySeven = items["TwentySeven"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyEight"))
+                {
+                    T_TwentyEight = items["TwentyEight"].ToString("C");
+                }
+                else if (items.ContainsKey("TwentyNine"))
+                {
+                    T_TwentyNine = items["TwentyNine"].ToString("C");
+                }
+                else if (items.ContainsKey("Thirty"))
+                {
+                    T_Thirty = items["Thirty"].ToString("C");
+                }
+                else if (items.ContainsKey("ThirtyOne"))
+                {
+                    T_ThirtyOne = items["ThirtyOne"].ToString("C");
+                }
+                else if (items.ContainsKey("ThirtyTwo"))
+                {
+                    T_ThirtyTwo = items["ThirtyTwo"].ToString("C");
+                }
+                else if (items.ContainsKey("ThirtyThree"))
+                {
+                    T_ThirtyThree = items["ThirtyThree"].ToString("C");
+                }
+                else if (items.ContainsKey("ThirtyFour"))
+                {
+                    T_ThirtyFour = items["ThirtyFour"].ToString("C");
+                }
+                else if (items.ContainsKey("ThirtyFive"))
+                {
+                    T_ThirtyFive = items["ThirtyFive"].ToString("C");
                 }
             }
+
             NotifyOfPropertyChange(() => W_OneTotals);
             NotifyOfPropertyChange(() => W_TwoTotals);
             NotifyOfPropertyChange(() => W_ThreeTotals);
@@ -345,6 +433,43 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => W_FiveTotals);
             NotifyOfPropertyChange(() => MonthTotal);
 
+        }
+
+        public void ResetTotals()
+        {
+            T_One = "";
+            T_Two = "";
+            T_Three = "";
+            T_Four = "";
+            T_Five = "";
+            T_Six = "";
+            T_Seven = "";
+            T_Ten = "";
+            T_Eleven = "";
+            T_Twelve = "";
+            T_Thirteen = "";
+            T_Fourteen = "";
+            T_Fifteen = "";
+            T_Sixteen = "";
+            T_Seventeen = "";
+            T_Eighteen = "";
+            T_Nineteen = "";
+            T_Twenty = "";
+            T_TwentyOne = "";
+            T_TwentyTwo = "";
+            T_TwentyThree = "";
+            T_TwentyFour = "";
+            T_TwentyFive = "";
+            T_TwentySix = "";
+            T_TwentySeven = "";
+            T_TwentyEight = "";
+            T_TwentyNine = "";
+            T_Thirty = "";
+            T_ThirtyOne = "";
+            T_ThirtyTwo = "";
+            T_ThirtyThree = "";
+            T_ThirtyFour = "";
+            T_ThirtyFive = "";
         }
 
         private string _t_one;
@@ -852,14 +977,14 @@ namespace DesktopUI.ViewModels
         public void Add_New(RoutedEventArgs e)
         {
             var content = (e.Source as Button).Content.ToString();
-            var buttonName = (e.Source as Button).Name.ToString();
+            var itemLocation = (e.Source as Button).Name.ToString();
 
             DateTime selectedMonth;
             DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
-            bool prevMonth = IsPreviousMonth(content, buttonName);
-            bool nextMonth = IsNextMonth(content, buttonName);
+            bool prevMonth = IsPreviousMonth(content, itemLocation);
+            bool nextMonth = IsNextMonth(content, itemLocation);
 
-            _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedMonth));
+            _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedMonth, itemLocation));
         }
 
         public void GetCurrentSelectedDate(bool prev, bool defaultLoad = false)
@@ -871,13 +996,13 @@ namespace DesktopUI.ViewModels
                 CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
 
             }
-            else if (MonthIndex == 12 && prev == false)
-            {
-                MonthIndex = 1;
-                YearIndex += 1;
-                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
+            //else if (MonthIndex == 12 && prev == false)
+            //{
+            //    MonthIndex = 1;
+            //    YearIndex += 1;
+            //    CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
 
-            }
+            //}
             else if (MonthIndex == 1 && prev == true)
             {
                MonthIndex = 12;

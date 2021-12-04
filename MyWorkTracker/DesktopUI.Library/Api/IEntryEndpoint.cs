@@ -8,7 +8,7 @@ namespace DesktopUI.Library.Api
     public interface IEntryEndpoint
     {
         Task PostEntry(EntryModel newEntry);
-        Task<EntryModel> LoadEntry(string date);
-        Task<List<EntryModel>> LoadEntries();
+        Task<EntryModel> LoadEntry(DateTime date);
+        Task<List<EntryModel>> LoadEntriesBetweenDates(DateTime firstDate, DateTime lastDate);
     }  
 }

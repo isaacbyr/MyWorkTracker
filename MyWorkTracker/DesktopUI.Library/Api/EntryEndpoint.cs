@@ -32,9 +32,10 @@ namespace DesktopUI.Library.Api
             }
         }
 
-        public async Task<EntryModel> LoadEntry (string date)
+        public async Task<EntryModel> LoadEntry (DateTime date)
         {
-            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Entry/{date}"))
+            var convertedDate = date.ToString("dd-MM-yyyy");
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Entry/{convertedDate}"))
             {
                 if(response.IsSuccessStatusCode)
                 {
@@ -48,9 +49,13 @@ namespace DesktopUI.Library.Api
             }
         }
 
-        public async Task<List<EntryModel>> LoadEntries ()
+        public async Task<List<EntryModel>> LoadEntriesBetweenDates(DateTime firstDate, DateTime lastDate)
         {
-            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Entry"))
+
+            var convFirstDate = firstDate.ToString("dd-MM-yyyy");
+            var convLastDate = lastDate.ToString("dd-MM-yyyy");
+
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Entry/{convFirstDate}/{convLastDate}"))
             {
                 if (response.IsSuccessStatusCode)
                 {

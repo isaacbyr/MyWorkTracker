@@ -26,7 +26,7 @@ namespace DataManager.Library.DataAccess
             }
         }
 
-        public EntryModel LoadEntry(string Date, string UserId)
+        public EntryModel LoadEntry(DateTime Date, string UserId)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
@@ -44,15 +44,15 @@ namespace DataManager.Library.DataAccess
             
         }
 
-        public List<EntryModel> LoadEntries(string UserId)
+        public List<EntryModel> LoadEntries(string UserId, DateTime firstDate, DateTime lastDate)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
 
-            var p = new { UserId = UserId };
+            var p = new { UserId = UserId, FirstDate = firstDate, LastDate = lastDate };
             try
             {
-                var output = sql.LoadData<EntryModel, dynamic>("dbo.spGetEntriesByUserId", p, "WTData");
+                var output = sql.LoadData<EntryModel, dynamic>("dbo.spGetEntriesByUserAndDates", p, "WTData");
                 return output;
             }
             catch

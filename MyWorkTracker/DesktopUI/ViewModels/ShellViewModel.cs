@@ -62,6 +62,8 @@ namespace DesktopUI.ViewModels
 
         public void Handle(CreateNewEvent message)
         {
+
+            _newVM.ItemLocation = message.ItemLocation;
             _newVM.Date = message.Date;
             _newVM.NextMonth = message.NextMonth;
             _newVM.PrevMonth = message.PrevMonth;

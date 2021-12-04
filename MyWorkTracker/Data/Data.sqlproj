@@ -70,6 +70,7 @@
     <Build Include="dbo\Stored Procedures\sp_Entry_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\spGetEntryByDate.sql" />
     <Build Include="dbo\Stored Procedures\spGetEntriesByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\sp_GetEntriesByUserAndDates.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

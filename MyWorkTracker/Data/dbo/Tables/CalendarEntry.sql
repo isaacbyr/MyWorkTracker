@@ -10,5 +10,6 @@
 	[Taxes] MONEY NOT NULL,
 	[Total] MONEY NOT NULL,
 	[Description] NVARCHAR(150),
-	[JobDate] NVARCHAR(20) NOT NULL
+	[JobDate] DATETIME2 NOT NULL,
+	[CalendarLocation] NVARCHAR(5) NOT NULL
 )

@@ -17,7 +17,8 @@ namespace DesktopUI.Library.Models
         public string Description { get; set; }
         public decimal Taxes { get; set; }
         public decimal Total { get; set; }
-        public string JobDate { get; set; }
+        public DateTime JobDate { get; set; }
+        public string CalendarLocation { get; set; }
 
 
     }
