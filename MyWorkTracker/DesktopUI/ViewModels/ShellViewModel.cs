@@ -11,7 +11,7 @@ using DesktopUI.Library.Models;
 namespace DesktopUI.ViewModels
 {
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
-        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>
+        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -20,10 +20,11 @@ namespace DesktopUI.ViewModels
         private HomeViewModel _homeVM;
         private NewEntryViewModel _newVM;
         private readonly RegisterViewModel _registerVM;
+        private readonly StatsViewModel _statsVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
             WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, 
-            NewEntryViewModel newVM, RegisterViewModel registerVM)
+            NewEntryViewModel newVM, RegisterViewModel registerVM, StatsViewModel statsVM)
         {
             _loginView = loginView;
             _events = events;
@@ -32,13 +33,14 @@ namespace DesktopUI.ViewModels
             _homeVM = homeVM;
             _newVM = newVM;
             _registerVM = registerVM;
+            _statsVM = statsVM;
 
 
             // have to subscribe to events in general
             _events.Subscribe(this);
 
-            ActivateItem(_loginView);
-            //ActivateItem(_homeVM);
+            //ActivateItem(_loginView);
+            ActivateItem(_homeVM);
         }
 
         public void Handle(LogOnEvent message)
@@ -93,6 +95,12 @@ namespace DesktopUI.ViewModels
         {
             DeactivateItem(_registerVM, true);
             ActivateItem(_loginView);
+        }
+
+        public void Handle(OpenStatsView message)
+        {
+            DeactivateItem(_homeVM, true);
+            ActivateItem(_statsVM);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace DesktopUI.ViewModels
             base.OnViewLoaded(view);
             GetCurrentSelectedDate(false, true);
             firstDayOfMonth();
-            await LoadTotals();
+           // await LoadTotals();
             NotifyOfPropertyChange(() => IsToday);
         }
 
@@ -48,12 +48,13 @@ namespace DesktopUI.ViewModels
             return DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth.Month );
         }
 
-        public void CurrentDateHeader()
+        public async Task CurrentDateHeader()
         {
             CurrentSelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).ToString("MMMM, yy");
             MonthIndex = DateTime.Now.Month;
             YearIndex = DateTime.Now.Year;
             firstDayOfMonth();
+            await LoadTotals();
         }
 
         public async Task Next()
@@ -908,11 +909,15 @@ namespace DesktopUI.ViewModels
             
         }
 
-
-        public void New()
+        public void ViewStats ()
         {
-            _events.PublishOnUIThread(new CreateNewEvent());
+            _events.PublishOnUIThread(new OpenStatsView());
         }
+
+        //public void New()
+        //{
+        //    _events.PublishOnUIThread(new CreateNewEvent());
+        //}
 
         public DateTime Today
         {

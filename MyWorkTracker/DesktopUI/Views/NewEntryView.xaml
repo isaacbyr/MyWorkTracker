@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DesktopUI.Views"
              mc:Ignorable="d" 
              Foreground="White"
-             Height="400" Width="700">
+             Height="650" Width="1090">
     <Border CornerRadius="18" Background="#b3e5fc">
         <Grid Margin="5,5,-5,-5">
             <Grid.ColumnDefinitions>
@@ -15,9 +15,15 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="40"></RowDefinition>
@@ -34,42 +40,54 @@
                 Grid.Column="1"
                 Grid.Row="0"
                 x:Name="ViewingDate"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="5"
                 Text=" Tuesday Nov 18 2021"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="22"></TextBlock>
+                FontSize="42"></TextBlock>
 
             <!--List Items-->
             <TextBlock
                 Grid.Row="1" Grid.Column="0"
                 Text="Job" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             <TextBlock
                 Grid.Row="1" Grid.Column="1"
                 Text="Location" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             <TextBlock
                 Grid.Row="1" Grid.Column="2"
-                Text="Hours" HorizontalAlignment="Center"
+                Text="Start Time" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             <TextBlock
                 Grid.Row="1" Grid.Column="3"
-                Text="Wage" HorizontalAlignment="Center"
+                Text="End Time" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             <TextBlock
                 Grid.Row="1" Grid.Column="4"
+                Text="Hours" HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="22">
+            </TextBlock>
+            <TextBlock
+                Grid.Row="1" Grid.Column="5"
+                Text="Wage" HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="22">
+            </TextBlock>
+            <TextBlock
+                Grid.Row="1" Grid.Column="6"
                 Text="Subtotal" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
 
             <!--Job Inputs-->
@@ -77,93 +95,93 @@
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
-                     FontSize="16"></TextBox>
+                     FontSize="18"></TextBox>
             <TextBox x:Name="Location" Grid.Row="2" Grid.Column="1"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
-                     FontSize="16"></TextBox>
-            <TextBox x:Name="Hours" Grid.Row="2" Grid.Column="2"
+                     FontSize="18"></TextBox>
+            <TextBox x:Name="StartTime" Grid.Row="2" Grid.Column="2"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
-                     FontSize="16"></TextBox>
-            <TextBox x:Name="Wage" Grid.Row="2" Grid.Column="3"
+                     FontSize="18"></TextBox>
+            <TextBox x:Name="EndTime" Grid.Row="2" Grid.Column="3"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
-                     FontSize="16"></TextBox>
-            <TextBox x:Name="Subtotal" Grid.Row="2" Grid.Column="4"
+                     FontSize="18"></TextBox>
+            <TextBox x:Name="Hours" Grid.Row="2" Grid.Column="4"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      MinWidth="120" MaxWidth="120"
-                     FontSize="16"></TextBox>
+                     FontSize="18"></TextBox>
+            <TextBox x:Name="Wage" Grid.Row="2" Grid.Column="5"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     MinWidth="120" MaxWidth="120"
+                     FontSize="18"></TextBox>
+            <TextBox x:Name="Subtotal" Grid.Row="2" Grid.Column="6"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     MinWidth="120" MaxWidth="120"
+                     FontSize="18"></TextBox>
 
             <!--Description-->
-            <TextBlock Text="Description" Grid.Column="1"
-                       Grid.Row="3"
-                       HorizontalAlignment="Center"
+            <TextBlock Text="Description" Grid.Column="2"
+                       Grid.Row="4"
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Center"
-                       FontSize="18">
+                       FontSize="22">
 
             </TextBlock>
-            <TextBox Grid.Row="3" Grid.Column="2"
-                     Grid.ColumnSpan="2"
+            <TextBox Grid.Row="5" Grid.Column="2"
+                     Grid.ColumnSpan="3"
+                     FontSize="18"
                      Grid.RowSpan="3" x:Name="Description">
                        
             </TextBox>
 
             <!--Taxes-->
             <TextBlock 
-                Grid.Row="6" Grid.Column="3"
+                Grid.Row="9" Grid.Column="5"
                 Text="Taxes" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             <TextBlock x:Name="Taxes"
-                Grid.Row="6" Grid.Column="4"
+                Grid.Row="9" Grid.Column="6"
                 Text="0.00" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             
             
             <!--Total-->
             <TextBlock
-                Grid.Row="7" Grid.Column="3"
+                Grid.Row="10" Grid.Column="5"
                 Text="Total" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
             <TextBlock x:Name="Total"
-                Grid.Row="7" Grid.Column="4"
+                Grid.Row="10" Grid.Column="6"
                 Text="0.00" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontSize="18">
+                FontSize="22">
             </TextBlock>
 
             
             <!--Buttons-->
-            <Button x:Name="Add" Content="Add" Grid.Column="4"
-                    Grid.Row="8" Margin="5" FontSize="18"
+            <Button x:Name="Add" Content="Add" Grid.Column="6"
+                    Grid.Row="12" Margin="5" FontSize="20"
                     Background="LightGreen" Foreground="White"></Button>
 
-            <Button x:Name="Cancel" Content="Cancel" Grid.Column="3"
-                    Grid.Row="8" Margin="5" FontSize="18"
+            <Button x:Name="Cancel" Content="Cancel" Grid.Column="5"
+                    Grid.Row="12" Margin="5" FontSize="20"
                     Background="PaleVioletRed" Foreground="White"></Button>
 
             <!--Decoration-->
-            <Ellipse Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
-                     Width="180" Height="180" Fill="White"
-                     Grid.RowSpan="2" Margin="-23,1.8,103.8,-66.6"/>
-            <Ellipse
-                Grid.Row="5"
-                Width="80"
-                Height="80" Fill="White" Grid.RowSpan="3" Margin="95,20.8,105,19.2" Grid.ColumnSpan="2"/>
-            <Ellipse
-                Grid.Row="5"
-                Width="40"
-                Height="40" Fill="White" Grid.RowSpan="2" Margin="5,9.8,95,30.2" Grid.Column="1"/>
 
         </Grid>
     </Border>

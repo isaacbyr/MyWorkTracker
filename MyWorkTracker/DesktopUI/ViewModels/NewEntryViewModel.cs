@@ -87,6 +87,8 @@ namespace DesktopUI.ViewModels
                 Hours = foundEntry.Hours;
                 Wage = foundEntry.Wage;
                 Description = foundEntry.Description;
+                StartTime = foundEntry.StartTime;
+                EndTime = foundEntry.EndTime;
             }
             else
             {
@@ -95,6 +97,8 @@ namespace DesktopUI.ViewModels
                 Hours = 0;
                 Wage = 0;
                 Description ="";
+                StartTime = "";
+                EndTime = "";
             }
 
             NotifyOfPropertyChange(() => Job);
@@ -103,6 +107,31 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => Wage);
             NotifyOfPropertyChange(() => Description);
         }
+
+        private string _startTime;
+
+        public string StartTime
+        {
+            get { return _startTime; }
+            set 
+            { 
+                _startTime = value;
+                NotifyOfPropertyChange(() => StartTime);
+            }
+        }
+
+        private string _endTime;
+
+        public string EndTime
+        {
+            get { return _endTime; }
+            set 
+            { 
+                _endTime = value;
+                NotifyOfPropertyChange(() => EndTime);
+            }
+        }
+
 
         private string _job;
 
@@ -131,9 +160,12 @@ namespace DesktopUI.ViewModels
 
         public decimal Hours
         {
-            get { return _hours; }
-            set 
-            { 
+            get
+            {
+                return _hours;
+            }
+            set
+            {
                 _hours = value;
                 NotifyOfPropertyChange(() => Hours);
                 NotifyOfPropertyChange(() => Subtotal);
@@ -213,6 +245,8 @@ namespace DesktopUI.ViewModels
             entry.Total = Total;
             entry.Description = Description;
             entry.CalendarLocation = ItemLocation;
+            entry.StartTime = StartTime;
+            entry.EndTime = EndTime;
 
             await _entryEndpoint.PostEntry(entry);
 

@@ -19,7 +19,8 @@ namespace DesktopUI.Library.Models
         public decimal Total { get; set; }
         public DateTime JobDate { get; set; }
         public string CalendarLocation { get; set; }
-
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
 
     }
 }
