@@ -11,7 +11,7 @@ using DesktopUI.Library.Models;
 namespace DesktopUI.ViewModels
 {
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
-        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>
+        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>, IHandle<ReturnHomeEvent>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -39,8 +39,9 @@ namespace DesktopUI.ViewModels
             // have to subscribe to events in general
             _events.Subscribe(this);
 
-            //ActivateItem(_loginView);
-            ActivateItem(_homeVM);
+            ActivateItem(_loginView);
+            // ActivateItem(_homeVM);
+            //ActivateItem(_statsVM);
         }
 
         public void Handle(LogOnEvent message)
@@ -99,8 +100,13 @@ namespace DesktopUI.ViewModels
 
         public void Handle(OpenStatsView message)
         {
-            DeactivateItem(_homeVM, true);
+           // DeactivateItem(_homeVM, true);
             ActivateItem(_statsVM);
+        }
+
+        public void Handle(ReturnHomeEvent message)
+        {
+            ActivateItem(_homeVM);
         }
     }
 }

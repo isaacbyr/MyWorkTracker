@@ -49,13 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiHelper.cs" />
+    <Compile Include="Api\ChartEndpoint.cs" />
     <Compile Include="Api\IApiHelper.cs" />
+    <Compile Include="Api\IChartEndpoint.cs" />
     <Compile Include="Api\IEntryEndpoint.cs" />
     <Compile Include="Api\EntryEndpoint.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\HoursChartDataModel.cs" />
+    <Compile Include="Models\MonthlyChartDataModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
+    <Compile Include="Models\WeeklyChartDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

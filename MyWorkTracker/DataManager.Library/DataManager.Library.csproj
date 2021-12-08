@@ -45,11 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\ChartData.cs" />
     <Compile Include="DataAccess\EntryData.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="DataAccess\UserData.cs" />
+    <Compile Include="Models\HoursChartDataModel.cs" />
+    <Compile Include="Models\MonthlyChartDataModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\WeeklyChartDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

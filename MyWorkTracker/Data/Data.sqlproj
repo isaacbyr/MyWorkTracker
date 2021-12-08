@@ -71,6 +71,9 @@
     <Build Include="dbo\Stored Procedures\spGetEntryByDate.sql" />
     <Build Include="dbo\Stored Procedures\spGetEntriesByUserId.sql" />
     <Build Include="dbo\Stored Procedures\sp_GetEntriesByUserAndDates.sql" />
+    <Build Include="dbo\Stored Procedures\spGroupEntriesByMonth.sql" />
+    <Build Include="dbo\Stored Procedures\spGroupEntriesByWeek.sql" />
+    <Build Include="dbo\Stored Procedures\spGetHoursPerDay.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

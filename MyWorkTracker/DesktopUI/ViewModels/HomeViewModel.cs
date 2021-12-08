@@ -34,18 +34,18 @@ namespace DesktopUI.ViewModels
             base.OnViewLoaded(view);
             GetCurrentSelectedDate(false, true);
             firstDayOfMonth();
-           // await LoadTotals();
+           await LoadTotals();
             NotifyOfPropertyChange(() => IsToday);
         }
 
         public int MonthIndex { get; set; } = DateTime.Now.Month;
         public int YearIndex { get; set; } = DateTime.Now.Year;
 
-        public int DaysInMonth()
+        public int DaysInMonth(int value = 0)
         {
             DateTime selectedMonth;
             DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
-            return DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth.Month );
+            return DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth.Month + value);
         }
 
         public async Task CurrentDateHeader()
@@ -269,162 +269,165 @@ namespace DesktopUI.ViewModels
 
             (firstDate, lastDate) = LoadFirstAndLastDates();
 
-
+            ResetTotals();
             var result = await _entryEndpoint.LoadEntriesBetweenDates(firstDate, lastDate);
 
             if (result != null)
             {
-                for (int i = 0; i < result.Count; i++)
+                
+                foreach(var entry in result)
                 {
-                    foreach(var entry in result)
-                    {
-                        items.Add(entry.CalendarLocation, entry.Total);
-                    }
+                    items.Add(entry.CalendarLocation, entry.Total);
                 }
+                
 
-                ResetTotals();
+               // ResetTotals();
 
                 
                 if(items.ContainsKey("One"))
                 {
                     T_One = items["One"].ToString("C");
                 }
-                else if(items.ContainsKey("Two"))
+                if(items.ContainsKey("Two"))
                 {
                     T_Two = items["Two"].ToString("C");
                 }
-                else if (items.ContainsKey("Three"))
+                if (items.ContainsKey("Three"))
                 {
                     T_Three = items["Three"].ToString("C");
                 }
-                else if (items.ContainsKey("Four"))
+                if (items.ContainsKey("Four"))
                 {
                     T_Four = items["Four"].ToString("C");
                 }
-                else if (items.ContainsKey("Five"))
+                if (items.ContainsKey("Five"))
                 {
                     T_Five = items["Five"].ToString("C");
                 }
-                else if (items.ContainsKey("Six"))
+                if (items.ContainsKey("Six"))
                 {
                     T_Six = items["Six"].ToString("C");
                 }
-                else if (items.ContainsKey("Seven"))
+                if (items.ContainsKey("Seven"))
                 {
                     T_Seven = items["Seven"].ToString("C");
                 }
-                else if (items.ContainsKey("Eight"))
+                if (items.ContainsKey("Eight"))
                 {
                     T_Eight = items["Eight"].ToString("C");
                 }
-                else if (items.ContainsKey("Nine"))
+                if (items.ContainsKey("Nine"))
                 {
                     T_Nine = items["Nine"].ToString("C");
                 }
-                else if (items.ContainsKey("Ten"))
+                if (items.ContainsKey("Ten"))
                 {
                     T_Ten = items["Ten"].ToString("C");
                 }
-                else if (items.ContainsKey("Eleven"))
+                if (items.ContainsKey("Eleven"))
                 {
                     T_Eleven = items["Eleven"].ToString("C");
                 }
-                else if (items.ContainsKey("Twelve"))
+                if (items.ContainsKey("Twelve"))
                 {
                     T_Twelve = items["Twelve"].ToString("C");
                 }
-                else if (items.ContainsKey("Thirteen"))
+                if (items.ContainsKey("Thirteen"))
                 {
                     T_Thirteen = items["Thirteen"].ToString("C");
                 }
-                else if (items.ContainsKey("Fourteen"))
+                if (items.ContainsKey("Fourteen"))
                 {
                     T_Fourteen = items["Fourteen"].ToString("C");
                 }
-                else if (items.ContainsKey("Fifteen"))
+                if (items.ContainsKey("Fifteen"))
                 {
                     T_Fifteen = items["Fifteen"].ToString("C");
                 }
-                else if (items.ContainsKey("Sixteen"))
+                if (items.ContainsKey("Sixteen"))
                 {
                     T_Sixteen = items["Sixteen"].ToString("C");
                 }
-                else if (items.ContainsKey("Seventeen"))
+                if (items.ContainsKey("Seventeen"))
                 {
                     T_Seventeen = items["Seventeen"].ToString("C");
                 }
-                else if (items.ContainsKey("Eighteen"))
+                if (items.ContainsKey("Eighteen"))
                 {
                     T_Eighteen = items["Eighteen"].ToString("C");
                 }
-                else if (items.ContainsKey("Nineteen"))
+                if (items.ContainsKey("Nineteen"))
                 {
                     T_Nineteen = items["Nineteen"].ToString("C");
                 }
-                else if (items.ContainsKey("Twenty"))
+                if (items.ContainsKey("Twenty"))
                 {
                     T_Twenty = items["Twenty"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyOne"))
+                if (items.ContainsKey("TwentyOne"))
                 {
                     T_TwentyOne = items["TwentyOne"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyTwo"))
+                if (items.ContainsKey("TwentyTwo"))
                 {
                     T_TwentyTwo = items["TwentyTwo"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyThree"))
+                if (items.ContainsKey("TwentyThree"))
                 {
                     T_TwentyThree = items["TwentyThree"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyFour"))
+                if (items.ContainsKey("TwentyFour"))
                 {
                     T_TwentyFour = items["TwentyFour"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyFive"))
+                if (items.ContainsKey("TwentyFive"))
                 {
                     T_TwentyFive = items["TwentyFive"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentySix"))
+                if (items.ContainsKey("TwentySix"))
                 {
                     T_TwentySix = items["TwentySix"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentySeven"))
+                if (items.ContainsKey("TwentySeven"))
                 {
                     T_TwentySeven = items["TwentySeven"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyEight"))
+                if (items.ContainsKey("TwentyEight"))
                 {
                     T_TwentyEight = items["TwentyEight"].ToString("C");
                 }
-                else if (items.ContainsKey("TwentyNine"))
+                if (items.ContainsKey("TwentyNine"))
                 {
                     T_TwentyNine = items["TwentyNine"].ToString("C");
                 }
-                else if (items.ContainsKey("Thirty"))
+                if (items.ContainsKey("Thirty"))
                 {
                     T_Thirty = items["Thirty"].ToString("C");
                 }
-                else if (items.ContainsKey("ThirtyOne"))
+                if (items.ContainsKey("ThirtyOne"))
                 {
                     T_ThirtyOne = items["ThirtyOne"].ToString("C");
                 }
-                else if (items.ContainsKey("ThirtyTwo"))
+                if (items.ContainsKey("ThirtyTwo"))
                 {
                     T_ThirtyTwo = items["ThirtyTwo"].ToString("C");
                 }
-                else if (items.ContainsKey("ThirtyThree"))
+                if (items.ContainsKey("ThirtyThree"))
                 {
                     T_ThirtyThree = items["ThirtyThree"].ToString("C");
                 }
-                else if (items.ContainsKey("ThirtyFour"))
+                if (items.ContainsKey("ThirtyFour"))
                 {
                     T_ThirtyFour = items["ThirtyFour"].ToString("C");
                 }
-                else if (items.ContainsKey("ThirtyFive"))
+                if (items.ContainsKey("ThirtyFive"))
                 {
                     T_ThirtyFive = items["ThirtyFive"].ToString("C");
                 }
+            }
+            else
+            {
+                ResetTotals();
             }
 
             NotifyOfPropertyChange(() => W_OneTotals);
@@ -947,6 +950,8 @@ namespace DesktopUI.ViewModels
             DateTime selectedMonth;
             DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
 
+            int daysInMonth = DaysInMonth(-1);
+
             DayOfWeek FirstDay = new DateTime(Today.Year, selectedMonth.Month, 1).DayOfWeek;
                 
             if(FirstDay.ToString() == "Monday")
@@ -955,27 +960,93 @@ namespace DesktopUI.ViewModels
             }
             else if (FirstDay.ToString() == "Tuesday")
             {
-                One = "31";
+                if(daysInMonth == 28)
+                {
+                    One = "28";
+                }
+                else if (daysInMonth == 30)
+                {
+                    One = "30";
+                }
+                else if (daysInMonth == 31)
+                {
+                    One = "31";
+                }  
             }
             else if (FirstDay.ToString() == "Wednesday")
             {
-                One = "30";
+                if (daysInMonth == 28)
+                {
+                    One = "27";
+                }
+                else if (daysInMonth == 30)
+                {
+                    One = "29";
+                }
+                else if (daysInMonth == 31)
+                {
+                    One = "30";
+                }
             }
             else if (FirstDay.ToString() == "Thursday")
             {
-                One = "29";
+                if (daysInMonth == 28)
+                {
+                    One = "26";
+                }
+                else if (daysInMonth == 30)
+                {
+                    One = "28";
+                }
+                else if (daysInMonth == 31)
+                {
+                    One = "29";
+                }
             }
             else if(FirstDay.ToString() == "Friday")
             {
-                One = "28";
+                if (daysInMonth == 28)
+                {
+                    One = "25";
+                }
+                else if (daysInMonth == 30)
+                {
+                    One = "27";
+                }
+                else if (daysInMonth == 31)
+                {
+                    One = "28";
+                }
             }
             else if (FirstDay.ToString() == "Saturday")
             {
-                One = "27";
+                if (daysInMonth == 28)
+                {
+                    One = "24";
+                }
+                else if (daysInMonth == 30)
+                {
+                    One = "26";
+                }
+                else if (daysInMonth == 31)
+                {
+                    One = "27";
+                }
             }
             else if (FirstDay.ToString() == "Sunday")
             {
-                One = "26";
+                if (daysInMonth == 28)
+                {
+                    One = "23";
+                }
+                else if (daysInMonth == 30)
+                {
+                    One = "25";
+                }
+                else if (daysInMonth == 31)
+                {
+                    One = "26";
+                }
             }
         }
 
@@ -1135,11 +1206,11 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        public string GetDayOfMonth(string prevDay)
+        public string GetDayOfMonth(string prevDay, int index = 0)
         {
             int value;
             int.TryParse(prevDay, out value);
-            int numDays = DaysInMonth();
+            int numDays = DaysInMonth(index);
             if (value != numDays)
             {
                 return (value + 1).ToString();
@@ -1155,8 +1226,14 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfMonth(One);
-
+                int index = 0;
+                int one;
+                int.TryParse(One, out one);
+                if(one >= 23 )
+                {
+                    index = -1;
+                }
+                return GetDayOfMonth(One, index);
             }
         }
 
@@ -1164,7 +1241,14 @@ namespace DesktopUI.ViewModels
         {
             get 
             {
-                return GetDayOfMonth(Two);
+                int index = 0;
+                int two;
+                int.TryParse(Two, out two);
+                if(two >= 23)
+                {
+                    index = -1;
+                }
+                return GetDayOfMonth(Two, index);
             }
 
         }
@@ -1173,7 +1257,14 @@ namespace DesktopUI.ViewModels
         {
             get 
             {
-                return GetDayOfMonth(Three);
+                int index = 0;
+                int three;
+                int.TryParse(Three, out three);
+                if (three >= 23)
+                {
+                    index = -1;
+                }
+                return GetDayOfMonth(Three, index);
             }
 
         }
@@ -1182,7 +1273,14 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return GetDayOfMonth(Four);
+                int index = 0;
+                int four;
+                int.TryParse(Four, out four);
+                if(four >= 23)
+                {
+                    index = -1;
+                }
+                return GetDayOfMonth(Four, index);
             }
         }
 
@@ -1190,7 +1288,14 @@ namespace DesktopUI.ViewModels
         {
            get
             {
-                return GetDayOfMonth(Five);
+                int index = 0;
+                int five;
+                int.TryParse(Five, out five);
+                if(five >= 23)
+                {
+                    index = -1;
+                }
+                return GetDayOfMonth(Five, index);
             }
         }
 
