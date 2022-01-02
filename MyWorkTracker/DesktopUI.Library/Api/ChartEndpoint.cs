@@ -67,5 +67,53 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
+
+        public async Task<List<JobChartDataModel>> LoadJobTotalsChartData()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("api/chart/jobs"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<JobChartDataModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<List<DailyChartDataModel>> LoadDailyChartData()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("api/chart/daily"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<DailyChartDataModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<List<LocationChartDataModel>> LoadLocationChartData()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("api/chart/location"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<LocationChartDataModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

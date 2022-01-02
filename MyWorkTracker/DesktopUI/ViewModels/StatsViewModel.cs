@@ -18,11 +18,6 @@ namespace DesktopUI.ViewModels
     {
         private readonly IChartEndpoint _chartEndpoint;
         private readonly IEventAggregator _events;
-        public bool IsMonthlyTotals { get; set; } = true;
-        public bool IsWeeklyTotals { get; set; } = false;
-        public bool IsHours { get; set; } = false;
-        public bool IsJobTotals { get; set; } = false;
-
 
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
@@ -48,7 +43,8 @@ namespace DesktopUI.ViewModels
                 new ColumnSeries
                 {
                     Title="Month",
-                    Values =  new ChartValues<decimal>(data.Select(entry => entry.Total))
+                    Values =  new ChartValues<decimal>(data.Select(entry => entry.Total)),
+                    Fill = System.Windows.Media.Brushes.CadetBlue
                 }
             };
 
@@ -85,6 +81,33 @@ namespace DesktopUI.ViewModels
             foreach (string week in data.Select(entry => entry.Week))
             {
                 Labels[index] = week;
+                index += 1;
+            }
+
+            Formatter = value => value.ToString("N");
+            NotifyOfPropertyChange(() => SeriesCollection);
+            NotifyOfPropertyChange(() => Labels);
+            NotifyOfPropertyChange(() => Formatter);
+        }
+
+        public async Task LoadJobTotals()
+        {
+            var data = await _chartEndpoint.LoadJobTotalsChartData();
+
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title="Job",
+                    Values =  new ChartValues<decimal>(data.Select(entry => entry.Total))
+                }
+            };
+
+            Labels = new string[data.Count];
+            int index = 0;
+            foreach (string job in data.Select(entry => entry.Job))
+            {
+                Labels[index] = job;
                 index += 1;
             }
 
@@ -138,13 +161,37 @@ namespace DesktopUI.ViewModels
             NotifyOfPropertyChange(() => Formatter);
         }
 
+        public async Task LoadDailyTotals()
+        {
+            var data = await _chartEndpoint.LoadDailyChartData();
+
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title="Day",
+                    Values =  new ChartValues<decimal>(data.Select(entry => entry.Total))
+                }
+            };
+
+            Labels = new string[data.Count];
+            int index = 0;
+            foreach (DateTime day in data.Select(entry => entry.Date))
+            {
+
+                Labels[index] = day.ToString("dd, MMM, yy");
+                index += 1;
+            }
+
+            Formatter = value => value.ToString("N");
+            NotifyOfPropertyChange(() => SeriesCollection);
+            NotifyOfPropertyChange(() => Labels);
+            NotifyOfPropertyChange(() => Formatter);
+        }
+
         public async Task MonthlyTotals ()
         {
-            IsMonthlyTotals = true;
-            IsWeeklyTotals = false;
-            IsJobTotals = false;
-            IsHours = false;
-
+           
             Y_Title = "Totals";
             X_Title = "Month";
             CurrentItem = "Montly Totals";
@@ -152,12 +199,7 @@ namespace DesktopUI.ViewModels
         }
 
         public async Task WeeklyTotals()
-        {
-            IsMonthlyTotals = false;
-            IsWeeklyTotals = true;
-            IsJobTotals = false;
-            IsHours = false;
-
+        { 
             X_Title = "Week";
             Y_Title = "Totals";
             CurrentItem = "Weekly Totals";
@@ -166,19 +208,57 @@ namespace DesktopUI.ViewModels
 
         public async Task JobTotals()
         {
-            IsMonthlyTotals = false;
-            IsWeeklyTotals = false;
-            IsJobTotals = true;
-            IsHours = false;
+            X_Title = "Jobs";
+            Y_Title = "Totals";
+            CurrentItem = "Job Totals";
+            await LoadJobTotals();
+        }
+
+        public async Task DailyTotals()
+        {
+            X_Title = "Date";
+            Y_Title = "Totals";
+            CurrentItem = "Daily Totals";
+            await LoadDailyTotals();
+        }
+
+        public async Task LocationTotals()
+        {
+            X_Title = "Location";
+            Y_Title = "Totals";
+            CurrentItem = "Location Totals";
+            await LoadLocationTotals();
+        }
+
+        public async Task LoadLocationTotals()
+        {
+            var data = await _chartEndpoint.LoadLocationChartData();
+
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title="Job",
+                    Values =  new ChartValues<decimal>(data.Select(entry => entry.Total))
+                }
+            };
+
+            Labels = new string[data.Count];
+            int index = 0;
+            foreach (string location in data.Select(entry => entry.Location))
+            {
+                Labels[index] = location;
+                index += 1;
+            }
+
+            Formatter = value => value.ToString("N");
+            NotifyOfPropertyChange(() => SeriesCollection);
+            NotifyOfPropertyChange(() => Labels);
+            NotifyOfPropertyChange(() => Formatter);
         }
 
         public async Task Hours ()
         {
-            IsMonthlyTotals = false;
-            IsWeeklyTotals = false;
-            IsJobTotals = false;
-            IsHours = true;
-
             X_Title = "Date";
             Y_Title = "Hours";
             CurrentItem = "Hours";
@@ -220,6 +300,7 @@ namespace DesktopUI.ViewModels
                 NotifyOfPropertyChange(() => CurrentItem);
             }
         }
+
 
         public void Exit ()
         {

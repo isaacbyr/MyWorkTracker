@@ -42,5 +42,33 @@ namespace DataManager.Controllers
 
             return chartData.LoadHours(UserId);
         }
+
+        [Route("jobs")]
+        public List<JobChartDataModel> GetJobsData()
+        {
+            var chartData = new ChartData();
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            return chartData.LoadJobTotals(UserId);
+
+        }
+
+        [Route("daily")]
+        public List<DailyChartDataModel> GetDailyData()
+        {
+            var chartData = new ChartData();
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            return chartData.LoadDailyTotals(UserId);
+        }
+
+        [Route("location")]
+        public List<LocationChartDataModel> GetLocationData()
+        {
+            var chartData = new ChartData();
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            return chartData.LoadLocationTotals(UserId);
+        }
     }
 }

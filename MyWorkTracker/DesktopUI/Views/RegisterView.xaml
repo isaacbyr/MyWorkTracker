@@ -22,7 +22,6 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
-
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
 
@@ -32,7 +31,7 @@
         <TextBlock FontSize="36"  Text="Register" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         
         <!--UserName-->
-        <TextBlock Text="UserName" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Username" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBox x:Name="UserName" Grid.Row="2" Grid.Column="2" ></TextBox>
         
         <!--Password-->

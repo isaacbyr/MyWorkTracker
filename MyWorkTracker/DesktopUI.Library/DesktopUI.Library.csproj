@@ -55,7 +55,10 @@
     <Compile Include="Api\IEntryEndpoint.cs" />
     <Compile Include="Api\EntryEndpoint.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\DailyChartDataModel.cs" />
     <Compile Include="Models\HoursChartDataModel.cs" />
+    <Compile Include="Models\JobChartDataModel.cs" />
+    <Compile Include="Models\LocationChartDataModel.cs" />
     <Compile Include="Models\MonthlyChartDataModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />

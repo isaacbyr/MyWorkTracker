@@ -15,49 +15,46 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="15"></RowDefinition>
         </Grid.RowDefinitions>
         
         <!--Menu-->
-        <Button Content="Monthly Totals" x:Name="MonthTotals" Grid.Column="0"></Button>
-        <Button Content="Weekly Totals" x:Name="WeeklyTotals" Grid.Column="1"></Button>
-        <Button Content="Hours" x:Name="Hours" Grid.Column="2"></Button>
-        <Button Content="Job Totals" x:Name="JobTotals" Grid.Column="3"></Button>
-        <Button Content="Exit" x:Name="Exit" Grid.Column="4"></Button>
+        <Button Content="Monthly Totals" x:Name="MonthlyTotals" Grid.Column="0" Style="{StaticResource StatsMenuButtonTheme}"></Button>
+        <Button Content="Weekly Totals" x:Name="WeeklyTotals" Grid.Column="1" Style="{StaticResource StatsMenuButtonTheme}"></Button>
+        <Button Content="Daily Totals" x:Name="DailyTotals" Grid.Column="2" Style="{StaticResource StatsMenuButtonTheme}"></Button>
+        <Button Content="Hours" x:Name="Hours" Grid.Column="3" Style="{StaticResource StatsMenuButtonTheme}"></Button>
+        <Button Content="Job Totals" x:Name="JobTotals" Grid.Column="4" Style="{StaticResource StatsMenuButtonTheme}"></Button>
+        <Button Content="Location Totals" x:Name="LocationTotals" Grid.Column="5" Style="{StaticResource StatsMenuButtonTheme}"></Button>
+        <Button Content="Exit" x:Name="Exit" Grid.Column="6" Style="{StaticResource StatsMenuButtonTheme}"></Button>
 
         <!--Header-->
-        <TextBlock Text="{Binding CurrentItem}" FontSize="36" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        
-        <!--Chart-->
-        <!--<lvc:CartesianChart Margin="50 30 50 20" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" LegendLocation="Left">
-            <lvc:CartesianChart.Series>
-                <lvc:ColumnSeries Title="{Binding Y_Title}" Values="{Binding Y_Values}"/>
-            </lvc:CartesianChart.Series>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="{Binding X_Title}" Labels="{Binding X_Values}">
-                    <lvc:Axis.Separator>
-                        <lvc:Separator Step="1"/>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Totals"/>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>-->
+        <!--<TextBlock Text="{Binding CurrentItem}" FontSize="36" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>-->
 
-        <lvc:CartesianChart Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" Series="{Binding SeriesCollection}" LegendLocation="Left">
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="{Binding X_Title}" Labels="{Binding Labels}"></lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="{Binding Y_Title}" LabelFormatter="{Binding Formatter}"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>
+        <Border Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="2" Grid.RowSpan="2"  CornerRadius="18" Background="#4BA3C3">
+
+            <StackPanel>
+                <TextBlock Text="{Binding CurrentItem}" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="10"></TextBlock>
+
+
+                <lvc:CartesianChart Background="White" Margin="50 10 50 0" Series="{Binding SeriesCollection}" LegendLocation="Left" Height="450">
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Foreground="Black" Title="{Binding X_Title}" Labels="{Binding Labels}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Foreground="Black"  Title="{Binding Y_Title}" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </StackPanel>
+            
+        </Border>
+        
+        
     </Grid>
 </UserControl>

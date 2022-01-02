@@ -49,7 +49,10 @@
     <Compile Include="DataAccess\EntryData.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
     <Compile Include="DataAccess\UserData.cs" />
+    <Compile Include="Models\DailyChartDataModel.cs" />
     <Compile Include="Models\HoursChartDataModel.cs" />
+    <Compile Include="Models\JobChartDataModel.cs" />
+    <Compile Include="Models\LocationChartDataModel.cs" />
     <Compile Include="Models\MonthlyChartDataModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\UserModel.cs" />

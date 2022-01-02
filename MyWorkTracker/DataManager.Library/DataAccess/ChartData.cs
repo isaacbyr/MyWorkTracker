@@ -57,5 +57,53 @@ namespace DataManager.Library.DataAccess
                 return null;
             }
         }
+
+        public List<JobChartDataModel> LoadJobTotals(string UserId)
+        {
+            var sql = new SqlDataAccess();
+            var p = new { UserId = UserId };
+
+            try
+            {
+                var output = sql.LoadData<JobChartDataModel, dynamic>("dbo.spGetJobTotals", p, "WTData");
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<DailyChartDataModel> LoadDailyTotals(string UserId)
+        {
+            var sql = new SqlDataAccess();
+            var p = new { UserId = UserId };
+
+            try
+            {
+                var output = sql.LoadData<DailyChartDataModel, dynamic>("dbo.spGroupEntriesByDay", p, "WTData");
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public List<LocationChartDataModel> LoadLocationTotals(string UserId)
+        {
+            var sql = new SqlDataAccess();
+            var p = new { UserId = UserId };
+
+            try
+            {
+                var output = sql.LoadData<LocationChartDataModel, dynamic>("dbo.spGetLocationTotals", p, "WTData");
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
+
 }

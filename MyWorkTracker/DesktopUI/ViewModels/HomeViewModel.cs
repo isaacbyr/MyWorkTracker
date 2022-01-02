@@ -34,18 +34,29 @@ namespace DesktopUI.ViewModels
             base.OnViewLoaded(view);
             GetCurrentSelectedDate(false, true);
             firstDayOfMonth();
-           await LoadTotals();
+            await LoadTotals();
             NotifyOfPropertyChange(() => IsToday);
         }
 
         public int MonthIndex { get; set; } = DateTime.Now.Month;
         public int YearIndex { get; set; } = DateTime.Now.Year;
 
-        public int DaysInMonth(int value = 0)
+        public int DaysInMonth(int value = 0, bool prevYear = false, bool defaultLoad = false)
         {
             DateTime selectedMonth;
-            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
-            return DateTime.DaysInMonth(DateTime.Now.Year, selectedMonth.Month + value);
+            
+            if(prevYear == true)
+            {
+                DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
+                return DateTime.DaysInMonth(DateTime.Now.Year - 1, 12);
+            }
+            else
+            {
+                DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
+                int days =  DateTime.DaysInMonth(selectedMonth.Year, selectedMonth.Month + value);
+                return days;
+            }
+            
         }
 
         public async Task CurrentDateHeader()
@@ -74,8 +85,8 @@ namespace DesktopUI.ViewModels
             {
                 MonthIndex -= 1;
             }
-      
-            GetCurrentSelectedDate(true);
+                     
+            GetCurrentSelectedDate(true, false);
             firstDayOfMonth();
             await LoadTotals();
 
@@ -260,8 +271,46 @@ namespace DesktopUI.ViewModels
             return (firstDate, lastDate) ;
         }
 
+        public string convertDates (string calendarLoc, int counter)
+        {
+            DateTime selectedDate;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate);
+
+            int convDate;
+            int.TryParse(calendarLoc, out convDate);
+
+            if (counter < 7 && convDate >= 23 && selectedDate.Month != 1)
+            {
+                // last month, current year
+                return new DateTime(selectedDate.Year, selectedDate.Month - 1, convDate).ToString("dd-MM-yyyy");
+            }
+            else if (counter < 7 && convDate >= 23 && selectedDate.Month == 1 )
+            {
+                // last month, last year
+                return new DateTime(selectedDate.Year - 1, 12,convDate).ToString("dd-MM-yyyy");
+            }
+            else if (counter >= 23 && convDate <= 7 && selectedDate.Month != 12)
+            {
+                // next month, current year
+                return new DateTime(selectedDate.Year, selectedDate.Month + 1, convDate).ToString("dd-MM-yyyy");
+            }
+            else if (counter >= 23 && convDate <= 7 && selectedDate.Month == 12)
+            {
+                // next month, next year
+                return new DateTime(selectedDate.Year + 1, 1, convDate).ToString("dd-MM-yyyy");
+            }
+            else 
+            {
+                // this month
+                return new DateTime(selectedDate.Year, selectedDate.Month, convDate).ToString("dd-MM-yyyy");
+            }
+
+        }
+
         public async Task LoadTotals()
         {
+
+            int counter = 1;
 
             Dictionary<string, decimal> items = new Dictionary<string, decimal>();
 
@@ -277,152 +326,254 @@ namespace DesktopUI.ViewModels
                 
                 foreach(var entry in result)
                 {
-                    items.Add(entry.CalendarLocation, entry.Total);
+                    items.Add(entry.JobDate.ToString("dd-MM-yyyy"), entry.Total);
                 }
-                
 
-               // ResetTotals();
+                string date;
 
-                
-                if(items.ContainsKey("One"))
+                date = convertDates(One, counter);
+                counter += 1;
+                if(items.ContainsKey(date))
                 {
-                    T_One = items["One"].ToString("C");
+                    T_One = items[date].ToString("C");
                 }
-                if(items.ContainsKey("Two"))
+
+                date = convertDates(Two, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Two = items["Two"].ToString("C");
+                    T_Two = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Three"))
+
+                date = convertDates(Three, counter);
+                counter += 1; 
+                if (items.ContainsKey(date))
                 {
-                    T_Three = items["Three"].ToString("C");
+                    T_Three = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Four"))
+
+                date = convertDates(Four, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Four = items["Four"].ToString("C");
+                    T_Four = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Five"))
+
+                date = convertDates(Five, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Five = items["Five"].ToString("C");
+                    T_Five = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Six"))
+
+                date = convertDates(Six, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Six = items["Six"].ToString("C");
+                    T_Six = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Seven"))
+
+                date = convertDates(Seven, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Seven = items["Seven"].ToString("C");
+                    T_Seven = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Eight"))
+
+                date = convertDates(Eight, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Eight = items["Eight"].ToString("C");
+                    T_Eight = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Nine"))
+
+                date = convertDates(Nine, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Nine = items["Nine"].ToString("C");
+                    T_Nine = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Ten"))
+
+                date = convertDates(Ten, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Ten = items["Ten"].ToString("C");
+                    T_Ten = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Eleven"))
+
+                date = convertDates(Eleven, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Eleven = items["Eleven"].ToString("C");
+                    T_Eleven = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Twelve"))
+
+                date = convertDates(Twelve, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Twelve = items["Twelve"].ToString("C");
+                    T_Twelve = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Thirteen"))
+
+                date = convertDates(Thirteen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Thirteen = items["Thirteen"].ToString("C");
+                    T_Thirteen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Fourteen"))
+
+                date = convertDates(Fourteen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Fourteen = items["Fourteen"].ToString("C");
+                    T_Fourteen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Fifteen"))
+
+                date = convertDates(Fifteen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Fifteen = items["Fifteen"].ToString("C");
+                    T_Fifteen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Sixteen"))
+
+                date = convertDates(Sixteen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Sixteen = items["Sixteen"].ToString("C");
+                    T_Sixteen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Seventeen"))
+
+                date = convertDates(Seventeen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Seventeen = items["Seventeen"].ToString("C");
+                    T_Seventeen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Eighteen"))
+
+                date = convertDates(Eighteen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Eighteen = items["Eighteen"].ToString("C");
+                    T_Eighteen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Nineteen"))
+
+                date = convertDates(Nineteen, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Nineteen = items["Nineteen"].ToString("C");
+                    T_Nineteen = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Twenty"))
+
+                date = convertDates(Twenty, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Twenty = items["Twenty"].ToString("C");
+                    T_Twenty = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentyOne"))
+
+                date = convertDates(TwentyOne, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyOne = items["TwentyOne"].ToString("C");
+                    T_TwentyOne = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentyTwo"))
+
+                date = convertDates(TwentyTwo, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyTwo = items["TwentyTwo"].ToString("C");
+                    T_TwentyTwo = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentyThree"))
+
+                date = convertDates(TwentyThree, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyThree = items["TwentyThree"].ToString("C");
+                    T_TwentyThree = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentyFour"))
+
+                date = convertDates(TwentyFour, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyFour = items["TwentyFour"].ToString("C");
+                    T_TwentyFour = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentyFive"))
+
+                date = convertDates(TwentyFive, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyFive = items["TwentyFive"].ToString("C");
+                    T_TwentyFive = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentySix"))
+
+                date = convertDates(TwentySix, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentySix = items["TwentySix"].ToString("C");
+                    T_TwentySix = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentySeven"))
+
+                date = convertDates(TwentySeven, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
                     T_TwentySeven = items["TwentySeven"].ToString("C");
                 }
-                if (items.ContainsKey("TwentyEight"))
+
+                date = convertDates(TwentyEight, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyEight = items["TwentyEight"].ToString("C");
+                    T_TwentyEight = items[date].ToString("C");
                 }
-                if (items.ContainsKey("TwentyNine"))
+
+                date = convertDates(TwentyNine, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_TwentyNine = items["TwentyNine"].ToString("C");
+                    T_TwentyNine = items[date].ToString("C");
                 }
-                if (items.ContainsKey("Thirty"))
+
+                date = convertDates(Thirty, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_Thirty = items["Thirty"].ToString("C");
+                    T_Thirty = items[date].ToString("C");
                 }
-                if (items.ContainsKey("ThirtyOne"))
+
+                date = convertDates(ThirtyOne, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_ThirtyOne = items["ThirtyOne"].ToString("C");
+                    T_ThirtyOne = items[date].ToString("C");
                 }
-                if (items.ContainsKey("ThirtyTwo"))
+
+                date = convertDates(ThirtyTwo, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_ThirtyTwo = items["ThirtyTwo"].ToString("C");
+                    T_ThirtyTwo = items[date].ToString("C");
                 }
-                if (items.ContainsKey("ThirtyThree"))
+
+                date = convertDates(ThirtyThree, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_ThirtyThree = items["ThirtyThree"].ToString("C");
+                    T_ThirtyThree = items[date].ToString("C");
                 }
-                if (items.ContainsKey("ThirtyFour"))
+
+                date = convertDates(ThirtyFour, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_ThirtyFour = items["ThirtyFour"].ToString("C");
+                    T_ThirtyFour = items[date].ToString("C");
                 }
-                if (items.ContainsKey("ThirtyFive"))
+
+                date = convertDates(ThirtyFive, counter);
+                counter += 1;
+                if (items.ContainsKey(date))
                 {
-                    T_ThirtyFive = items["ThirtyFive"].ToString("C");
+                    T_ThirtyFive = items[date].ToString("C");
                 }
             }
             else
@@ -448,6 +599,8 @@ namespace DesktopUI.ViewModels
             T_Five = "";
             T_Six = "";
             T_Seven = "";
+            T_Eight = "";
+            T_Nine = "";
             T_Ten = "";
             T_Eleven = "";
             T_Twelve = "";
@@ -947,12 +1100,20 @@ namespace DesktopUI.ViewModels
 
         public void firstDayOfMonth ()
         {
-            DateTime selectedMonth;
-            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
+            DateTime selectedDate;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate);
 
-            int daysInMonth = DaysInMonth(-1);
+            int daysInMonth;
 
-            DayOfWeek FirstDay = new DateTime(Today.Year, selectedMonth.Month, 1).DayOfWeek;
+            if (selectedDate.Month == 1)
+            {
+                daysInMonth = DaysInMonth(0, true);
+            }
+            else
+            {
+                daysInMonth = DaysInMonth(-1, false);
+            }
+            DayOfWeek FirstDay = new DateTime(selectedDate.Year, selectedDate.Month, 1).DayOfWeek;
                 
             if(FirstDay.ToString() == "Monday")
             {
@@ -1066,19 +1227,21 @@ namespace DesktopUI.ViewModels
         public void GetCurrentSelectedDate(bool prev, bool defaultLoad = false)
         {
             int numDays = DaysInMonth();
-            
+
             if (defaultLoad == true)
             {
-                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
+                int daysInMonth = DaysInMonth(0, false, true);
+                CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < daysInMonth ? DateTime.Now.Day : daysInMonth).ToString("MMMM, yy");
+                //CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day).ToString("MMMM, yy");
+            } 
 
-            }
             //else if (MonthIndex == 12 && prev == false)
             //{
             //    MonthIndex = 1;
             //    YearIndex += 1;
             //    CurrentSelectedDate = new DateTime(YearIndex, MonthIndex, DateTime.Now.Day < numDays ? DateTime.Now.Day : numDays).ToString("MMMM, yy");
 
-            //}
+                //}
             else if (MonthIndex == 1 && prev == true)
             {
                MonthIndex = 12;
@@ -1106,7 +1269,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _currentSelectedDate;
+        private string _currentSelectedDate = DateTime.Now.ToString("MMMM, yy");
 
         public string CurrentSelectedDate
         {
@@ -1210,7 +1373,16 @@ namespace DesktopUI.ViewModels
         {
             int value;
             int.TryParse(prevDay, out value);
-            int numDays = DaysInMonth(index);
+            int numDays;
+
+            if (MonthIndex == 1)
+            {
+                numDays = DaysInMonth(index, true);
+            }
+            else
+            {
+                numDays = DaysInMonth(index);
+            }
             if (value != numDays)
             {
                 return (value + 1).ToString();
