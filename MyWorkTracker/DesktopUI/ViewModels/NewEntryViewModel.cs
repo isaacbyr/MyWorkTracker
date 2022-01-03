@@ -244,6 +244,8 @@ namespace DesktopUI.ViewModels
             entry.Taxes = Taxes;
             entry.Total = Total;
             entry.Description = Description;
+
+            // TODO: Remove Calendar Location from entry model and db model
             entry.CalendarLocation = ItemLocation;
             entry.StartTime = StartTime;
             entry.EndTime = EndTime;

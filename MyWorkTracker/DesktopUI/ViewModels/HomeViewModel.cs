@@ -1699,7 +1699,6 @@ namespace DesktopUI.ViewModels
             get
             {
                 return GetDayOfMonth(ThirtyThree);
-
             }
         }
 
@@ -1711,6 +1710,11 @@ namespace DesktopUI.ViewModels
             }
         }
 
+
+        public void Account()
+        {
+            _events.PublishOnUIThread(new OpenAccountEvent());
+        }
         
         public void Logout()
         {

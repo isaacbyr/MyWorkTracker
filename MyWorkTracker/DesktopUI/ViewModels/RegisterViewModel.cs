@@ -24,6 +24,55 @@ namespace DesktopUI.ViewModels
             _events = events;
         }
 
+        private string _firstName;
+
+        public string FirstName
+        {
+            get { return _firstName; }
+            set 
+            { 
+                _firstName = value;
+                NotifyOfPropertyChange(() => FirstName);
+            }
+        }
+
+        private string _lastName;
+
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            { 
+                _lastName = value;
+                NotifyOfPropertyChange(() => LastName);
+            }
+        }
+
+        private string _company;
+
+        public string Company
+        {
+            get { return _company; }
+            set 
+            { 
+                _company = value;
+                NotifyOfPropertyChange(() => Company);
+            }
+        }
+
+        private bool _isAdmin;
+
+        public bool IsAdmin
+        {
+            get { return _isAdmin; }
+            set 
+            { 
+                _isAdmin = value;
+                NotifyOfPropertyChange(() => IsAdmin);
+            }
+        }
+
+
         private string _userName;
 
         public string UserName
@@ -72,7 +121,10 @@ namespace DesktopUI.ViewModels
 
         public async Task Register ()
         {
-            var result = await _apiHelper.RegisterUser(UserName, Password, ConfirmPassword);
+
+            string isAdmin = IsAdmin.ToString();
+
+            var result = await _apiHelper.RegisterUser(UserName, Password, ConfirmPassword, FirstName, LastName, Company, isAdmin);
 
             await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
             _events.PublishOnUIThread(new LogOnEvent());

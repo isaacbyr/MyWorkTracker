@@ -48,6 +48,22 @@ namespace DataManager.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Company Name")]
+        public string Company { get; set; }
+
+        [Required]
+        [Display(Name = "IsAdmin")]
+        public string IsAdmin { get; set; }
     }
 
     public class RegisterExternalBindingModel

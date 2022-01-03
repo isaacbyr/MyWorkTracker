@@ -10,5 +10,10 @@ namespace DesktopUI.Library.Models
     {
         public string Access_Token { get; set; }
         public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Company { get; set; }
+        public string IsAdmin { get; set; }
+
     }
 }

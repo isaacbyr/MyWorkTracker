@@ -97,14 +97,18 @@ namespace DesktopUI.Library.Api
         }
        
 
-        public async Task<AuthenticatedUser> RegisterUser(string UserName, string Password, string ConfirmPassword)
+        public async Task<AuthenticatedUser> RegisterUser(string UserName, string Password, string ConfirmPassword, string FirstName, string LastName, string Company, string IsAdmin)
         {
 
             var data = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("E", UserName),
+                new KeyValuePair<string, string>("Email", UserName),
                 new KeyValuePair<string, string>("Password", Password),
-                new KeyValuePair<string, string>("ConfirmPassword", ConfirmPassword)
+                new KeyValuePair<string, string>("ConfirmPassword", ConfirmPassword),
+                new KeyValuePair<string, string>("First Name", FirstName),
+                new KeyValuePair<string, string>("Last Name", LastName),
+                new KeyValuePair<string, string>("Company", Company),
+                new KeyValuePair<string, string>("IsAdmin", IsAdmin),
             });
 
             apiClient.DefaultRequestHeaders.Clear();

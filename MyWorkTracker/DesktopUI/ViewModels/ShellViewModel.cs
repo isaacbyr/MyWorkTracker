@@ -11,7 +11,7 @@ using DesktopUI.Library.Models;
 namespace DesktopUI.ViewModels
 {
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
-        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>, IHandle<ReturnHomeEvent>
+        IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>, IHandle<ReturnHomeEvent>, IHandle<OpenAccountEvent>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -107,6 +107,12 @@ namespace DesktopUI.ViewModels
         public void Handle(ReturnHomeEvent message)
         {
             ActivateItem(_homeVM);
+        }
+
+        public void Handle(OpenAccountEvent message)
+        {
+            // TODO: Set up Account Event
+            throw new NotImplementedException();
         }
     }
 }
