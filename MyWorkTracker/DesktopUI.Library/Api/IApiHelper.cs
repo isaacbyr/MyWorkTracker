@@ -10,6 +10,6 @@ namespace DesktopUI.Library.Api
         Task<AuthenticatedUser> Authenticate(string username, string password);
         Task GetLoggedInUserInfo(string token);
         void Logout();
-        Task<AuthenticatedUser> RegisterUser(string UserName, string Password, string ConfirmPassword, string FirstName, string LastName, string Company, string IsAdmin);
+        Task RegisterUser(RegisterUserModel user);
     }
 }

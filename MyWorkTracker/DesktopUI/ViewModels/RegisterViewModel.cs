@@ -24,7 +24,7 @@ namespace DesktopUI.ViewModels
             _events = events;
         }
 
-        private string _firstName;
+        private string _firstName = "Sue";
 
         public string FirstName
         {
@@ -36,7 +36,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _lastName;
+        private string _lastName = "Beckley";
 
         public string LastName
         {
@@ -48,7 +48,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _company;
+        private string _company = "Seaside Gardens";
 
         public string Company
         {
@@ -73,7 +73,7 @@ namespace DesktopUI.ViewModels
         }
 
 
-        private string _userName;
+        private string _userName = "sbeckley@shaw.ca";
 
         public string UserName
         {
@@ -85,7 +85,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _password;
+        private string _password = "Lucy#12";
 
         public string Password
         {
@@ -97,7 +97,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private string _confirmPassword;
+        private string _confirmPassword = "Lucy#12";
 
         public string ConfirmPassword
         {
@@ -122,12 +122,33 @@ namespace DesktopUI.ViewModels
         public async Task Register ()
         {
 
+            var user = new RegisterUserModel();
+
             string isAdmin = IsAdmin.ToString();
 
-            var result = await _apiHelper.RegisterUser(UserName, Password, ConfirmPassword, FirstName, LastName, Company, isAdmin);
+            user.FirstName = FirstName;
+            user.LastName = LastName;
+            user.Email = UserName;
+            user.Company = Company;
+            user.Password = Password;
+            user.ConfirmPassword = ConfirmPassword;
+            user.IsAdmin = isAdmin;
 
-            await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
-            _events.PublishOnUIThread(new LogOnEvent());
+            try
+            {
+                await _apiHelper.RegisterUser(user);
+
+                var result = await _apiHelper.Authenticate(user.Email, user.Password);
+
+                await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+
+                //await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+                _events.PublishOnUIThread(new LogOnEvent());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
