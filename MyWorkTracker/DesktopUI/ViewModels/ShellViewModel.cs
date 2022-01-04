@@ -21,10 +21,12 @@ namespace DesktopUI.ViewModels
         private NewEntryViewModel _newVM;
         private readonly RegisterViewModel _registerVM;
         private readonly StatsViewModel _statsVM;
+        private readonly AccountViewModel _accountVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
             WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, 
-            NewEntryViewModel newVM, RegisterViewModel registerVM, StatsViewModel statsVM)
+            NewEntryViewModel newVM, RegisterViewModel registerVM, StatsViewModel statsVM,
+            AccountViewModel accountVM)
         {
             _loginView = loginView;
             _events = events;
@@ -34,7 +36,7 @@ namespace DesktopUI.ViewModels
             _newVM = newVM;
             _registerVM = registerVM;
             _statsVM = statsVM;
-
+            _accountVM = accountVM;
 
             // have to subscribe to events in general
             _events.Subscribe(this);
@@ -111,8 +113,7 @@ namespace DesktopUI.ViewModels
 
         public void Handle(OpenAccountEvent message)
         {
-            // TODO: Set up Account Event
-            throw new NotImplementedException();
+            ActivateItem(_accountVM);
         }
     }
 }

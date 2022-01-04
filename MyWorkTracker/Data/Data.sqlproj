@@ -77,6 +77,8 @@
     <Build Include="dbo\Stored Procedures\spGetJobTotals.sql" />
     <Build Include="dbo\Stored Procedures\spGroupEntriesByDay.sql" />
     <Build Include="dbo\Stored Procedures\spGetLocationTotals.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertNewUser.sql" />
+    <Build Include="dbo\Stored Procedures\spIsUserAdmin.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

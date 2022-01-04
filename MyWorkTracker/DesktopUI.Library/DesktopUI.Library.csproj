@@ -54,6 +54,9 @@
     <Compile Include="Api\IChartEndpoint.cs" />
     <Compile Include="Api\IEntryEndpoint.cs" />
     <Compile Include="Api\EntryEndpoint.cs" />
+    <Compile Include="Api\IUserEndpoint.cs" />
+    <Compile Include="Api\UserEndpoint.cs" />
+    <Compile Include="Models\IsAdminUserModel.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\DailyChartDataModel.cs" />
     <Compile Include="Models\HoursChartDataModel.cs" />

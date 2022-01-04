@@ -24,10 +24,11 @@ namespace DesktopUI
         {
             container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
+                //.Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IApiHelper, ApiHelper>()
                 .Singleton<IChartEndpoint, ChartEndpoint>()
                 .Singleton<IEntryEndpoint, EntryEndpoint>()
+                .Singleton<IUserEndpoint, UserEndpoint>()
                 .Singleton<IEventAggregator, EventAggregator>();
 
             container.Instance(container);

@@ -20,13 +20,16 @@ namespace DesktopUI.ViewModels
         private readonly IApiHelper _apiHelper;
         private readonly ILoggedInUserModel _loggedInUser;
         private readonly IEntryEndpoint _entryEndpoint;
+        private readonly IUserEndpoint _userEndpoint;
 
-        public HomeViewModel(IEventAggregator events, IApiHelper apiHelper, ILoggedInUserModel loggedInUser, IEntryEndpoint entryEndpoint)
+        public HomeViewModel(IEventAggregator events, IApiHelper apiHelper, ILoggedInUserModel loggedInUser, 
+            IEntryEndpoint entryEndpoint, IUserEndpoint userEndpoint)
         {
             _events = events;
             _apiHelper = apiHelper;
             _loggedInUser = loggedInUser;
             _entryEndpoint = entryEndpoint;
+            _userEndpoint = userEndpoint;
         }
 
         protected override async void OnViewLoaded(object view)
@@ -35,11 +38,21 @@ namespace DesktopUI.ViewModels
             GetCurrentSelectedDate(false, true);
             firstDayOfMonth();
             await LoadTotals();
+            await LoadAdminStatus();
             NotifyOfPropertyChange(() => IsToday);
         }
 
         public int MonthIndex { get; set; } = DateTime.Now.Month;
         public int YearIndex { get; set; } = DateTime.Now.Year;
+        private bool IsAdminAccount { get; set; } = false;
+
+
+        public async Task LoadAdminStatus()
+        {
+            var result = await _userEndpoint.LoadAdminStatus();
+            IsAdminAccount = result.IsAdmin;
+        }
+
 
         public int DaysInMonth(int value = 0, bool prevYear = false, bool defaultLoad = false)
         {
@@ -1713,7 +1726,15 @@ namespace DesktopUI.ViewModels
 
         public void Account()
         {
-            _events.PublishOnUIThread(new OpenAccountEvent());
+            if(IsAdminAccount)
+            {
+
+            }
+            else
+            {
+                _events.PublishOnUIThread(new OpenAccountEvent());
+            }
+            
         }
         
         public void Logout()

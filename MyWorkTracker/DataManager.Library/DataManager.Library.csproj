@@ -51,11 +51,12 @@
     <Compile Include="DataAccess\UserData.cs" />
     <Compile Include="Models\DailyChartDataModel.cs" />
     <Compile Include="Models\HoursChartDataModel.cs" />
+    <Compile Include="Models\IsAdminUserModel.cs" />
     <Compile Include="Models\JobChartDataModel.cs" />
     <Compile Include="Models\LocationChartDataModel.cs" />
+    <Compile Include="Models\LoggedInUserModel.cs" />
     <Compile Include="Models\MonthlyChartDataModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WeeklyChartDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

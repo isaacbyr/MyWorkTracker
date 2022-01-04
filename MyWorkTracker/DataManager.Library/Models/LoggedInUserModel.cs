@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopUI.Library.Models
+namespace DataManager.Library.Models
 {
-    public class LoggedInUserModel 
+    public class LoggedInUserModel
     {
         public string Id { get; set; }
         public string FirstName { get; set; }
@@ -17,15 +17,5 @@ namespace DesktopUI.Library.Models
         public bool IsApproved { get; set; }
         public DateTime CreatedAt { get; set; }
 
-
-        public void ResetUser()
-        {
-            Id = "";
-            FirstName = "";
-            LastName = "";
-            Email = "";
-            Company = "";
-            IsAdmin = false;
-        }
     }
 }

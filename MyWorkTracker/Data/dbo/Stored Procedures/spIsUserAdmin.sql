@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spIsUserAdmin]
+	@Id NVARCHAR(128)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT IsAdmin
+	FROM [dbo].[User]
+	WHERE Id = @Id	
+END;

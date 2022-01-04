@@ -57,7 +57,7 @@ namespace DesktopUI.Library.Api
                 {
                     var result = await response.Content.ReadAsStringAsync();
                     var authenticatedUser = JsonConvert.DeserializeObject<AuthenticatedUser>(result);
-                    return authenticatedUser;
+                    return authenticatedUser; 
                 }
                  else
                 {
@@ -77,7 +77,7 @@ namespace DesktopUI.Library.Api
             {
                 if (response.IsSuccessStatusCode)
                     {
-                    //    var result = await response.Content.ReadAsAsync<List<LoggedInUserModel>>();
+                      var result = await response.Content.ReadAsAsync<List<LoggedInUserModel>>();
                     //    _loggedInUser.FirstName = result[0].FirstName;
                     //    _loggedInUser.LastName = result[0].LastName;
                     //    _loggedInUser.EmailAddress = result[0].EmailAddress;
@@ -99,17 +99,6 @@ namespace DesktopUI.Library.Api
 
         public async Task RegisterUser(RegisterUserModel user)
         {
-
-            //var data = new FormUrlEncodedContent(new[]
-            //{
-            //    new KeyValuePair<string, string>("Email", UserName),
-            //    new KeyValuePair<string, string>("Password", Password),
-            //    new KeyValuePair<string, string>("ConfirmPassword", ConfirmPassword),
-            //    new KeyValuePair<string, string>("First Name", FirstName),
-            //    new KeyValuePair<string, string>("Last Name", LastName),
-            //    new KeyValuePair<string, string>("Company Name", Company),
-            //    new KeyValuePair<string, string>("IsAdmin", IsAdmin),
-            //});
 
             apiClient.DefaultRequestHeaders.Clear();
             apiClient.DefaultRequestHeaders.Accept.Clear();

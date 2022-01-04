@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using DesktopUI.Library.Models;
 using DesktopUI.EventModels;
+using System.Windows;
 
 namespace DesktopUI.ViewModels
 {
@@ -14,14 +15,15 @@ namespace DesktopUI.ViewModels
     {
 
         private IApiHelper _apiHelper;
-        private readonly ILoggedInUserModel _loggedInUserModel;
         private readonly IEventAggregator _events;
+        private readonly IUserEndpoint _userEndpoint;
 
-        public RegisterViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUserModel, IEventAggregator events)
+        public RegisterViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUserModel, 
+            IEventAggregator events, IUserEndpoint userEndpoint)
         {
             _apiHelper = apiHelper;
-            _loggedInUserModel = loggedInUserModel;
             _events = events;
+            _userEndpoint = userEndpoint;
         }
 
         private string _firstName = "Sue";
@@ -60,7 +62,7 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        private bool _isAdmin;
+        private bool _isAdmin = false;
 
         public bool IsAdmin
         {
@@ -109,6 +111,13 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        
+
+        public void HandleClick(RoutedEventArgs e)
+        {
+            IsAdmin = !IsAdmin;
+        }
+
         public void CanRegister ()
         {
 
@@ -123,6 +132,8 @@ namespace DesktopUI.ViewModels
         {
 
             var user = new RegisterUserModel();
+            var logUserModel = new LoggedInUserModel();
+
 
             string isAdmin = IsAdmin.ToString();
 
@@ -134,6 +145,14 @@ namespace DesktopUI.ViewModels
             user.ConfirmPassword = ConfirmPassword;
             user.IsAdmin = isAdmin;
 
+            logUserModel.FirstName = FirstName;
+            logUserModel.LastName = LastName;
+            logUserModel.Email = UserName;
+            logUserModel.Company = Company;
+            logUserModel.IsAdmin = IsAdmin;
+            logUserModel.CreatedAt = DateTime.Now;
+            logUserModel.IsApproved = false;
+
             try
             {
                 await _apiHelper.RegisterUser(user);
@@ -141,6 +160,8 @@ namespace DesktopUI.ViewModels
                 var result = await _apiHelper.Authenticate(user.Email, user.Password);
 
                 await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+
+                await _userEndpoint.LogUser(logUserModel);
 
                 //await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
                 _events.PublishOnUIThread(new LogOnEvent());
