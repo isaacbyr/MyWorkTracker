@@ -79,6 +79,17 @@
     <Build Include="dbo\Stored Procedures\spGetLocationTotals.sql" />
     <Build Include="dbo\Stored Procedures\spInsertNewUser.sql" />
     <Build Include="dbo\Stored Procedures\spIsUserAdmin.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\Employees.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertCompany.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCompanyInfo.sql" />
+    <Build Include="dbo\Tables\Requests.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertRequest.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRequests.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteRequestByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\spApproveUser.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertEmployee.sql" />
+    <Build Include="dbo\Stored Procedures\spGetEmployees.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

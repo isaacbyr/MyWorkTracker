@@ -1,29 +1,27 @@
 ﻿using DesktopUI.Library.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 
 namespace DesktopUI.Library.Api
 {
-   public class UserEndpoint: IUserEndpoint
+    public class CompanyEndpoint: ICompanyEndpoint
     {
         private readonly IApiHelper _apiHelper;
 
-        public UserEndpoint(IApiHelper apiHelper)
+        public CompanyEndpoint(IApiHelper apiHelper)
         {
             _apiHelper = apiHelper;
         }
 
-        public async Task LogUser(LoggedInUserModel user)
+        public async Task PostCompany(CompanyModel company)
         {
-            using(HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/user", user))
+            using(HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/company", company))
             {
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     return;
                 }
@@ -34,30 +32,15 @@ namespace DesktopUI.Library.Api
             }
         }
 
-        public async Task<List<LoggedInUserModel>> GetUserById()
-        {
-            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/user"))
-            {
-                if(response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsStringAsync();
-                    var user = JsonConvert.DeserializeObject<List<LoggedInUserModel>>(result);
-                    return user;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
+        
 
-        public async Task<IsAdminUserModel> LoadAdminStatus()
+        public async Task<CompanyModel> GetCompanyInfo()
         {
-            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/user/adminstatus"))
+            using(HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/company"))
             {
                 if(response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<IsAdminUserModel>();
+                    var result = await response.Content.ReadAsAsync<CompanyModel>();
                     return result;
                 }
                 else
@@ -66,15 +49,30 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
-        
-        public async Task ApproveUserRequest(UserRequestModel user)
+
+        public async Task PostEmployee(EmployeeModel employee)
         {
-            
-            using(HttpResponseMessage response = await _apiHelper.ApiClient.PutAsJsonAsync($"/api/user", user))
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("/api/company/employee", employee))
             {
                 if(response.IsSuccessStatusCode)
                 {
                     return;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<List<EmployeeUserModel>> GetEmployees(int companyId)
+        {
+            using(HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"/api/company/employee/{companyId}"))
+            {
+                if(response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<EmployeeUserModel>>();
+                    return result;
                 }
                 else
                 {

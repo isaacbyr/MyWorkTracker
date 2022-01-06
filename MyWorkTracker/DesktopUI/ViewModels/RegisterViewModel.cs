@@ -15,15 +15,19 @@ namespace DesktopUI.ViewModels
     {
 
         private IApiHelper _apiHelper;
+        private readonly IRequestEndpoint _requestEndpoint;
         private readonly IEventAggregator _events;
         private readonly IUserEndpoint _userEndpoint;
+        private readonly ICompanyEndpoint _companyEndpoint;
 
-        public RegisterViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUserModel, 
-            IEventAggregator events, IUserEndpoint userEndpoint)
+        public RegisterViewModel(IApiHelper apiHelper, IRequestEndpoint requestEndpoint,
+            IEventAggregator events, IUserEndpoint userEndpoint, ICompanyEndpoint companyEndpoint )
         {
             _apiHelper = apiHelper;
+            _requestEndpoint = requestEndpoint;
             _events = events;
             _userEndpoint = userEndpoint;
+            _companyEndpoint = companyEndpoint;
         }
 
         private string _firstName = "Sue";
@@ -74,6 +78,18 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        private bool _isNotAdmin = true;
+
+        public bool IsNotAdmin
+        {
+            get { return _isNotAdmin; }
+            set 
+            { 
+                _isNotAdmin = value;
+                NotifyOfPropertyChange(() => IsNotAdmin);
+            }
+        }
+
 
         private string _userName = "sbeckley@shaw.ca";
 
@@ -111,11 +127,24 @@ namespace DesktopUI.ViewModels
             }
         }
 
-        
+        private int _companyId;
+
+        public int CompanyId
+        {
+            get { return _companyId; }
+            set 
+            { 
+                _companyId = value;
+                NotifyOfPropertyChange(() => CompanyId);
+            }
+        }
+
+
 
         public void HandleClick(RoutedEventArgs e)
         {
             IsAdmin = !IsAdmin;
+            IsNotAdmin = !IsNotAdmin;
         }
 
         public void CanRegister ()
@@ -133,7 +162,8 @@ namespace DesktopUI.ViewModels
 
             var user = new RegisterUserModel();
             var logUserModel = new LoggedInUserModel();
-
+            var company = new CompanyModel();
+            var approvalReq = new ApprovalRequestModel();
 
             string isAdmin = IsAdmin.ToString();
 
@@ -153,6 +183,8 @@ namespace DesktopUI.ViewModels
             logUserModel.CreatedAt = DateTime.Now;
             logUserModel.IsApproved = false;
 
+            company.Name = Company;
+
             try
             {
                 await _apiHelper.RegisterUser(user);
@@ -163,6 +195,17 @@ namespace DesktopUI.ViewModels
 
                 await _userEndpoint.LogUser(logUserModel);
 
+                if (IsAdmin)
+                {
+                    await _companyEndpoint.PostCompany(company);
+                }
+                else
+                {
+                    approvalReq.CompanyId = CompanyId;
+                    approvalReq.Approved = false;
+
+                    await _requestEndpoint.SendApproval(approvalReq);
+                }
                 //await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
                 _events.PublishOnUIThread(new LogOnEvent());
             }

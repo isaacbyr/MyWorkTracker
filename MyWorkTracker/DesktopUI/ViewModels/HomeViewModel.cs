@@ -1728,7 +1728,7 @@ namespace DesktopUI.ViewModels
         {
             if(IsAdminAccount)
             {
-
+                _events.PublishOnUIThread(new OpenAdminAccountEvent());
             }
             else
             {

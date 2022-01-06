@@ -13,11 +13,13 @@ namespace DesktopUI.ViewModels
     {
         private readonly IEventAggregator _events;
         private readonly IUserEndpoint _userEndpoint;
+        private readonly ICompanyEndpoint _companyEndpoint;
 
-        public AccountViewModel(IEventAggregator events, IUserEndpoint userEndpoint)
+        public AccountViewModel(IEventAggregator events, IUserEndpoint userEndpoint, ICompanyEndpoint companyEndpoint)
         {
             _events = events;
             _userEndpoint = userEndpoint;
+            _companyEndpoint = companyEndpoint;
         }
 
         protected override async void OnViewLoaded(object view)

@@ -28,7 +28,9 @@ namespace DesktopUI
                 .Singleton<IApiHelper, ApiHelper>()
                 .Singleton<IChartEndpoint, ChartEndpoint>()
                 .Singleton<IEntryEndpoint, EntryEndpoint>()
+                .Singleton<ICompanyEndpoint, CompanyEndpoint>()
                 .Singleton<IUserEndpoint, UserEndpoint>()
+                .Singleton<IRequestEndpoint, RequestEndpoint>()
                 .Singleton<IEventAggregator, EventAggregator>();
 
             container.Instance(container);

@@ -42,5 +42,13 @@ namespace DataManager.Controllers
 
             return userData.LoadAdminStatus(id);
         }
+
+        [HttpPut]
+        public void Put (UserRequestModel user)
+        {
+            var userData = new UserData();
+
+            userData.ApproveUser(user.Id);
+        }
     }
 }

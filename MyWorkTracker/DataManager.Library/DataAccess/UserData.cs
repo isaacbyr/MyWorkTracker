@@ -30,10 +30,10 @@ namespace DataManager.Library.DataAccess
                 sql.SaveDataInTransaction("dbo.spInsertNewUser", user);
                 sql.CommitTransaction();
             }
-            catch
+            catch (Exception e)
             {
                 sql.RollbackTransaction();
-                throw;
+                throw new Exception(e.Message);
             }
         }
 
@@ -46,6 +46,25 @@ namespace DataManager.Library.DataAccess
             var output = sql.LoadData<IsAdminUserModel, dynamic>("dbo.spIsUserAdmin", p, "WTData").First();
 
             return output;
+        }
+
+        public void ApproveUser(string id)
+        {
+            var sql = new SqlDataAccess();
+
+            var p = new { Id = id };
+
+            try
+            {
+                sql.StartTransaction("WTData");
+                sql.SaveDataInTransaction("dbo.spApproveUser", p);
+                sql.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                sql.RollbackTransaction();
+                throw new Exception(e.Message);
+            }
         }
     }
 }

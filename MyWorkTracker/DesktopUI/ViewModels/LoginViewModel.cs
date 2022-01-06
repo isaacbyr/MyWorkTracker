@@ -15,8 +15,8 @@ namespace DesktopUI.ViewModels
         private readonly IApiHelper _apiHelper;
         private readonly ILoggedInUserModel _loggedInUser;
         private readonly IEventAggregator _events;
-        private string _username = "i.byron@hotmail.com";
-        private string _password = "Test#12";
+        private string _username = "sbeckley@shaw.ca";
+        private string _password = "Lucy#12";
 
 
         public LoginViewModel(IApiHelper apiHelper, ILoggedInUserModel loggedInUser, IEventAggregator events)

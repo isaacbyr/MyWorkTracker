@@ -8,6 +8,7 @@ namespace DesktopUI.Library.Api
     {
         Task LogUser(LoggedInUserModel user);
         Task<List<LoggedInUserModel>> GetUserById();
+        Task ApproveUserRequest(UserRequestModel user);
         Task<IsAdminUserModel> LoadAdminStatus();
     }
 }

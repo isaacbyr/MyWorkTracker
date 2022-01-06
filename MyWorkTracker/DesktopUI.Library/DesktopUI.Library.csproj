@@ -40,6 +40,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,12 +51,20 @@
   <ItemGroup>
     <Compile Include="Api\ApiHelper.cs" />
     <Compile Include="Api\ChartEndpoint.cs" />
+    <Compile Include="Api\CompanyEndpoint.cs" />
     <Compile Include="Api\IApiHelper.cs" />
     <Compile Include="Api\IChartEndpoint.cs" />
+    <Compile Include="Api\ICompanyEndpoint.cs" />
     <Compile Include="Api\IEntryEndpoint.cs" />
     <Compile Include="Api\EntryEndpoint.cs" />
+    <Compile Include="Api\IRequestEndpoint.cs" />
     <Compile Include="Api\IUserEndpoint.cs" />
+    <Compile Include="Api\RequestEndpoint.cs" />
     <Compile Include="Api\UserEndpoint.cs" />
+    <Compile Include="Models\ApprovalRequestModel.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\EmployeeUserModel.cs" />
     <Compile Include="Models\IsAdminUserModel.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\DailyChartDataModel.cs" />
@@ -67,6 +76,7 @@
     <Compile Include="Models\ILoggedInUserModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
+    <Compile Include="Models\UserRequestModel.cs" />
     <Compile Include="Models\WeeklyChartDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
