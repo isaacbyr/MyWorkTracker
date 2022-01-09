@@ -90,6 +90,15 @@
     <Build Include="dbo\Stored Procedures\spApproveUser.sql" />
     <Build Include="dbo\Stored Procedures\spInsertEmployee.sql" />
     <Build Include="dbo\Stored Procedures\spGetEmployees.sql" />
+    <Build Include="dbo\Stored Procedures\spGetEmployeeEntries.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCompanyId.sql" />
+    <Build Include="dbo\Tables\Product.sql" />
+    <Build Include="dbo\Stored Procedures\spGetProduct.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertProduct.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteProductById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetEmployeeById.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUserWage.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

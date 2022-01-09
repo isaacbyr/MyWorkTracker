@@ -31,7 +31,7 @@ namespace DataManager.Controllers
         public EntryModel Get(string date)
         {
             DateTime convDate;
-            DateTime.TryParse(date, out convDate);
+            DateTime.TryParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out convDate);
             string userId = RequestContext.Principal.Identity.GetUserId();
 
             var entryData = new EntryData();

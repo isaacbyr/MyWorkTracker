@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace DesktopUI.ViewModels
 {
+    //TODO: Add Way for admin to add company phone and address
+
     public class AdminAccountViewModel: Screen
     {
 
@@ -207,6 +209,19 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        private EmployeeUserModel _selectedEmployee;
+
+        public EmployeeUserModel SelectedEmployee
+        {
+            get { return _selectedEmployee; }
+            set 
+            {
+                _selectedEmployee = value;
+                NotifyOfPropertyChange(() => SelectedEmployee);
+            }
+        }
+
+
 
         public async Task LoadUserData()
         {
@@ -236,7 +251,13 @@ namespace DesktopUI.ViewModels
         {
             await _requestEndpoint.RemoveRequest(SelectedUser.Id);
 
-            await _userEndpoint.ApproveUserRequest(SelectedUser);
+            var acceptedUser = new AcceptedUserModel
+            {
+                Id = SelectedUser.Id,
+                Company = Company
+            };
+
+            await _userEndpoint.ApproveUserRequest(acceptedUser);
 
             int companyId;
             int.TryParse(CompanyId, out companyId);
@@ -253,8 +274,15 @@ namespace DesktopUI.ViewModels
             await LoadEmployees();
         }
 
+        public async Task EditEmployee()
+        {
+            _events.PublishOnUIThread(new OpenEditEmployeeEvent(SelectedEmployee.Id));
+            //await _userEndpoint.GetEmployeeById(SelectedEmployee.Id);
+        }
+
         public async Task Delete()
         {
+            
             await _requestEndpoint.RemoveRequest(SelectedUser.Id);
 
             await LoadRequests();

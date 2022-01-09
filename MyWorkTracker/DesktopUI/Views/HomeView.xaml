@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopUI.Views"
-             mc:Ignorable="d" Background="White"
+            
+    mc:Ignorable="d" Background="White"
              d:DesignHeight="650" d:DesignWidth="1090">
     <Border CornerRadius="18" Background="White">
         <Grid>
@@ -238,6 +239,8 @@
                     <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="Monthly Total" VerticalAlignment="Center" ></TextBlock>
                     <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="{Binding MonthTotal}" VerticalAlignment="Center" ></TextBlock>
 
+                    <Button Margin="500 0 0 0" HorizontalAlignment="Right" Visibility="{Binding IsAdminAccount,  Converter={StaticResource BooleanToVisibilityConverter}}" Content="Contacts" x:Name="Contacts"></Button>
+                    <Button Margin="0 0 10 0" HorizontalAlignment="Right" Visibility="{Binding IsAdminAccount,  Converter={StaticResource BooleanToVisibilityConverter}}" Content="Report" x:Name="Report" ></Button>
                 </StackPanel>
             </Border>
            

@@ -165,23 +165,27 @@ namespace DesktopUI.ViewModels
             var company = new CompanyModel();
             var approvalReq = new ApprovalRequestModel();
 
-            string isAdmin = IsAdmin.ToString();
-
-            user.FirstName = FirstName;
-            user.LastName = LastName;
             user.Email = UserName;
-            user.Company = Company;
             user.Password = Password;
             user.ConfirmPassword = ConfirmPassword;
-            user.IsAdmin = isAdmin;
 
             logUserModel.FirstName = FirstName;
             logUserModel.LastName = LastName;
             logUserModel.Email = UserName;
-            logUserModel.Company = Company;
+            if(IsAdmin)
+            {
+                logUserModel.Company = Company;
+                logUserModel.IsApproved = true;
+            }
+            else
+            {
+                logUserModel.Company = "No Company";
+                logUserModel.IsApproved = false;
+            }
+            
             logUserModel.IsAdmin = IsAdmin;
             logUserModel.CreatedAt = DateTime.Now;
-            logUserModel.IsApproved = false;
+            
 
             company.Name = Company;
 
@@ -206,7 +210,6 @@ namespace DesktopUI.ViewModels
 
                     await _requestEndpoint.SendApproval(approvalReq);
                 }
-                //await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
                 _events.PublishOnUIThread(new LogOnEvent());
             }
             catch (Exception ex)

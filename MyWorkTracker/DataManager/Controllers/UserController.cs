@@ -44,11 +44,39 @@ namespace DataManager.Controllers
         }
 
         [HttpPut]
-        public void Put (UserRequestModel user)
+        public void Put (AcceptedUserModel acceptedUser)
         {
             var userData = new UserData();
 
-            userData.ApproveUser(user.Id);
+            userData.ApproveUser(acceptedUser);
+        }
+
+        [Route("{id}")]
+        public EditEmployeeUserModel GetEmployeeById(string id)
+        {
+            var userData = new UserData();
+
+            return userData.GetEmployeeById(id);
+        }
+
+        [HttpGet]
+        [Route("wage")] 
+        public decimal LoadUserWage()
+        {
+            var userData = new UserData();
+
+            string id = RequestContext.Principal.Identity.GetUserId();
+
+            return userData.LoadUserWage(id);
+        }
+
+        [HttpPut]
+        [Route("employee")]
+        public void UpdateEmployee(UpdatedEmployeeUserModel updatedEmployee)
+        {
+            var userData = new UserData();
+
+            userData.UpdateEmployee(updatedEmployee);
         }
     }
 }

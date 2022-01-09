@@ -57,12 +57,17 @@
     <Compile Include="Api\ICompanyEndpoint.cs" />
     <Compile Include="Api\IEntryEndpoint.cs" />
     <Compile Include="Api\EntryEndpoint.cs" />
+    <Compile Include="Api\IProductEndpoint.cs" />
     <Compile Include="Api\IRequestEndpoint.cs" />
     <Compile Include="Api\IUserEndpoint.cs" />
+    <Compile Include="Api\ProductEndpoint.cs" />
     <Compile Include="Api\RequestEndpoint.cs" />
     <Compile Include="Api\UserEndpoint.cs" />
+    <Compile Include="Models\AcceptedUserModel.cs" />
     <Compile Include="Models\ApprovalRequestModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\EditEmployeeUserModel.cs" />
+    <Compile Include="Models\EmployeeDataModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\EmployeeUserModel.cs" />
     <Compile Include="Models\IsAdminUserModel.cs" />
@@ -75,7 +80,9 @@
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
+    <Compile Include="Models\UpdatedEmployeeUserModel.cs" />
     <Compile Include="Models\UserRequestModel.cs" />
     <Compile Include="Models\WeeklyChartDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

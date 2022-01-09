@@ -99,20 +99,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="EventModels\AdminCreateNewEvent.cs" />
     <Compile Include="EventModels\CloseEntryView.cs" />
     <Compile Include="EventModels\CloseRegisterView.cs" />
     <Compile Include="EventModels\CreateNewEvent.cs" />
     <Compile Include="EventModels\OpenAccountEvent.cs" />
     <Compile Include="EventModels\OpenAdminAccountEvent.cs" />
+    <Compile Include="EventModels\OpenEditEmployeeEvent.cs" />
     <Compile Include="EventModels\OpenRegisterView.cs" />
     <Compile Include="EventModels\ExitAppEvent.cs" />
     <Compile Include="EventModels\LogOffEvent.cs" />
     <Compile Include="EventModels\LogOnEvent.cs" />
     <Compile Include="EventModels\OpenStatsView.cs" />
     <Compile Include="EventModels\ReturnHomeEvent.cs" />
+    <Compile Include="EventModels\ReturnToAdminAccountEvent.cs" />
     <Compile Include="EventModels\SavedToDbEvent.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AdminAccountViewModel.cs" />
+    <Compile Include="ViewModels\AdminNewEntryViewModel.cs" />
+    <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewEntryViewModel.cs" />
@@ -125,6 +130,12 @@
     </Compile>
     <Compile Include="Views\AdminAccountView.xaml.cs">
       <DependentUpon>AdminAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminNewEntryView.xaml.cs">
+      <DependentUpon>AdminNewEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEmployeeView.xaml.cs">
+      <DependentUpon>EditEmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -200,6 +211,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminNewEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditEmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

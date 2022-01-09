@@ -6,8 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopUI.Views"
              mc:Ignorable="d" 
-             Background="#8abaae"
-             Foreground="White"
+             Background="#d5e8dd"
+             Foreground="Black"
              FontSize="24"
              Height="650" Width="1090">
     <Grid>
@@ -15,7 +15,7 @@
             <ColumnDefinition Width="245"></ColumnDefinition>
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="350"></ColumnDefinition>
-            <ColumnDefinition Width="245"></ColumnDefinition>
+            <ColumnDefinition Width="205"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -67,7 +67,7 @@
 
         <!--Is Company Owner-->
         <CheckBox cal:Message.Attach= "HandleClick($eventArgs)" Margin="10 10 10 10" Padding="5 5 0 5" FontSize="18" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" FlowDirection="RightToLeft" Grid.Row="8" Grid.Column="2" IsChecked="False" >
-            <TextBlock Foreground="White" FontSize="18" Margin="5 -2 5 0" Text="Register Company" VerticalAlignment="Center" />
+            <TextBlock Foreground="Black" FontSize="18" Margin="5 -2 5 0" Text="Register Company" VerticalAlignment="Center" />
         </CheckBox>
 
         <!--Button-->

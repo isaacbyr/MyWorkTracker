@@ -4,7 +4,7 @@
 AS
 BEGIN
 SET NOCOUNT ON;
-	SELECT Job, Location, Hours, Wage, Subtotal, Total, Taxes, Description, JobDate, UserId, CalendarLocation
+	SELECT Job, Location, Hours, Wage, Subtotal, Total, Description, JobDate, UserId, StartTime, EndTime
 	FROM [dbo].[CalendarEntry]
 	WHERE JobDate = @JobDate AND UserId = @UserId
 END

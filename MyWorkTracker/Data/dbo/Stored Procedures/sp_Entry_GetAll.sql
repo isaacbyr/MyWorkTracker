@@ -2,7 +2,7 @@
 AS
 BEGIN
 SET NOCOUNT ON;
-	SELECT Job, Location, Hours, Wage, Subtotal, Total, Taxes, Description, CalendarLocation
+	SELECT Job, Location, Hours, Wage, Subtotal, Total, Description
 	FROM [dbo].[CalendarEntry]
 	ORDER BY Id
 END

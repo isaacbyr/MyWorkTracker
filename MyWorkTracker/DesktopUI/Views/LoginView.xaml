@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopUI.Views"
              mc:Ignorable="d" 
-             Background="#b3e5fc"
-             Foreground="White"
+             Background="#deeff5"
+             Foreground="Black"
              FontFamily="Segoe UI"
              Height="650" d:DesignWidth="1090">
 

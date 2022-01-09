@@ -4,7 +4,7 @@ AS
 begin
 	set nocount on;
 
-	SELECT Id, FirstName, LastName, Email, Company, IsAdmin
+	SELECT Id, FirstName, LastName, Email, Company, IsAdmin, IsApproved
 	FROM [dbo].[User]
 	WHERE Id = @Id;
 end

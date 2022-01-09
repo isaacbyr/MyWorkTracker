@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spGetUserWage]
+	@Id NVARCHAR(128)
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT Wage
+	FROM [dbo].[User]
+	WHERE Id = @Id
+END

@@ -15,10 +15,10 @@ namespace DesktopUI.Library.Models
         public decimal Hours { get; set; }
         public decimal Subtotal { get; set; }
         public string Description { get; set; }
-        public decimal Taxes { get; set; }
+        //public decimal Taxes { get; set; }
         public decimal Total { get; set; }
         public DateTime JobDate { get; set; }
-        public string CalendarLocation { get; set; }
+        //public string CalendarLocation { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
 

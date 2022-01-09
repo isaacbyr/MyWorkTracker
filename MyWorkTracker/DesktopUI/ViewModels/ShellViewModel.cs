@@ -12,7 +12,8 @@ namespace DesktopUI.ViewModels
 {
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
         IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>, 
-        IHandle<ReturnHomeEvent>, IHandle<OpenAccountEvent>, IHandle<OpenAdminAccountEvent>
+        IHandle<ReturnHomeEvent>, IHandle<OpenAccountEvent>, IHandle<OpenAdminAccountEvent>, IHandle<AdminCreateNewEvent>, 
+        IHandle<OpenEditEmployeeEvent>, IHandle<ReturnToAdminAccountEvent>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -24,11 +25,14 @@ namespace DesktopUI.ViewModels
         private readonly StatsViewModel _statsVM;
         private readonly AccountViewModel _accountVM;
         private readonly AdminAccountViewModel _adminAccountVM;
+        private readonly AdminNewEntryViewModel _adminNewEntryVM;
+        private readonly EditEmployeeViewModel _editEmployeeVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
             WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, 
             NewEntryViewModel newVM, RegisterViewModel registerVM, StatsViewModel statsVM,
-            AccountViewModel accountVM, AdminAccountViewModel adminAccountVM)
+            AccountViewModel accountVM, AdminAccountViewModel adminAccountVM, 
+            AdminNewEntryViewModel adminNewEntryVM, EditEmployeeViewModel editEmployeeVM)
         {
             _loginView = loginView;
             _events = events;
@@ -40,6 +44,8 @@ namespace DesktopUI.ViewModels
             _statsVM = statsVM;
             _accountVM = accountVM;
             _adminAccountVM = adminAccountVM;
+            _adminNewEntryVM = adminNewEntryVM;
+            _editEmployeeVM = editEmployeeVM;
 
             // have to subscribe to events in general
             _events.Subscribe(this);
@@ -75,7 +81,7 @@ namespace DesktopUI.ViewModels
             _newVM.Date = message.Date;
             _newVM.NextMonth = message.NextMonth;
             _newVM.PrevMonth = message.PrevMonth;
-            _newVM.SelectedMonth = message.SelectedMonth;
+            _newVM.SelectedMonth = message.SelectedDate;
             ActivateItem(_newVM);
         }
 
@@ -120,6 +126,27 @@ namespace DesktopUI.ViewModels
         }
 
         public void Handle(OpenAdminAccountEvent message)
+        {
+            ActivateItem(_adminAccountVM);
+        }
+
+        public void Handle(AdminCreateNewEvent message)
+        {
+            _adminNewEntryVM.Date = message.Date;
+            _adminNewEntryVM.NextMonth = message.NextMonth;
+            _adminNewEntryVM.PrevMonth = message.PrevMonth;
+            _adminNewEntryVM.SelectedDate = message.SelectedDate;
+            _adminNewEntryVM.CompanyId = message.CompanyId;
+            ActivateItem(_adminNewEntryVM);
+        }
+
+        public void Handle(OpenEditEmployeeEvent message)
+        {
+            _editEmployeeVM.UserId = message.Id;
+            ActivateItem(_editEmployeeVM);
+        }
+
+        public void Handle(ReturnToAdminAccountEvent message)
         {
             ActivateItem(_adminAccountVM);
         }

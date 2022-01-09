@@ -74,5 +74,39 @@ namespace DataManager.Library.DataAccess
                 throw new Exception(e.Message);
             }
         }
+
+        public List<EmployeeDataModel> GetEmployeeEntries(DateTime date, int companyId)
+        {
+            var sql = new SqlDataAccess();
+            // TODO: Change CompanyId to Parameter
+            var p = new { JobDate = date, CompanyId = companyId };
+
+            try
+            {
+                var output = sql.LoadData<EmployeeDataModel, dynamic>("dbo.spGetEmployeeEntries", p, "WTData");
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int LoadCompanyId(string id)
+        {
+            var sql = new SqlDataAccess();
+
+            var p = new { UserId = id };
+
+            try
+            {
+                var output = sql.LoadData<int, dynamic>("dbo.spGetCompanyId", p, "WTData").First();
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

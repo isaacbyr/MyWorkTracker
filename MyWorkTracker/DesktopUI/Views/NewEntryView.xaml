@@ -119,6 +119,7 @@
             <TextBox x:Name="Wage" Grid.Row="2" Grid.Column="5"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
+                     IsReadOnly="True"
                      MinWidth="120" MaxWidth="120"
                      FontSize="18"></TextBox>
             <TextBox x:Name="Subtotal" Grid.Row="2" Grid.Column="6"
@@ -143,7 +144,7 @@
             </TextBox>
 
             <!--Taxes-->
-            <TextBlock 
+            <!--<TextBlock 
                 Grid.Row="9" Grid.Column="5"
                 Text="Taxes" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -154,7 +155,7 @@
                 Text="0.00" HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="22">
-            </TextBlock>
+            </TextBlock>-->
             
             
             <!--Total-->

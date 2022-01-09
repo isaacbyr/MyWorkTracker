@@ -73,12 +73,13 @@
         <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Text="Employees:" ></TextBlock>
         <ListBox ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="100 0 0 0" x:Name="Employees" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center"
                  Grid.ColumnSpan="2" Grid.RowSpan="2" MinHeight="100" MinWidth="300" MaxWidth="300"
-                 >
+                 SelectedItem="{Binding SelectedEmployee}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding FirstName}" FontSize="12"></TextBlock>
                         <TextBlock Text="{Binding LastName}" FontSize="12" Margin="5 0 0 0"></TextBlock>
+                        <Button cal:Message.Attach="EditEmployee" HorizontalContentAlignment="Right" HorizontalAlignment="Right" x:Name="EditEmployee" Background="#ff9d5c" Foreground="White" Content="Edit" Margin="5 0 0 0"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

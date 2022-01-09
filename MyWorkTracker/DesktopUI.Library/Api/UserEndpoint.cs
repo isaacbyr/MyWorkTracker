@@ -67,10 +67,57 @@ namespace DesktopUI.Library.Api
             }
         }
         
-        public async Task ApproveUserRequest(UserRequestModel user)
+        public async Task ApproveUserRequest(AcceptedUserModel acceptedUser)
         {
             
-            using(HttpResponseMessage response = await _apiHelper.ApiClient.PutAsJsonAsync($"/api/user", user))
+            using(HttpResponseMessage response = await _apiHelper.ApiClient.PutAsJsonAsync("/api/user", acceptedUser))
+            {
+                if(response.IsSuccessStatusCode)
+                {
+                    return;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<EditEmployeeUserModel> GetEmployeeById(string id)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"/api/user/{id}"))
+            {
+                if(response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<EditEmployeeUserModel>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task<decimal> LoadUserWage()
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/user/wage"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<decimal>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public async Task UpdateEmployee(UpdatedEmployeeUserModel updatedEmployee)
+        {
+            using(HttpResponseMessage response = await _apiHelper.ApiClient.PutAsJsonAsync("/api/user/employee", updatedEmployee))
             {
                 if(response.IsSuccessStatusCode)
                 {

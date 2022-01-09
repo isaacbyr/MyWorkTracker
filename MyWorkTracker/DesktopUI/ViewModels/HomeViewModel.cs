@@ -21,15 +21,17 @@ namespace DesktopUI.ViewModels
         private readonly ILoggedInUserModel _loggedInUser;
         private readonly IEntryEndpoint _entryEndpoint;
         private readonly IUserEndpoint _userEndpoint;
+        private readonly ICompanyEndpoint _companyEndpoint;
 
         public HomeViewModel(IEventAggregator events, IApiHelper apiHelper, ILoggedInUserModel loggedInUser, 
-            IEntryEndpoint entryEndpoint, IUserEndpoint userEndpoint)
+            IEntryEndpoint entryEndpoint, IUserEndpoint userEndpoint, ICompanyEndpoint companyEndpoint)
         {
             _events = events;
             _apiHelper = apiHelper;
             _loggedInUser = loggedInUser;
             _entryEndpoint = entryEndpoint;
             _userEndpoint = userEndpoint;
+            _companyEndpoint = companyEndpoint;
         }
 
         protected override async void OnViewLoaded(object view)
@@ -39,13 +41,48 @@ namespace DesktopUI.ViewModels
             firstDayOfMonth();
             await LoadTotals();
             await LoadAdminStatus();
+            if(IsAdminAccount)
+            {
+                await LoadCompanyId();
+            }
             NotifyOfPropertyChange(() => IsToday);
         }
 
         public int MonthIndex { get; set; } = DateTime.Now.Month;
         public int YearIndex { get; set; } = DateTime.Now.Year;
-        private bool IsAdminAccount { get; set; } = false;
+       // private bool IsAdminAccount { get; set; } = false;
 
+
+        private bool _isAdminAccount = false;
+
+        public bool IsAdminAccount
+        {
+            get { return _isAdminAccount; }
+            set 
+            {
+                _isAdminAccount = value;
+                NotifyOfPropertyChange(() => IsAdminAccount);
+            }
+        }
+
+        private int _companyId;
+
+        public int CompanyId
+        {
+            get { return _companyId; }
+            set 
+            { 
+                _companyId = value;
+                NotifyOfPropertyChange(() => CompanyId);
+            }
+        }
+
+
+        public async Task LoadCompanyId()
+        {
+            CompanyId = await _companyEndpoint.LoadCompanyId();
+            
+        }
 
         public async Task LoadAdminStatus()
         {
@@ -1229,12 +1266,20 @@ namespace DesktopUI.ViewModels
             var content = (e.Source as Button).Content.ToString();
             var itemLocation = (e.Source as Button).Name.ToString();
 
-            DateTime selectedMonth;
-            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedMonth);
+            DateTime selectedDate;
+            DateTime.TryParseExact(CurrentSelectedDate, "MMMM, yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out selectedDate);
             bool prevMonth = IsPreviousMonth(content, itemLocation);
             bool nextMonth = IsNextMonth(content, itemLocation);
 
-            _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedMonth, itemLocation));
+            if(IsAdminAccount)
+            {
+                _events.PublishOnUIThread(new AdminCreateNewEvent(content, prevMonth, nextMonth, selectedDate, CompanyId));
+            }
+            else
+            {
+                _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedDate, itemLocation));
+
+            }
         }
 
         public void GetCurrentSelectedDate(bool prev, bool defaultLoad = false)

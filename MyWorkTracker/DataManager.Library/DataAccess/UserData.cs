@@ -48,7 +48,24 @@ namespace DataManager.Library.DataAccess
             return output;
         }
 
-        public void ApproveUser(string id)
+        public void ApproveUser(AcceptedUserModel acceptedUser)
+        {
+            var sql = new SqlDataAccess();
+
+            try
+            {
+                sql.StartTransaction("WTData");
+                sql.SaveDataInTransaction("dbo.spApproveUser", acceptedUser);
+                sql.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                sql.RollbackTransaction();
+                throw new Exception(e.Message);
+            }
+        }
+
+        public EditEmployeeUserModel GetEmployeeById(string id)
         {
             var sql = new SqlDataAccess();
 
@@ -56,8 +73,39 @@ namespace DataManager.Library.DataAccess
 
             try
             {
+                var output = sql.LoadData<EditEmployeeUserModel, dynamic>("dbo.spGetEmployeeById", p, "WTData").First();
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public decimal LoadUserWage(string id)
+        {
+            var sql = new SqlDataAccess();
+            var p = new { Id = id };
+
+            try
+            {
+                var output = sql.LoadData<decimal, dynamic>("dbo.spGetUserWage", p, "WTData").First();
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void UpdateEmployee(UpdatedEmployeeUserModel updatedEmployee)
+        {
+            var sql = new SqlDataAccess();
+
+            try
+            {
                 sql.StartTransaction("WTData");
-                sql.SaveDataInTransaction("dbo.spApproveUser", p);
+                sql.SaveDataInTransaction("dbo.spUpdateEmployee", updatedEmployee);
                 sql.CommitTransaction();
             }
             catch (Exception e)

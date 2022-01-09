@@ -64,17 +64,26 @@ namespace DesktopUI.ViewModels
 
         private readonly IEventAggregator _events;
         private IEntryEndpoint _entryEndpoint;
+        private readonly IUserEndpoint _userEndpoint;
         public EntryModel entry = new EntryModel();
 
-        public NewEntryViewModel(IEventAggregator events, IEntryEndpoint entryEndpoint)
+        public NewEntryViewModel(IEventAggregator events, IEntryEndpoint entryEndpoint, IUserEndpoint userEndpoint)
         {
             _events = events;
             _entryEndpoint = entryEndpoint;
+            _userEndpoint = userEndpoint;
         }
 
         protected override async void OnViewLoaded(object view) 
         {
            await LoadEntry();
+           await LoadWage();
+        }
+
+        public async Task LoadWage()
+        {
+            var result = await _userEndpoint.LoadUserWage();
+            Wage = Math.Round(result, 2);
         }
 
         public async Task LoadEntry()
@@ -170,7 +179,6 @@ namespace DesktopUI.ViewModels
                 NotifyOfPropertyChange(() => Hours);
                 NotifyOfPropertyChange(() => Subtotal);
                 NotifyOfPropertyChange(() => Total);
-                NotifyOfPropertyChange(() => Taxes);
             }
         }
 
@@ -185,7 +193,6 @@ namespace DesktopUI.ViewModels
                 NotifyOfPropertyChange(() => Wage);
                 NotifyOfPropertyChange(() => Subtotal);
                 NotifyOfPropertyChange(() => Total);
-                NotifyOfPropertyChange(() => Taxes);
             }
         }
 
@@ -193,7 +200,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return Subtotal - Taxes;
+                return Subtotal;
             }
         }
 
@@ -218,15 +225,6 @@ namespace DesktopUI.ViewModels
         }
 
 
-        public decimal Taxes
-        {
-            get
-            {
-                decimal taxRate = 0.015M;
-                return taxRate * Subtotal;
-            }
-        }
-
 
         public void Cancel()
         {
@@ -241,12 +239,8 @@ namespace DesktopUI.ViewModels
             entry.Hours = Hours;
             entry.Wage = Wage;
             entry.Subtotal = Subtotal;
-            entry.Taxes = Taxes;
             entry.Total = Total;
             entry.Description = Description;
-
-            // TODO: Remove Calendar Location from entry model and db model
-            entry.CalendarLocation = ItemLocation;
             entry.StartTime = StartTime;
             entry.EndTime = EndTime;
 
