@@ -13,7 +13,7 @@ namespace DesktopUI.ViewModels
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
         IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>, 
         IHandle<ReturnHomeEvent>, IHandle<OpenAccountEvent>, IHandle<OpenAdminAccountEvent>, IHandle<AdminCreateNewEvent>, 
-        IHandle<OpenEditEmployeeEvent>, IHandle<ReturnToAdminAccountEvent>
+        IHandle<OpenEditEmployeeEvent>, IHandle<ReturnToAdminAccountEvent>, IHandle<OpenContactsEvent>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -27,12 +27,14 @@ namespace DesktopUI.ViewModels
         private readonly AdminAccountViewModel _adminAccountVM;
         private readonly AdminNewEntryViewModel _adminNewEntryVM;
         private readonly EditEmployeeViewModel _editEmployeeVM;
+        private readonly ContactsViewModel _contactsVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
             WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, 
             NewEntryViewModel newVM, RegisterViewModel registerVM, StatsViewModel statsVM,
             AccountViewModel accountVM, AdminAccountViewModel adminAccountVM, 
-            AdminNewEntryViewModel adminNewEntryVM, EditEmployeeViewModel editEmployeeVM)
+            AdminNewEntryViewModel adminNewEntryVM, EditEmployeeViewModel editEmployeeVM,
+            ContactsViewModel contactsVM)
         {
             _loginView = loginView;
             _events = events;
@@ -46,6 +48,7 @@ namespace DesktopUI.ViewModels
             _adminAccountVM = adminAccountVM;
             _adminNewEntryVM = adminNewEntryVM;
             _editEmployeeVM = editEmployeeVM;
+            _contactsVM = contactsVM;
 
             // have to subscribe to events in general
             _events.Subscribe(this);
@@ -149,6 +152,12 @@ namespace DesktopUI.ViewModels
         public void Handle(ReturnToAdminAccountEvent message)
         {
             ActivateItem(_adminAccountVM);
+        }
+
+        public void Handle(OpenContactsEvent message)
+        {
+            _contactsVM.CompanyId = message.CompanyId;
+            ActivateItem(_contactsVM);
         }
     }
 }

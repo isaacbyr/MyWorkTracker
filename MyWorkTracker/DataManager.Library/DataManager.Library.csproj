@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\ChartData.cs" />
     <Compile Include="DataAccess\CompanyData.cs" />
+    <Compile Include="DataAccess\ContactData.cs" />
     <Compile Include="DataAccess\EntryData.cs" />
     <Compile Include="DataAccess\ProductData.cs" />
     <Compile Include="DataAccess\RequestData.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Models\AcceptedUserModel.cs" />
     <Compile Include="Models\ApprovalRequestModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\DailyChartDataModel.cs" />
     <Compile Include="Models\EditEmployeeUserModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />

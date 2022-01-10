@@ -236,11 +236,21 @@
             <Border Margin="5 30 5 5" CornerRadius="18" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="14"
                         Background="SteelBlue">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="Monthly Total" VerticalAlignment="Center" ></TextBlock>
-                    <TextBlock Margin="20 0 0 0" FontSize="26" Foreground="White" Text="{Binding MonthTotal}" VerticalAlignment="Center" ></TextBlock>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="485"></ColumnDefinition>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="90"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Margin="20 0 0 0" FontSize="26" Foreground="White" Text="Monthly Total" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Grid.Column="1"  Margin="20 0 0 0" FontSize="26" Foreground="White" Text="{Binding MonthTotal}" VerticalAlignment="Center" ></TextBlock>
 
-                    <Button Margin="500 0 0 0" HorizontalAlignment="Right" Visibility="{Binding IsAdminAccount,  Converter={StaticResource BooleanToVisibilityConverter}}" Content="Contacts" x:Name="Contacts"></Button>
-                    <Button Margin="0 0 10 0" HorizontalAlignment="Right" Visibility="{Binding IsAdminAccount,  Converter={StaticResource BooleanToVisibilityConverter}}" Content="Report" x:Name="Report" ></Button>
+                    <Button Grid.Column="2" Foreground="White" MinWidth="60" Background="#4BA3C3" Margin="0 0 0 0" HorizontalAlignment="Right" Visibility="{Binding IsAdminAccount,  Converter={StaticResource BooleanToVisibilityConverter}}" Content="Contacts" x:Name="Contacts"></Button>
+                    <Button Grid.Column="3" MinWidth="80" Foreground="White" Background="#4BA3C3" Margin="0 0 0 0" HorizontalAlignment="Left" Visibility="{Binding IsAdminAccount,  Converter={StaticResource BooleanToVisibilityConverter}}" Content="Generate Bill" x:Name="Report" ></Button>
+                    </Grid>
                 </StackPanel>
             </Border>
            

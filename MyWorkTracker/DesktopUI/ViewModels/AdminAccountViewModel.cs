@@ -274,7 +274,7 @@ namespace DesktopUI.ViewModels
             await LoadEmployees();
         }
 
-        public async Task EditEmployee()
+        public void EditEmployee()
         {
             _events.PublishOnUIThread(new OpenEditEmployeeEvent(SelectedEmployee.Id));
             //await _userEndpoint.GetEmployeeById(SelectedEmployee.Id);

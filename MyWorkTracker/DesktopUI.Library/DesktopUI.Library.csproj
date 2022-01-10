@@ -52,9 +52,11 @@
     <Compile Include="Api\ApiHelper.cs" />
     <Compile Include="Api\ChartEndpoint.cs" />
     <Compile Include="Api\CompanyEndpoint.cs" />
+    <Compile Include="Api\ContactEndpoint.cs" />
     <Compile Include="Api\IApiHelper.cs" />
     <Compile Include="Api\IChartEndpoint.cs" />
     <Compile Include="Api\ICompanyEndpoint.cs" />
+    <Compile Include="Api\IContactEndpoint.cs" />
     <Compile Include="Api\IEntryEndpoint.cs" />
     <Compile Include="Api\EntryEndpoint.cs" />
     <Compile Include="Api\IProductEndpoint.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Models\AcceptedUserModel.cs" />
     <Compile Include="Models\ApprovalRequestModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\EditEmployeeUserModel.cs" />
     <Compile Include="Models\EmployeeDataModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />

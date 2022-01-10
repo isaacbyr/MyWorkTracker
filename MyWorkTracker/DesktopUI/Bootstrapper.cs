@@ -31,6 +31,7 @@ namespace DesktopUI
                 .Singleton<ICompanyEndpoint, CompanyEndpoint>()
                 .Singleton<IUserEndpoint, UserEndpoint>()
                 .Singleton<IRequestEndpoint, RequestEndpoint>()
+                .Singleton<IContactEndpoint, ContactEndpoint>()
                 .Singleton<IProductEndpoint, ProductEndpoint>()
                 .Singleton<IEventAggregator, EventAggregator>();
 

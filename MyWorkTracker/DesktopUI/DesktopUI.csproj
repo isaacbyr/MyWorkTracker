@@ -105,6 +105,7 @@
     <Compile Include="EventModels\CreateNewEvent.cs" />
     <Compile Include="EventModels\OpenAccountEvent.cs" />
     <Compile Include="EventModels\OpenAdminAccountEvent.cs" />
+    <Compile Include="EventModels\OpenContactsEvent.cs" />
     <Compile Include="EventModels\OpenEditEmployeeEvent.cs" />
     <Compile Include="EventModels\OpenRegisterView.cs" />
     <Compile Include="EventModels\ExitAppEvent.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AdminAccountViewModel.cs" />
     <Compile Include="ViewModels\AdminNewEntryViewModel.cs" />
+    <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -133,6 +135,9 @@
     </Compile>
     <Compile Include="Views\AdminNewEntryView.xaml.cs">
       <DependentUpon>AdminNewEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContactsView.xaml.cs">
+      <DependentUpon>ContactsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditEmployeeView.xaml.cs">
       <DependentUpon>EditEmployeeView.xaml</DependentUpon>
@@ -215,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminNewEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContactsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -90,6 +90,10 @@ namespace DesktopUI.ViewModels
             IsAdminAccount = result.IsAdmin;
         }
 
+        public void Contacts()
+        {
+            _events.PublishOnUIThread(new OpenContactsEvent(CompanyId));
+        }
 
         public int DaysInMonth(int value = 0, bool prevYear = false, bool defaultLoad = false)
         {
