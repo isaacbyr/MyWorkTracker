@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using DesktopUI.EventModels;
 using DesktopUI.Library.Api;
 using DesktopUI.Library.Models;
 using System;
@@ -15,11 +16,14 @@ namespace DesktopUI.ViewModels
     public class ContactsViewModel: Screen
     {
         private readonly IContactEndpoint _contactEndpoint;
+        private readonly IEventAggregator _events;
+
         public int CompanyId { get; set; }
 
-        public ContactsViewModel(IContactEndpoint contactEndpoint)
+        public ContactsViewModel(IContactEndpoint contactEndpoint, IEventAggregator events)
         {
             _contactEndpoint = contactEndpoint;
+            _events = events;
         }
 
         protected override async void OnViewLoaded(object view)
@@ -212,5 +216,9 @@ namespace DesktopUI.ViewModels
 
         }
 
+        public void ReturnHome()
+        {
+            _events.PublishOnUIThread(new ReturnHomeEvent());
+        }
     }
 }

@@ -71,6 +71,15 @@ namespace DataManager.Controllers
 
             return companyData.LoadCompanyId(id);
         }
+
+        [HttpGet]
+        [Route("ownerinfo/{companyId}")]
+        public EmployeeUserModel LoadOwnerInfo(int companyId)
+        {
+            var companyData = new CompanyData();
+
+            return companyData.LoadOwnerInfo(companyId);
+        }
     }
 
 }

@@ -12,5 +12,11 @@ namespace DesktopUI.Library.Api
         Task<List<DailyChartDataModel>> LoadDailyChartData();
         Task<List<JobChartDataModel>> LoadJobTotalsChartData();
         Task<List<LocationChartDataModel>> LoadLocationChartData();
+        Task<List<HoursChartDataModel>> LoadHoursChartDataById(string userId);
+        Task<List<DailyChartDataModel>> LoadDailyChartDataById(string id);
+        Task<List<WeeklyChartDataModel>> LoadWeeklyChartDataById(string id);
+        Task<List<MonthlyChartDataModel>> LoadMonthlyChartDataById(string id);
+        Task<List<JobChartDataModel>> LoadJobTotalsChartDataById(string id);
+        Task<List<LocationChartDataModel>> LoadLocationChartDataById(string id);
     }
 }

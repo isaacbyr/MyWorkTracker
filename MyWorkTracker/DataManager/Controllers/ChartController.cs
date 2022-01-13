@@ -70,5 +70,56 @@ namespace DataManager.Controllers
 
             return chartData.LoadLocationTotals(UserId);
         }
+
+        [Route("hours/{userId}")]
+        public List<HoursChartDataModel> GetHoursData(string userId)
+        {
+            var chartData = new ChartData();
+
+            //string UserId = RequestContext.Principal.Identity.GetUserId();
+
+            return chartData.LoadHours(userId);
+        }
+
+        [Route("daily/{userId}")]
+        public List<DailyChartDataModel> GetDailyById(string userId)
+        {
+            var chartData = new ChartData();
+
+            return chartData.LoadDailyTotals(userId);
+        }
+
+        [Route("weekly/{userId}")]
+        public List<WeeklyChartDataModel> GetWeeklyById(string userId)
+        {
+            var chartData = new ChartData();
+
+            return chartData.LoadWeeklyTotals(userId);
+        }
+
+        [Route("monthly/{userId}")]
+        public List<MonthlyChartDataModel> GetMonthlyById(string userId)
+        {
+            var chartData = new ChartData();
+
+            return chartData.LoadMonthlyTotals(userId);
+        }
+
+        [Route("jobs/{id}")]
+        public List<JobChartDataModel> GetJobsData(string id)
+        {
+            var chartData = new ChartData();
+
+            return chartData.LoadJobTotals(id);
+
+        }
+
+        [Route("location/{id}")]
+        public List<LocationChartDataModel> GetLocationData(string id)
+        {
+            var chartData = new ChartData();
+
+            return chartData.LoadLocationTotals(id);
+        }
     }
 }

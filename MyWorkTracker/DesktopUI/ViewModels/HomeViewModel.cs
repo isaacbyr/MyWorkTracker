@@ -1121,7 +1121,14 @@ namespace DesktopUI.ViewModels
 
         public void ViewStats ()
         {
-            _events.PublishOnUIThread(new OpenStatsView());
+            if (IsAdminAccount)
+            {
+                _events.PublishOnUIThread(new OpenAdminStatsView(CompanyId));
+            }
+            else
+            {
+                _events.PublishOnUIThread(new OpenStatsView());
+            }
         }
 
         //public void New()

@@ -112,5 +112,20 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
+
+        public async Task<EmployeeUserModel> LoadOwnerInfo(int companyId)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/company/ownerinfo/{companyId}"))
+            {
+                if(response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsAsync<EmployeeUserModel>();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

@@ -167,5 +167,10 @@
                     Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
 
         </Grid>
+
+        <Button Content="Home" Grid.Column="5" Grid.Row="10"
+                Background="SteelBlue" Foreground="White"
+                Margin="20 10 20 10" FontSize="16"
+                x:Name="ReturnHome"></Button>
     </Grid>
 </UserControl>

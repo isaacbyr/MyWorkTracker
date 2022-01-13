@@ -108,5 +108,22 @@ namespace DataManager.Library.DataAccess
                 throw new Exception(e.Message);
             }
         }
+
+        public EmployeeUserModel LoadOwnerInfo(int companyId)
+        {
+            var sql = new SqlDataAccess();
+
+            var p = new { CompanyId = companyId };
+
+            try
+            {
+                var output = sql.LoadData<EmployeeUserModel, dynamic>("dbo.spLoadOwnerInfo", p, "WTData").First();
+                return output;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

@@ -105,6 +105,7 @@
     <Compile Include="EventModels\CreateNewEvent.cs" />
     <Compile Include="EventModels\OpenAccountEvent.cs" />
     <Compile Include="EventModels\OpenAdminAccountEvent.cs" />
+    <Compile Include="EventModels\OpenAdminStatsView.cs" />
     <Compile Include="EventModels\OpenContactsEvent.cs" />
     <Compile Include="EventModels\OpenEditEmployeeEvent.cs" />
     <Compile Include="EventModels\OpenRegisterView.cs" />
@@ -118,12 +119,14 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AdminAccountViewModel.cs" />
     <Compile Include="ViewModels\AdminNewEntryViewModel.cs" />
+    <Compile Include="ViewModels\AdminStatsViewModel.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\NewEntryViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\StatsViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="Views\AdminNewEntryView.xaml.cs">
       <DependentUpon>AdminNewEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminStatsView.xaml.cs">
+      <DependentUpon>AdminStatsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ContactsView.xaml.cs">
       <DependentUpon>ContactsView.xaml</DependentUpon>
@@ -153,6 +159,9 @@
     </Compile>
     <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -223,6 +232,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AdminStatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ContactsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

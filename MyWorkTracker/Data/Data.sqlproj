@@ -102,6 +102,7 @@
     <Build Include="dbo\Tables\Contacts.sql" />
     <Build Include="dbo\Stored Procedures\spInsertContact.sql" />
     <Build Include="dbo\Stored Procedures\spGetContacts.sql" />
+    <Build Include="dbo\Stored Procedures\spLoadOwnerInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

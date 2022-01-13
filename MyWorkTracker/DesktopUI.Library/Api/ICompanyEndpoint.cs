@@ -13,5 +13,6 @@ namespace DesktopUI.Library.Api
         Task<List<EmployeeUserModel>> GetEmployees(int companyId);
         Task<int> LoadCompanyId();
         Task<List<EmployeeDataModel>> GetEmployeeEntries(DateTime date, int companyId);
+        Task<EmployeeUserModel> LoadOwnerInfo(int companyId);
     }
 }
