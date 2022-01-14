@@ -6,7 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DesktopUI.Views"
              mc:Ignorable="d" 
-             Background="White"
+             Background="#fbf8f3"
+             Foreground="#555555"
              d:DesignHeight="650" d:DesignWidth="1090">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +31,8 @@
         </Grid.RowDefinitions>
 
         <!--Account Header-->
-        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" FontSize="24" Text="Account Information"></TextBlock>
+        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" FontSize="24" Text="Account Information"
+                   FontWeight="Bold" TextDecorations="Underline"></TextBlock>
 
         <!--Full Name-->
         <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="Full Name:"></TextBlock>
@@ -52,14 +54,14 @@
         
         <!--Logout/Exit Buttons-->
         <StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Horizontal" Grid.Column="0" Grid.Row="6">
-            <Button Margin="0 0 2 0" x:Name="Logout" Content="Logout"></Button>
-            <Button x:Name="Home" Content="Home" Margin="2 0 0 0"></Button>
+            <Button Background="SteelBlue" Foreground="White" Padding="15" Margin="0 0 2 0" x:Name="Logout" Content="Logout"></Button>
+            <Button x:Name="Home" Content="Home" Padding="15" Margin="2 0 0 0" Background="SteelBlue" Foreground="White"></Button>
         </StackPanel>
     
         
         
         <!--Company Overview Header-->
-        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" FontSize="24" Text="Company Overview"></TextBlock>
+        <TextBlock FontWeight="Bold" TextDecorations="Underline" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" FontSize="24" Text="Company Overview"></TextBlock>
 
         <!--Company-->
         <TextBlock Margin="0 0 5 0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Text="Company Id:"></TextBlock>
@@ -76,11 +78,16 @@
                  SelectedItem="{Binding SelectedEmployee}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding FirstName}" FontSize="12"></TextBlock>
-                        <TextBlock Text="{Binding LastName}" FontSize="12" Margin="5 0 0 0"></TextBlock>
-                        <Button cal:Message.Attach="EditEmployee" HorizontalContentAlignment="Right" HorizontalAlignment="Right" x:Name="EditEmployee" Background="#ff9d5c" Foreground="White" Content="Edit" Margin="5 0 0 0"></Button>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="190"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding FirstName}" FontSize="12"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding LastName}" FontSize="12"></TextBlock>
+                        <Button Grid.Column="2" cal:Message.Attach="EditEmployee" HorizontalContentAlignment="Right" HorizontalAlignment="Right" x:Name="EditEmployee" Background="#ff9d5c" Foreground="White" Content="Edit"></Button>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -92,12 +99,18 @@
                  SelectedItem="{Binding SelectedUser}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ReqFirstName}" FontSize="12"></TextBlock>
-                        <TextBlock Text="{Binding ReqLastName}" FontSize="12" Margin="5 0 0 0"></TextBlock>
-                        <Button cal:Message.Attach="Accept"  HorizontalAlignment="Right" x:Name="Accept" Background="LightGreen" Foreground="White" Content="Accept" Margin="5 0 0 0"></Button>
-                        <Button cal:Message.Attach="Delete" HorizontalAlignment="Right" x:Name="Delete" Background="PaleVioletRed" Foreground="White" Content="Delete" Margin="5 0 0 0"></Button>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding ReqFirstName}" FontSize="12"></TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding ReqLastName}" FontSize="12"></TextBlock>
+                        <Button Grid.Column="2" cal:Message.Attach="Accept"  HorizontalAlignment="Right" x:Name="Accept" Background="LightGreen" Foreground="White" Content="Accept" ></Button>
+                        <Button Grid.Column="3" cal:Message.Attach="Delete" HorizontalAlignment="Right" x:Name="Delete" Background="PaleVioletRed" Foreground="White" Content="Delete"></Button>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

@@ -276,7 +276,10 @@ namespace DesktopUI.ViewModels
 
         public void EditEmployee()
         {
-            _events.PublishOnUIThread(new OpenEditEmployeeEvent(SelectedEmployee.Id));
+            if (SelectedEmployee != null)
+            {
+                _events.PublishOnUIThread(new OpenEditEmployeeEvent(SelectedEmployee.Id));
+            }
             //await _userEndpoint.GetEmployeeById(SelectedEmployee.Id);
         }
 

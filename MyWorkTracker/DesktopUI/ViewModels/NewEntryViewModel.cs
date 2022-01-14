@@ -241,7 +241,7 @@ namespace DesktopUI.ViewModels
 
         public async Task Add()
         {
-           
+
             entry.Job = Job;
             entry.Location = Location;
             entry.Hours = Hours;
@@ -252,7 +252,18 @@ namespace DesktopUI.ViewModels
             entry.StartTime = StartTime;
             entry.EndTime = EndTime;
 
-            await _entryEndpoint.PostEntry(entry);
+            //check to see if entry exists
+            var foundEntry = await _entryEndpoint.LoadEntry(entry.JobDate);
+            
+            if(foundEntry == null)
+            {
+                await _entryEndpoint.PostEntry(entry);
+            }
+            else
+            {
+                await _entryEndpoint.UpdateEntry(entry);
+            }
+
 
             _events.PublishOnUIThread(new SavedToDbEvent());
 

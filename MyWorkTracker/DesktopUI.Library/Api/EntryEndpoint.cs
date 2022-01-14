@@ -101,5 +101,20 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
+
+        public async Task UpdateEntry(EntryModel entry)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.PutAsJsonAsync("api/Entry", entry))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

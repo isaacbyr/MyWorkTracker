@@ -119,6 +119,7 @@
     <Build Include="dbo\Stored Procedures\spAdminSearchByLocationOrderTotal.sql" />
     <Build Include="dbo\Stored Procedures\spAdminSearchByEmployeeOrderTotal.sql" />
     <Build Include="dbo\Stored Procedures\spAdminSearchByEmployeeOrderDate.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateEntry.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

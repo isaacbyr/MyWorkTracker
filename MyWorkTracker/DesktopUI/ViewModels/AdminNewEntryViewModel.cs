@@ -69,9 +69,19 @@ namespace DesktopUI.ViewModels
                 }
                 else if (PrevMonth && !NextMonth)
                 {
-                    var date = new DateTime(currentSelectedYear, currentSelectedMonth - 1, convertedDay);
-                    CurrentSelectedDate = date;
-                    return date.ToString("dddd, MMM d yyyy").ToUpper();
+                    if(currentSelectedMonth == 1)
+                    {
+                        var date = new DateTime(currentSelectedYear - 1, 12, convertedDay);
+                        CurrentSelectedDate = date;
+                        return date.ToString("dddd, MMM d yyyy").ToUpper();
+                    } 
+                    else
+                    {
+                        var date = new DateTime(currentSelectedYear, currentSelectedMonth - 1, convertedDay);
+                        CurrentSelectedDate = date;
+                        return date.ToString("dddd, MMM d yyyy").ToUpper();
+                    }
+                    
                 }
 
                 return "Cal Error";
@@ -395,7 +405,6 @@ namespace DesktopUI.ViewModels
 
         public async Task Save()
         {
-
             var entry = new EntryModel();
 
             entry.Job = Job;
@@ -409,7 +418,20 @@ namespace DesktopUI.ViewModels
             entry.Wage = Wage;
             entry.Total = Total;
 
-            await _entryEndpoint.PostEntry(entry);
+            //Check to see if data is already save in db
+            var foundEntry = await _entryEndpoint.LoadEntry(CurrentSelectedDate);
+
+            if(foundEntry == null)
+            { 
+                //if entry does not exist post new entry
+                await _entryEndpoint.PostEntry(entry);
+            }
+            
+            if(foundEntry!=null)
+            {
+                // if entry exists update it with new data
+                await _entryEndpoint.UpdateEntry(entry);
+            }
 
             _events.PublishOnUIThread(new ReturnHomeEvent());
         }

@@ -45,6 +45,22 @@ namespace DataManager.Library.DataAccess
             
         }
 
+        public void UpdateEntry(EntryModel entry)
+        {
+            var sql = new SqlDataAccess();
+            try
+            {
+                sql.StartTransaction("WTData");
+                sql.SaveDataInTransaction("dbo.spUpdateEntry", entry);
+                sql.CommitTransaction();
+            }
+            catch (Exception e)
+            {
+                sql.RollbackTransaction();
+                throw new Exception(e.Message);
+            }
+        }
+
         public List<EntryModel> LoadEntries(string UserId, DateTime firstDate, DateTime lastDate)
         {
             SqlDataAccess sql = new SqlDataAccess();

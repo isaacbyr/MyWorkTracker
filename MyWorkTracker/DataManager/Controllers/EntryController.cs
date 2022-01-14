@@ -26,6 +26,17 @@ namespace DataManager.Controllers
             entryData.SaveEntry(newEntry);
         }
 
+        [HttpPut]
+        public void Put(EntryModel entry)
+        {
+            var entryData = new EntryData();
+
+            string id = RequestContext.Principal.Identity.GetUserId();
+            entry.UserId = id;
+
+            entryData.UpdateEntry(entry);
+        }
+
         [HttpGet]
         [Route("{date}")]
         public EntryModel Get(string date)

@@ -12,5 +12,6 @@ namespace DesktopUI.Library.Api
         Task<List<EntryModel>> LoadEntriesBetweenDates(DateTime firstDate, DateTime lastDate);
         Task<List<SearchResultsModel>> LoadSearchResults(SearchInputModel searchInput);
         Task<List<SearchResultsEmployeeModel>> LoadAdminSearchResults(AdminSearchInputModel searchInput);
+        Task UpdateEntry(EntryModel entry);
     }  
 }
