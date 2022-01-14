@@ -103,6 +103,22 @@
     <Build Include="dbo\Stored Procedures\spInsertContact.sql" />
     <Build Include="dbo\Stored Procedures\spGetContacts.sql" />
     <Build Include="dbo\Stored Procedures\spLoadOwnerInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByJobOrderDate.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByJobOrderTotalAsc.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByLocationOrderDate.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByLocationOrderTotal.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByJobOrderTotalDesc.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByLocationOrderTotalDesc.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByJobOrderDateDesc.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSearchByLocationOrderDateDesc.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByJobOrderDateAsc.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByJobOrderDateDesc.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByLocationOrderDateDesc.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByLocationOrderDateAsc.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByJobOrderTotal.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByLocationOrderTotal.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByEmployeeOrderTotal.sql" />
+    <Build Include="dbo\Stored Procedures\spAdminSearchByEmployeeOrderDate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocations\Data.publish.xml" />

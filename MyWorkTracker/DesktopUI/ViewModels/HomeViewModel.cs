@@ -1131,6 +1131,19 @@ namespace DesktopUI.ViewModels
             }
         }
 
+        public void Search()
+        {
+            if (IsAdminAccount)
+            {
+                _events.PublishOnUIThread(new OpenAdminSearchEvent(CompanyId));
+            }
+            else
+            {
+                _events.PublishOnUIThread(new OpenSearchEvent());
+
+            }
+        }
+
         //public void New()
         //{
         //    _events.PublishOnUIThread(new CreateNewEvent());
@@ -1288,7 +1301,7 @@ namespace DesktopUI.ViewModels
             }
             else
             {
-                _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedDate, itemLocation));
+                _events.PublishOnUIThread(new CreateNewEvent(content, prevMonth, nextMonth, selectedDate));
 
             }
         }

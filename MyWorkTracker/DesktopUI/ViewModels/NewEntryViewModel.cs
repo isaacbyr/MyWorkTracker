@@ -12,7 +12,6 @@ namespace DesktopUI.ViewModels
 {
     public class NewEntryViewModel: Screen
     {
-        public string ItemLocation { get; set; }
         public bool NextMonth { get; set; }
         public bool PrevMonth { get; set; }
         public DateTime SelectedMonth { get; set; }
@@ -52,9 +51,18 @@ namespace DesktopUI.ViewModels
                 }
                 else if (PrevMonth && !NextMonth)
                 {
-                    var date = new DateTime(currentSelectedYear, currentSelectedMonth - 1, convertedDay);
-                    entry.JobDate = date;
-                    return date.ToString("dddd, MMM d yyyy").ToUpper();
+                    if(currentSelectedMonth == 1)
+                    {
+                        var date = new DateTime(currentSelectedYear -1 , 12, convertedDay);
+                        entry.JobDate = date;
+                        return date.ToString("dddd, MMM d yyyy").ToUpper();
+                    }
+                    else
+                    {
+                        var date = new DateTime(currentSelectedYear, currentSelectedMonth - 1, convertedDay);
+                        entry.JobDate = date;
+                        return date.ToString("dddd, MMM d yyyy").ToUpper();
+                    }
                 }
 
                 return "Cal Error";
@@ -94,7 +102,7 @@ namespace DesktopUI.ViewModels
                 Job = foundEntry.Job;
                 Location = foundEntry.Location;
                 Hours = foundEntry.Hours;
-                Wage = foundEntry.Wage;
+                Wage = Math.Round(foundEntry.Wage,2);
                 Description = foundEntry.Description;
                 StartTime = foundEntry.StartTime;
                 EndTime = foundEntry.EndTime;
@@ -200,7 +208,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return Subtotal;
+                return Math.Round(Subtotal,2);
             }
         }
 
@@ -220,7 +228,7 @@ namespace DesktopUI.ViewModels
         {
             get
             {
-                return Wage * Hours;
+                return Math.Round(Wage * Hours,2);
             }
         }
 

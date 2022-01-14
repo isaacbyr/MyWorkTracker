@@ -24,13 +24,12 @@ namespace DesktopUI.EventModels
 
         }
 
-        public CreateNewEvent(string date, bool prevMonth, bool nextMonth, DateTime selectedDate, string itemLocation)
+        public CreateNewEvent(string date, bool prevMonth, bool nextMonth, DateTime selectedDate)
         {
             Date = date;
             PrevMonth = prevMonth;
             NextMonth = nextMonth;
             SelectedDate = selectedDate;
-            ItemLocation = itemLocation;
         }
     }
 }

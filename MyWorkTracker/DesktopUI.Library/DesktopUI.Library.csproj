@@ -66,6 +66,7 @@
     <Compile Include="Api\RequestEndpoint.cs" />
     <Compile Include="Api\UserEndpoint.cs" />
     <Compile Include="Models\AcceptedUserModel.cs" />
+    <Compile Include="Models\AdminSearchInputModel.cs" />
     <Compile Include="Models\ApprovalRequestModel.cs" />
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
@@ -85,6 +86,9 @@
     <Compile Include="Models\LoggedInUserModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
+    <Compile Include="Models\SearchInputModel.cs" />
+    <Compile Include="Models\SearchResultsEmployeeModel.cs" />
+    <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\UpdatedEmployeeUserModel.cs" />
     <Compile Include="Models\UserRequestModel.cs" />
     <Compile Include="Models\WeeklyChartDataModel.cs" />

@@ -70,6 +70,8 @@
     <Compile Include="Models\MonthlyChartDataModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\SearchResultsEmployeeModel.cs" />
+    <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\UpdatedEmployeeUserModel.cs" />
     <Compile Include="Models\UserRequestModel.cs" />
     <Compile Include="Models\WeeklyChartDataModel.cs" />

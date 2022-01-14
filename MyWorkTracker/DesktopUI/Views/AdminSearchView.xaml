@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DesktopUI.Views.SearchView"
+﻿<UserControl x:Class="DesktopUI.Views.AdminSearchView"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -26,21 +26,21 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50" ></RowDefinition>
         </Grid.RowDefinitions>
-        
-        
+
+
         <!--Header-->
         <TextBlock Text="Search" FontSize="40" TextDecorations="Underline"
                    FontWeight="Bold" VerticalAlignment="Center"
                    Grid.Column="2" Grid.ColumnSpan="2"
                    HorizontalAlignment="Center"></TextBlock>
-        
+
         <!--Keyword-->
         <TextBlock Text="Keyword" Grid.Column="1" Grid.Row="1"
                    HorizontalAlignment="Left" VerticalAlignment="Center"
                    Margin="5 0 0 0"></TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5 5 5 5"
                  VerticalContentAlignment="Center" x:Name="Keyword"></TextBox>
-        
+
         <!--Category-->
         <TextBlock Text="Category" Grid.Column="2" Grid.Row="1"
                    HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -56,33 +56,36 @@
         <ComboBox Grid.Row="2" Grid.Column="3" Margin="5 5 5 5"
                   SelectedValue="{Binding SelectedOrderBy}"
                  VerticalContentAlignment="Center" x:Name="OrderByList">
-            
+
         </ComboBox>
-        
-        
+
+
         <!--Search-->
         <Button Content="Search" Grid.Column="4" Grid.Row="2"
                 x:Name="Search" Background="SteelBlue" Foreground="White"
                 Margin="20 5 20 5"></Button>
 
         <!--Results-->
-        <TextBlock Text="Results" Grid.Column="1" Grid.Row="3" FontSize="28"
+        <TextBlock Text="Results" Grid.Column="0" Grid.Row="3" FontSize="28"
+                   Grid.ColumnSpan="2"
                    HorizontalAlignment="Left" VerticalAlignment="Center"
-                   Margin="5 0 0 0"></TextBlock>
-        
+                   Margin="25 0 0 0"></TextBlock>
+
         <ListView ItemsSource="{Binding Results}" Margin="15 0 15 0"
-                 Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4"
-                  SelectedValue="{Binding SelectedResult}"
+                 Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"
+                  SelectedValue="{Binding SelectedResult}" FontSize="15"
                   HorizontalAlignment="Center" HorizontalContentAlignment="Center"
                   ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Job}" Header="Job" Width="150"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Location" Width="150"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Date" Width="150"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="First Name" Width="150"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Header="Last Name" Width="150"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Job}" Header="Job" Width="130"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Location}" Header="Location" Width="130"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Date" Width="130"></GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Hours}" Header="Hours" Width="110"></GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Wage}" Header="Wage" Width="110"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding SubTotal}" Header="Total" Width="110"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Total}" Header="Total" Width="110"></GridViewColumn>
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>
@@ -91,11 +94,11 @@
                     <Setter Property="HorizontalAlignment" Value="Center"></Setter>
                     <Setter Property="FontSize" Value="15"></Setter>
                     <Setter Property="cal:Message.Attach"
-                            Value="[Event MouseDoubleClick] = [Action OpenEntryView()]"></Setter>
+                            Value="[Event MouseDoubleClick] = [Action OpenAdminEntryView()]"></Setter>
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-        
+
         <!--Home Button-->
         <Button Content="Home" Grid.Column="4" Grid.Row="5"
                 Background="SteelBlue" Foreground="White"

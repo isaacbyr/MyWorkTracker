@@ -13,7 +13,8 @@ namespace DesktopUI.ViewModels
     public class ShellViewModel: Conductor<object>, IHandle<LogOnEvent>, IHandle<CreateNewEvent>, IHandle<LogOffEvent>, IHandle<ExitAppEvent>,
         IHandle<CloseEntryView>, IHandle<SavedToDbEvent>, IHandle<OpenRegisterView>, IHandle<CloseRegisterView>, IHandle<OpenStatsView>, 
         IHandle<ReturnHomeEvent>, IHandle<OpenAccountEvent>, IHandle<OpenAdminAccountEvent>, IHandle<AdminCreateNewEvent>, 
-        IHandle<OpenEditEmployeeEvent>, IHandle<ReturnToAdminAccountEvent>, IHandle<OpenContactsEvent>, IHandle<OpenAdminStatsView>
+        IHandle<OpenEditEmployeeEvent>, IHandle<ReturnToAdminAccountEvent>, IHandle<OpenContactsEvent>, IHandle<OpenAdminStatsView>,
+        IHandle<OpenSearchEvent>, IHandle<OpenAdminSearchEvent>
     {
         private LoginViewModel _loginView;
         private readonly IEventAggregator _events;
@@ -29,13 +30,16 @@ namespace DesktopUI.ViewModels
         private readonly EditEmployeeViewModel _editEmployeeVM;
         private readonly ContactsViewModel _contactsVM;
         private readonly AdminStatsViewModel _adminStatsVM;
+        private readonly SearchViewModel _searchVM;
+        private readonly AdminSearchViewModel _adminSearchVM;
 
         public ShellViewModel(LoginViewModel loginView, IEventAggregator events, 
             WelcomeViewModel welcomeVM, SimpleContainer container, HomeViewModel homeVM, 
             NewEntryViewModel newVM, RegisterViewModel registerVM, StatsViewModel statsVM,
             AccountViewModel accountVM, AdminAccountViewModel adminAccountVM, 
             AdminNewEntryViewModel adminNewEntryVM, EditEmployeeViewModel editEmployeeVM,
-            ContactsViewModel contactsVM, AdminStatsViewModel adminStatsVM)
+            ContactsViewModel contactsVM, AdminStatsViewModel adminStatsVM, SearchViewModel searchVM,
+            AdminSearchViewModel adminSearchVM)
         {
             _loginView = loginView;
             _events = events;
@@ -51,6 +55,8 @@ namespace DesktopUI.ViewModels
             _editEmployeeVM = editEmployeeVM;
             _contactsVM = contactsVM;
             _adminStatsVM = adminStatsVM;
+            _searchVM = searchVM;
+            _adminSearchVM = adminSearchVM;
 
             // have to subscribe to events in general
             _events.Subscribe(this);
@@ -81,8 +87,6 @@ namespace DesktopUI.ViewModels
 
         public void Handle(CreateNewEvent message)
         {
-
-            _newVM.ItemLocation = message.ItemLocation;
             _newVM.Date = message.Date;
             _newVM.NextMonth = message.NextMonth;
             _newVM.PrevMonth = message.PrevMonth;
@@ -166,6 +170,17 @@ namespace DesktopUI.ViewModels
         {
             _adminStatsVM.CompanyId = message.CompanyId;
             ActivateItem(_adminStatsVM);
+        }
+
+        public void Handle(OpenSearchEvent message)
+        {
+            ActivateItem(_searchVM);
+        }
+
+        public void Handle(OpenAdminSearchEvent message)
+        {
+            _adminSearchVM.CompanyId = message.CompanyId;
+            ActivateItem(_adminSearchVM);
         }
     }
 }

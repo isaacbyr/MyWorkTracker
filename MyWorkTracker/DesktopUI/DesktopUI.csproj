@@ -105,6 +105,7 @@
     <Compile Include="EventModels\CreateNewEvent.cs" />
     <Compile Include="EventModels\OpenAccountEvent.cs" />
     <Compile Include="EventModels\OpenAdminAccountEvent.cs" />
+    <Compile Include="EventModels\OpenAdminSearchEvent.cs" />
     <Compile Include="EventModels\OpenAdminStatsView.cs" />
     <Compile Include="EventModels\OpenContactsEvent.cs" />
     <Compile Include="EventModels\OpenEditEmployeeEvent.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="EventModels\ExitAppEvent.cs" />
     <Compile Include="EventModels\LogOffEvent.cs" />
     <Compile Include="EventModels\LogOnEvent.cs" />
+    <Compile Include="EventModels\OpenSearchEvent.cs" />
     <Compile Include="EventModels\OpenStatsView.cs" />
     <Compile Include="EventModels\ReturnHomeEvent.cs" />
     <Compile Include="EventModels\ReturnToAdminAccountEvent.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AdminAccountViewModel.cs" />
     <Compile Include="ViewModels\AdminNewEntryViewModel.cs" />
+    <Compile Include="ViewModels\AdminSearchViewModel.cs" />
     <Compile Include="ViewModels\AdminStatsViewModel.cs" />
     <Compile Include="ViewModels\ContactsViewModel.cs" />
     <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
@@ -138,6 +141,9 @@
     </Compile>
     <Compile Include="Views\AdminNewEntryView.xaml.cs">
       <DependentUpon>AdminNewEntryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminSearchView.xaml.cs">
+      <DependentUpon>AdminSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminStatsView.xaml.cs">
       <DependentUpon>AdminStatsView.xaml</DependentUpon>
@@ -229,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminNewEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

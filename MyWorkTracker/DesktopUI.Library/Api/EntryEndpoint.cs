@@ -68,5 +68,38 @@ namespace DesktopUI.Library.Api
                 }
             }
         }
+
+        public async Task<List<SearchResultsModel>> LoadSearchResults(SearchInputModel searchInput)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/entry/{searchInput.Keyword}/{searchInput.Category}/{searchInput.OrderBy}"))
+            {
+                if(response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<SearchResultsModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+
+        public async Task<List<SearchResultsEmployeeModel>> LoadAdminSearchResults(AdminSearchInputModel searchInput)
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/entry/{searchInput.CompanyId}/{searchInput.Keyword}/{searchInput.Category}/{searchInput.OrderBy}"))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsAsync<List<SearchResultsEmployeeModel>>();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
     }
 }

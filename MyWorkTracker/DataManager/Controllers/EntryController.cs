@@ -55,5 +55,24 @@ namespace DataManager.Controllers
 
             return entryData.LoadEntries(userId, firstDate, lastDate);
         }
+
+        [Route("{keyword}/{category}/{orderBy}")]
+        public List<SearchResultsModel> GetSearchResults(string keyword, string category, string orderBy)
+        {
+            string userId = RequestContext.Principal.Identity.GetUserId();
+
+            var entryData = new EntryData();
+
+            return entryData.LoadSearchResults(userId, keyword, category, orderBy);
+        }
+
+        [Route("{companyId}/{keyword}/{category}/{orderBy}")]
+        public List<SearchResultsEmployeeModel> GetSearchResults(int companyId, string keyword, string category, string orderBy)
+        {
+          
+            var entryData = new EntryData();
+
+            return entryData.LoadAdminSearchResults(companyId, keyword, category, orderBy);
+        }
     }
 }
