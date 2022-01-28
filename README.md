@@ -1,2 +1,2 @@
 # MyWorkTracker
-An app I built to track  my hours for work
+An app I built that allows a company to track and manage all employee hours and job information. Company can register for an account and gets a unique company id which can then be shared with all employees, to sign up for that specific company. Employees can log all their hours, wage, job description and location. Company account then has access to all employee data and can see company overview for each day. Added graphing features so employee/company to chart hours, total, and many other things. App also allows company to pick certain jobs/locations and employees and automatically writes their data into a pdf and sends to client as an invoice.
